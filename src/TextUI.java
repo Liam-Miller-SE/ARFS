@@ -11,7 +11,7 @@ public class TextUI implements Observer
     }
 
     public static void main(String[] args) {
-        System.out.println("Welcome to AFRS! \n");
+        System.out.println("Welcome to AFRS!");
         System.out.println("In Development Now...");
 
     }
