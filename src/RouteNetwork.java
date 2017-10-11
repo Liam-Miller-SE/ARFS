@@ -22,17 +22,44 @@ public class RouteNetwork
 
     public void readInfo(File f)
     {
+        String filename = f.getName();
+        System.out.println(filename);
         try
         {
             BufferedReader fr = new BufferedReader(new FileReader(f));
             String line = fr.readLine();
+
             while(line != null)
             {
-                System.out.println(line);
                 String[] args = line.split(",");
-                System.out.println(args[0] + " " + args[1]);
-                line = fr.readLine();
+                switch (filename){
 
+                    case "airports.txt":
+                        //code, city
+                        System.out.println(args[0] + " " + args[1]);
+                        break;
+                    case "connections.txt":
+                        //airport, minutes
+                        System.out.println(args[0] + " " + args[1]);
+                        break;
+                    case "delays.txt":
+                        //airport, minutes
+                        System.out.println(args[0] + " " + args[1] );
+                        break;
+                    case "flights.txt":
+
+                        System.out.println(args[0] + " " + args[1] + " " + args[2] + " " +
+                                args[3] + " " + args[4] + " " + args[5]);
+                        break;
+                    case "weather.txt":
+                        //input csv not always the same number of args
+                        System.out.println(args[0] + " " + args[1]);
+                        break;
+                    default:
+                        System.out.println(line);
+                        break;
+                }
+                    line = fr.readLine();
             }
             fr.close();
         }
@@ -53,15 +80,7 @@ public class RouteNetwork
     public ArrayList<Itinerary> createItineraries(Airport origin, Airport destination)
     {
         return null;
+    }
 
-    }
-    /*
-    public static void main(String[] args)
-    {
-        RouteNetwork r = new RouteNetwork();
-        File f = new File("C:\\Users\\melis\\Documents\\GitHub\\ARFS\\src\\inputFiles\\airports.txt");
-        r.readInfo(f);
-    }
-    */
 
 }
