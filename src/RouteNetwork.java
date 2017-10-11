@@ -55,11 +55,13 @@ public class RouteNetwork
         return null;
 
     }
+    /*
     public static void main(String[] args)
     {
         RouteNetwork r = new RouteNetwork();
         File f = new File("C:\\Users\\melis\\Documents\\GitHub\\ARFS\\src\\inputFiles\\airports.txt");
         r.readInfo(f);
     }
+    */
 
 }
