@@ -5,14 +5,14 @@ public class AirportQuery implements IQuery
 {
 	public String returnData()
 	{
-		
+		return null;
 	}
 	public String getData()
 	{
-		
+		return null;
 	}
 	public String processData()
 	{
-		
+		return null;
 	}
 }

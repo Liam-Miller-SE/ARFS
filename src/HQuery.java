@@ -9,6 +9,7 @@ public class HQuery
 		{
 			ReservationQuery rq = new ReservationQuery() ;
 			return rq.getData(query[1:]) ;
+		}
 		else if( query[0] == "Airport")
 		{
 			AirportQuery aq = new AirportQuery() ;

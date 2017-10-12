@@ -5,14 +5,14 @@ public class ItineraryQuery implements IQuery
 {
 	public String returnData()
 	{
-		
+		return null;
 	}
 	public String getData()
 	{
-		
+		return null;
 	}
 	public String processData()
 	{
-		
+		return null;
 	}
 }
