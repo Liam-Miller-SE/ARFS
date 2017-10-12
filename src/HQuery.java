@@ -5,25 +5,20 @@ public class HQuery
 	}
 	public String query(String[] query)
 	{
-		if( query[0] == "Reservation")
-		{
-			ReservationQuery rq = new ReservationQuery() ;
-			return rq.getData(query[1:]) ;
-		}
-		else if( query[0] == "Airport")
-		{
-			AirportQuery aq = new AirportQuery() ;
-			return aq.getData(query[1:]) ;
-		}
-		else if( query[0] == "Flight")
-		{
-			FlightQuery fq = new FlightQuery() ;
-			return fq.getData(query[1:]) ;
-		}
-		else if( query[0] == "Itinerary")
+		if( query[0].equals("info"))
 		{
 			ItineraryQuery iq = new ItineraryQuery() ;
-			return iq.getData(query[1:]) ;
+			return iq.processData(query[1:]) ;
+		}
+		else if( query[0].equals("retrieve"))
+		{
+			ReservationQuery rq = new ReservationQuery() ;
+			return rq.processData(query[1:]) ;
+		}
+		else if( query[0].equals("airport"))
+		{
+			AirportQuery aq = new AirportQuery() ;
+			return aq.processData(query[1:]) ;
 		}
 	}
 }
