@@ -3,5 +3,16 @@
  */
 public class ReservationQuery implements IQuery
 {
-
+	public String returnData()
+	{
+		
+	}
+	public String getData()
+	{
+		
+	}
+	public String processData()
+	{
+		
+	}
 }

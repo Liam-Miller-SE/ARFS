@@ -3,10 +3,10 @@
  */
 public interface IQuery 
 {
-	public returnData();
+	public String returnData();
 	
-	public getData();
+	public String getData();
 	
-	public processData();
+	public String processData();
 	
 }

@@ -3,4 +3,16 @@
  */
 public class AirportQuery implements IQuery
 {
+	public String returnData()
+	{
+		
+	}
+	public String getData()
+	{
+		
+	}
+	public String processData()
+	{
+		
+	}
 }
