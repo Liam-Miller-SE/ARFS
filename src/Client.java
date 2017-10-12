@@ -49,9 +49,11 @@ public class Client extends Observable
             {
                 int i = 0;
 
-                while (i < (inp.length())) {
+                while (i < (inp.length()))
+                {
                     char in = inp.charAt(i);
-                    if (in != ',') {
+                    if (in != ',')
+                    {
                         newin = newin + in;
                         i++;
                     }
@@ -61,7 +63,8 @@ public class Client extends Observable
                     }
                 }
 
-                switch (newin) {
+                switch (newin)
+                {
                     case "info":
                         System.out.println("info for flights");
                         break;
