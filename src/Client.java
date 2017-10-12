@@ -64,21 +64,26 @@ public class Client extends Observable
                 {
                     case "info":
                         System.out.println("info for flights");
+                        getFlightInfo(inp);
                         break;
                     case "reserve":
                         System.out.println("making a reservation");
+                        makeReservation(inp);
                         break;
                     case "retrieve":
                         System.out.println("finding a reservation");
+                        getReservationInfo(inp);
                         break;
                     case "delete":
                         System.out.println("deleting a reservation");
+                        deleteReservation(inp);
                         break;
                     case "airport":
                         System.out.println("info for an airport");
+                        getAirportInfo(inp);
                         break;
                     default:
-                        System.out.println("Invalid request command: " + newin);
+                        setInput("error,unknown request: " + newin);
                 }
                 break;
             }
@@ -86,7 +91,28 @@ public class Client extends Observable
         }
         takeInput();
     }
-    public void setInput(String str)
+    private void getFlightInfo(String str)
+    {
+
+    }
+    private void getReservationInfo(String str)
+    {
+
+    }
+    private void makeReservation(String str)
+    {
+
+    }
+    private void deleteReservation(String str)
+    {
+
+    }
+    private void getAirportInfo(String str)
+    {
+
+    }
+
+    private void setInput(String str)
     {
         this.UpdateStr = str;
         setChanged();
