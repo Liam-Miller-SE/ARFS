@@ -1,8 +1,3 @@
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.Observable;
 import java.util.Scanner;
 
@@ -13,6 +8,8 @@ import java.util.Scanner;
 public class Client extends Observable
 {
     private String S;
+    private String UpdateStr;
+
 
     public void takeInput ()
     {
@@ -30,20 +27,20 @@ public class Client extends Observable
 
             if(inp.equals("help;"))
             {
-                System.out.println("Options are: info, reserve, retrieve, delete, airport, help, exit");
-                System.out.println("Please note that all responses should end with a ';'");
+                setInput("Options are: info, reserve, retrieve, delete, airport, help, exit");
+                setInput("Please note that all responses should end with a ';'");
                 break;
             }
 
             else if (inp.equals("exit;"))
             {
-                System.out.println("Goodbye!");
+                setInput("Goodbye!");
                 return;
             }
 
             if (!(lastChar.equals(";")))
             {
-                System.out.println("partial-request");
+                setInput("partial-request");
             }
             else
             {
@@ -91,11 +88,13 @@ public class Client extends Observable
     }
     public void setInput(String str)
     {
-        this.S = str;
+        this.UpdateStr = str;
+        setChanged();
+        notifyObservers();
+
     }
     public String getInput()
     {
-        return this.S;
+        return this.UpdateStr;
     }
-
 }
