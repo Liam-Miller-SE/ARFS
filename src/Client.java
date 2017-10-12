@@ -1,8 +1,3 @@
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.Observable;
 import java.util.Scanner;
 
@@ -13,83 +8,119 @@ import java.util.Scanner;
 public class Client extends Observable
 {
     private String S;
+    private String UpdateStr;
+
 
     public void takeInput ()
     {
 
         S = "";
         Scanner scan = new Scanner(System.in);
+        String inp;
+        String newin;
 
-        System.out.println("Welcome to AFRS!");
-        System.out.println("We are now in the first release of development...");
         while(true)
         {
-            System.out.println("What are you looking to do?");
-            String inp = scan.nextLine();
+            inp = S + scan.nextLine();
             String lastChar = inp.substring(inp.length() -1);
+            newin = "";
 
-            int i = 0;
-            String newin = "";
-            while(i < (inp.length()))
+            if(inp.equals("help;"))
             {
-                char in = inp.charAt(i);
-                if (in != ',')
-                {
-                    newin = newin + in;
-                    i++;
-                }
-                else
-                {
-                    break;
-                }
+                setInput("Options are: info, reserve, retrieve, delete, airport, help, exit");
+                setInput("Please note that all responses should end with a ';'");
+                break;
             }
 
-            switch(newin)
+            else if (inp.equals("exit;"))
             {
-                case "info":
-                    System.out.println("info for flights");
-                    break;
-                case "reserve":
-                    System.out.println("making a reservation");
-                    break;
-                case "retrieve":
-                    System.out.println("finding a reservation");
-                    break;
-                case "delete":
-                    System.out.println("deleting a reservation");
-                    break;
-                case "airport":
-                    System.out.println("info for an airport");
-                    break;
-                default:
-                    System.out.println("Invalid request command: " + newin);
+                setInput("Goodbye!");
+                return;
             }
 
-
-
-            if (lastChar.equals(";"))
+            if (!(lastChar.equals(";")))
             {
+                setInput("partial-request");
             }
             else
             {
-                System.out.println("Last character was not a ';' to terminate request");
+                int i = 0;
+
+                while (i < (inp.length()))
+                {
+                    char in = inp.charAt(i);
+                    if (in != ',')
+                    {
+                        newin = newin + in;
+                        i++;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+
+                switch (newin)
+                {
+                    case "info":
+                        System.out.println("info for flights");
+                        getFlightInfo(inp);
+                        break;
+                    case "reserve":
+                        System.out.println("making a reservation");
+                        makeReservation(inp);
+                        break;
+                    case "retrieve":
+                        System.out.println("finding a reservation");
+                        getReservationInfo(inp);
+                        break;
+                    case "delete":
+                        System.out.println("deleting a reservation");
+                        deleteReservation(inp);
+                        break;
+                    case "airport":
+                        System.out.println("info for an airport");
+                        getAirportInfo(inp);
+                        break;
+                    default:
+                        setInput("error,unknown request: " + newin);
+                }
+                break;
             }
+            S = inp;
         }
+        takeInput();
+    }
+    private void getFlightInfo(String str)
+    {
 
     }
-    public void setInput(String str)
+    private void getReservationInfo(String str)
     {
-        this.S = str;
+
+    }
+    private void makeReservation(String str)
+    {
+
+    }
+    private void deleteReservation(String str)
+    {
+
+    }
+    private void getAirportInfo(String str)
+    {
+
+    }
+
+    private void setInput(String str)
+    {
+        this.UpdateStr = str;
+        setChanged();
+        notifyObservers();
+
     }
     public String getInput()
     {
-        return this.S;
+        return this.UpdateStr;
     }
-
-    public static void main(String[] args)
-    {
-        Client c = new Client();
-        c.takeInput();
-    }
-
 }
