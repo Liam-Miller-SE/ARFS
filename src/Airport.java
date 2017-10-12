@@ -1,30 +1,30 @@
 public class Airport 
 {
 	private int code;
-	private int temperature;
-	private String weather; 
+	private int[] temperature;
+	private String[] weather; 
 	private String city; 
 	
-	public Airport(int co, int temp, String weath, String cit)
+	public Airport(int co, int[] temp, String[] weath, String cit)
 	{
 		code = co; 
 		temperature = temp;
 		weather = weath;
 		city = cit;
 	}
-	public getCode()
+	public int getCode()
 	{
 		return this.code; 
 	}
-	public getTemp()
+	public int getTemp()
 	{
 		return this.temperature;
 	}
-	public getWeather()
+	public String getWeather()
 	{
 		return this.weather;
 	}
-	public getCity()
+	public String getCity()
 	{
 		return this.city;
 	}

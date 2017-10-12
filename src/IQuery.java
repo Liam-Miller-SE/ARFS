@@ -3,4 +3,10 @@
  */
 public interface IQuery 
 {
+	public returnData();
+	
+	public getData();
+	
+	public processData();
+	
 }
