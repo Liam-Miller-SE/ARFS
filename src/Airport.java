@@ -16,11 +16,11 @@ public class Airport
 	{
 		return this.code; 
 	}
-	public int getTemp()
+	public int[] getTemp()
 	{
 		return this.temperature;
 	}
-	public String getWeather()
+	public String[] getWeather()
 	{
 		return this.weather;
 	}
