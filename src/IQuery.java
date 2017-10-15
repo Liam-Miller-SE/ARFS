@@ -7,6 +7,6 @@ public interface IQuery
 	
 	public String getData();
 	
-	public String processData();
+	public String processData(String[] query);
 	
 }
