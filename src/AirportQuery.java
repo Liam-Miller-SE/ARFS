@@ -3,17 +3,10 @@
  */
 public class AirportQuery implements IQuery
 {
-	public String returnData()
-	{
-		return null;
-	}
-	public String getData()
-	{
-		return null;
-	}
 	public String processData(String[] a)
 	{
 		String airport = a[0] ;
-		return null ;
+		RouteNetwork rn = RouteNetwork.getInstance() ;
+		return rn.getAirport(airport) ;
 	}
 }
