@@ -63,6 +63,9 @@ public class RouteNetwork
                         double fare = Double.parseDouble(args[5]);
                         Flight fly = new Flight(oa, da, dTime, aTime, num, fare);
                         flights.add(fly);
+                        oa.addFlight(fly);
+                        da.addFlight(fly);
+                        
 
                         System.out.println(args[0] + " " + args[1] + " " + args[2] + " " +
                                 args[3] + " " + args[4] + " " + args[5]);
@@ -186,6 +189,7 @@ public class RouteNetwork
     {
       return createItineraries(itin, Itinerary.MAXIMUM_TRANSFERS);
     }
+
     public ArrayList<Itinerary> createItineraries(Itinerary itin, int hopsLeft)
     {
       //make a list of itins,this will be returned at the end
