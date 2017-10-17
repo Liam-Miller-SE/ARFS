@@ -3,14 +3,6 @@
  */
 public class FlightQuery implements IQuery
 {
-	public String returnData()
-	{
-		return null;
-	}
-	public String getData()
-	{
-		return null;
-	}
 	public String processData(String[] query)
 	{
 		return null;

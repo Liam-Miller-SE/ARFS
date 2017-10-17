@@ -3,9 +3,6 @@
  */
 public interface IQuery 
 {
-	public String returnData();
-	
-	public String getData();
 	
 	public String processData(String[] query);
 	
