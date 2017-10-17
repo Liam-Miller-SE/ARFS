@@ -1,5 +1,6 @@
 import java.util.Observable;
 import java.util.Scanner;
+import java.util.Arrays;
 
 /**
  * Created by melis on 10/5/2017.
@@ -184,6 +185,28 @@ public class Client extends Observable
         return this.UpdateStr;
     }
 
+    public String query(String[] query)
+    {
+        if( query[0].equals("info"))
+        {
+	    ItineraryQuery iq = new ItineraryQuery() ;
+	    return iq.processData(Arrays.copyOfRange(query, 1, query.length)) ;
+	}
+	else if( query[0].equals("retrieve"))
+	{
+	    ReservationQuery rq = new ReservationQuery() ;
+	    return rq.processData(Arrays.copyOfRange(query, 1, query.length)) ;
+	}
+	else if( query[0].equals("airport"))
+	{
+	    AirportQuery aq = new AirportQuery() ;
+	    return aq.processData(Arrays.copyOfRange(query, 1, query.length)) ;
+	}
+        else
+	{
+	    return null;
+	}
+    }
     
     public static void main(String[] args) {
         Client c = new Client();
