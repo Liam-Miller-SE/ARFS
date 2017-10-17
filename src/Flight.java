@@ -25,12 +25,20 @@ public class Flight
     return Duration.ZERO;
   }
 
-  public Airport GetOrigin()
+  public Airport getOrigin()
   {
     return origin;
   }
-  public Airport GetDestination()
+  public Airport getDestination()
   {
     return destination;
+  }
+  public LocalTime getArrival()
+  {
+    return arrivalTime;
+  }
+  public LocalTime getDeparture()
+  {
+    return departureTime;
   }
 }
