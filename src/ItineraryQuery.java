@@ -11,7 +11,7 @@ public class ItineraryQuery implements IQuery
 	{
 		return null;
 	}
-	public String processData()
+	public String processData(String[] query)
 	{
 		return null;
 	}

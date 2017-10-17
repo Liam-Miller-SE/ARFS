@@ -24,4 +24,13 @@ public class Flight
     //TODO: calculate delay
     return Duration.ZERO;
   }
+
+  public Airport GetOrigin()
+  {
+    return origin;
+  }
+  public Airport GetDestination()
+  {
+    return destination;
+  }
 }

@@ -1,18 +1,23 @@
 public class Airport 
 {
-	private int code;
+	private String code;
 	private int[] temperature;
 	private String[] weather; 
 	private String city; 
 	
-	public Airport(int co, int[] temp, String[] weath, String cit)
+	public Airport(String co, int[] temp, String[] weath, String cit)
 	{
 		code = co; 
 		temperature = temp;
 		weather = weath;
 		city = cit;
 	}
-	public int getCode()
+	public Airport(String co, String cit)
+	{
+		code = co;
+		city = cit;
+	}
+	public String getCode()
 	{
 		return this.code; 
 	}
@@ -28,4 +33,23 @@ public class Airport
 	{
 		return this.city;
 	}
+
+	public void setCode()
+	{
+
+	}
+	public void setTemperature(int[] temps)
+	{
+		temperature = temps;
+	}
+	public void setWeather(String[] weaths)
+	{
+		weather = weaths;
+	}
+	public void setCity(String newCity)
+	{
+		city = newCity;
+
+	}
 }
+
