@@ -1,7 +1,6 @@
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -16,11 +15,20 @@ public class RouteNetwork
     private List<Reservation> reservations = new ArrayList<Reservation>();
     private List<Itinerary> itineraries = new ArrayList<Itinerary>();
 
-
-    public RouteNetwork()
+    private RouteNetwork()
     {
 
     }
+    private static class SingletonHolder
+    {
+        private static RouteNetwork INSTANCE = new RouteNetwork();
+    }
+    public static RouteNetwork getInstance()
+    {
+        return SingletonHolder.INSTANCE;
+    }
+
+
 
     public void readInfo(File f)
     {
@@ -45,12 +53,17 @@ public class RouteNetwork
                         break;
                     case "connections.txt":
                         //airport, minutes
-
+                        Airport connectionAirport = getAirport(args[0]);
+                        int min = Integer.parseInt(args[1]);
+                        connectionAirport.setConnection(min);
                         System.out.println(args[0] + " " + args[1]);
                         break;
                     case "delays.txt":
                         //airport, minutes
-                        System.out.println(args[0] + " " + args[1] );
+                        Airport delayAirport = getAirport(args[0]);
+                        int mins = Integer.parseInt(args[1]);
+                        delayAirport.setDelay(mins);
+                        System.out.println(args[0] + " " + args[1]);
                         break;
                     case "flights.txt":
                         //orgin airport, destination airport, depart time, arrival time, flight num, airfare
@@ -65,7 +78,7 @@ public class RouteNetwork
                         flights.add(fly);
                         oa.addFlight(fly);
                         da.addFlight(fly);
-                        
+
 
                         System.out.println(args[0] + " " + args[1] + " " + args[2] + " " +
                                 args[3] + " " + args[4] + " " + args[5]);
@@ -121,6 +134,11 @@ public class RouteNetwork
 
     public void storeAirport(Airport a)
     {
+        if(airports.size()== 0)
+        {
+            airports.add(a);
+        }
+
         for (Airport adb : airports)
         {
             if(adb.getCode().equals(a.getCode()))
@@ -149,6 +167,11 @@ public class RouteNetwork
 
 
             }
+            else
+            {
+                airports.add(a);
+            }
+
 
 
         }
@@ -235,6 +258,19 @@ public class RouteNetwork
       } 
     }
 
+    public static void main(String[] args)
+    {
+
+        RouteNetwork rn = RouteNetwork.getInstance();
+        Airport a = new Airport("ATL", "Atlanta");
+        rn.storeAirport(a);
+        RouteNetwork rn2 = RouteNetwork.getInstance();
+        System.out.println(rn + " " + rn2);
+        System.out.println(rn.getAirport("ATL") +" "  +rn2.getAirport("ATL"));
+    }
+
 
 
 }
+
+

@@ -64,5 +64,14 @@ public class Airport
 	{
 		return flights;
 	}
+	public void setConnection(int min)
+	{
+		this.connectionTime = min;
+	}
+	public void setDelay(int min)
+	{
+		this.delayTime = min;
+
+	}
 }
 
