@@ -6,7 +6,10 @@ public class Airport
 	private int[] temperature;
 	private String[] weather; 
 	private String city;
-        private ArrayList<Flight> flights; 
+        private ArrayList<Flight> flights;
+	private int connectionTime;
+	private int delayTime;
+
 	
 	public Airport(String co, int[] temp, String[] weath, String cit)
 	{
