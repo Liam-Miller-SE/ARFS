@@ -7,13 +7,13 @@ public class AirportQuery implements IQuery
 	{
 		return null;
 	}
-	public String getData(String airport)
+	public String getData()
 	{
 		return null;
 	}
 	public String processData(String[] a)
 	{
-		airport = a[0] ;
-		return getData(airport) ;
+		String airport = a[0] ;
+		return null ;
 	}
 }
