@@ -24,6 +24,7 @@ public class TextUI implements Observer
         System.out.println("Welcome to AFRS!");
         System.out.println("We are now in the first release of development...");
         System.out.println("What are you looking to do?");
+        System.out.println("If unsure about inputs... Type 'help;'");
         Client c = new Client();
         Observer o = new TextUI(c);
         c.takeInput();

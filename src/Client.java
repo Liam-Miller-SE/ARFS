@@ -30,6 +30,7 @@ public class Client extends Observable
             {
                 setInput("Options are: info, reserve, retrieve, delete, airport, help, exit");
                 setInput("Please note that all responses should end with a ';'");
+                setInput("For more info about a specific option, Type 'help,[option];' ");
                 break;
             }
 
@@ -82,6 +83,9 @@ public class Client extends Observable
                     case "airport":
                         System.out.println("info for an airport");
                         getAirportInfo(inp);
+                        break;
+                    case "help":
+                        help(inp);
                         break;
                     default:
                         setInput("error,unknown request: " + newin);
@@ -183,6 +187,55 @@ public class Client extends Observable
     public String getInput()
     {
         return this.UpdateStr;
+    }
+    private String help(String str)
+    {
+        String[] list = parseInput(str);
+        if (list.length < 2)
+        {
+            System.out.println("error incorrect command usage.");
+        }
+        else
+        {
+
+
+            //System.out.println(list[1]);
+            if (list[1].equals("info"))
+            {
+                System.out.println("info,origin,destination[,connections[,sort-order]];");
+            }
+            else if (list[1].equals("reserve"))
+            {
+                System.out.println("reserve,id,passenger;");
+            }
+            else if (list[1].equals("retrieve"))
+            {
+                System.out.println("retrieve,passenger[,origin[,destination]];");
+            }
+            else if (list[1].equals("delete"))
+            {
+                System.out.println("delete,passenger,origin,destination;");
+            }
+            else if (list[1].equals("airport"))
+            {
+                System.out.println("airport,airport;");
+            }
+            else if (list[1].equals("help"))
+            {
+                setInput("Only usage is 'help;'");
+            }
+            else if (list[1].equals("exit"))
+            {
+                setInput("Only usage is 'exit;'");
+            }
+            else
+            {
+                setInput("Unknown help option, please try again.");
+            }
+        }
+
+
+        return "";
     }
 
     public String query(String[] query)
