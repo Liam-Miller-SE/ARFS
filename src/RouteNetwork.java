@@ -1,6 +1,4 @@
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -28,7 +26,10 @@ public class RouteNetwork
         return SingletonHolder.INSTANCE;
     }
 
-
+    public List<Reservation> getReservations()
+    {
+        return reservations;
+    }
 
     public void readInfo(File f)
     {
@@ -48,22 +49,21 @@ public class RouteNetwork
                         //code, city
                         Airport a = new Airport(args[0], args[1]);
                         storeAirport(a);
-                        System.out.println(args[0] + " " + args[1]);
-
+                        //System.out.println(args[0] + " " + args[1]);
                         break;
                     case "connections.txt":
                         //airport, minutes
                         Airport connectionAirport = getAirport(args[0]);
                         int min = Integer.parseInt(args[1]);
                         connectionAirport.setConnection(min);
-                        System.out.println(args[0] + " " + args[1]);
+                        //System.out.println(args[0] + " " + args[1]);
                         break;
                     case "delays.txt":
                         //airport, minutes
                         Airport delayAirport = getAirport(args[0]);
                         int mins = Integer.parseInt(args[1]);
                         delayAirport.setDelay(mins);
-                        System.out.println(args[0] + " " + args[1]);
+                        //System.out.println(args[0] + " " + args[1]);
                         break;
                     case "flights.txt":
                         //orgin airport, destination airport, depart time, arrival time, flight num, airfare
@@ -80,8 +80,8 @@ public class RouteNetwork
                         da.addFlight(fly);
 
 
-                        System.out.println(args[0] + " " + args[1] + " " + args[2] + " " +
-                                args[3] + " " + args[4] + " " + args[5]);
+                        //System.out.println(args[0] + " " + args[1] + " " + args[2] + " " +
+                         //       args[3] + " " + args[4] + " " + args[5]);
                         break;
                     case "weather.txt":
                         //input csv not always the same number of args
@@ -127,6 +127,26 @@ public class RouteNetwork
             System.out.println(e.getMessage());
         }
     }
+    public void writeData() throws IOException
+    {
+        //Write Airport File airport code,airport city
+        BufferedWriter writer = new BufferedWriter(new FileWriter("airports.txt"));
+        writer.close();
+        //Write connections File: code,time
+        writer = new BufferedWriter(new FileWriter("connections.txt"));
+        writer.close();
+        //Write Delays File: code,delay time
+        writer = new BufferedWriter(new FileWriter("delays.txt"));
+        writer.close();
+        //Write Flights file: origin,destination,depart time, arrival time, flight num, airfare
+        writer = new BufferedWriter(new FileWriter("flights.txt"));
+        writer.close();
+        //Write Weather File: airport, weather, temp...
+        writer = new BufferedWriter(new FileWriter("weather.txt"));
+        writer.close();
+
+    }
+
     public void storeFlight(Flight f)
     {
 
@@ -176,6 +196,7 @@ public class RouteNetwork
 
         }
     }
+
     public Airport getAirport(String code)
     {
         for (Airport a: airports)
@@ -257,6 +278,8 @@ public class RouteNetwork
         return mainList;
       } 
     }
+
+
 
     public static void main(String[] args)
     {
