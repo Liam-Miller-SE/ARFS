@@ -40,7 +40,7 @@ public class Airport
 	public String getTemperature()
 	{
 		int tem = this.temperature[this.tempI] ;
-		if(this.tempI = (this.temperature.length - 1))
+		if(this.tempI == (this.temperature.length - 1))
 		{
 			this.tempI = 0;
 		}
@@ -48,7 +48,7 @@ public class Airport
 		{
 			this.tempI++;
 		}
-		String tem = Integer.toString(tem);
+		String temp = Integer.toString(tem);
 		return temp ;
 	}
 	public String[] getWeather()
@@ -58,7 +58,7 @@ public class Airport
 	public String getWeath()
 	{
 		String weath = this.weather[this.weathI] ;
-		if(this.weathI = (this.weather.length - 1))
+		if(this.weathI == (this.weather.length - 1))
 		{
 			this.weathI = 0;
 		}
@@ -113,7 +113,7 @@ public class Airport
 	public String toString() 
 	{
 		return ("Airport Name: " + this.getCity() + " "
-		+ this.getCode()		"\nCurrent Weather: "
+		+ this.getCode()	+	"\nCurrent Weather: "
 		+ this.getWeath() + "\nCurrent Temperature: "
 		+ this.getTemperature() + "\nDelays: " + this.getDelays() + "\n"); 
 	}
