@@ -7,12 +7,17 @@ public class Reservation
     itinerary = itin;
     passengerName = name;
   }
-  public Itinerary getItinerary()
+  public String getItinerary()
   {
 	  return this.itinerary;
   }
   public String getPassenger()
   {
 	  return this.passengerName;
+  }
+  public String toString()
+  {
+	  return ("Passenger Name: " + this.getPassenger() +
+	  "\n" + this.getItinerary());
   }
 }

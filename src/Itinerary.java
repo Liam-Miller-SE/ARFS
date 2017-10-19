@@ -22,6 +22,10 @@ public class Itinerary
   {
     return flights;
   }
+  public Airport getOrigin()
+  {
+	  return this.origin;
+  }
   public Airport getDestination()
   {
     return destination;
