@@ -1,6 +1,7 @@
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.time.*;
 
@@ -48,7 +49,7 @@ public class RouteNetwork
                     case "airports.txt":
                         //code, city
                         Airport a = new Airport(args[0], args[1]);
-                        storeAirport(a);
+                        this.storeAirport(a);
                         //System.out.println(args[0] + " " + args[1]);
                         break;
                     case "connections.txt":
@@ -100,13 +101,14 @@ public class RouteNetwork
                         {
                             if(i%2==0)
                             {
-                               weat[w] = args[i];
-                                w++;
+                                temp[t] = Integer.parseInt(args[i]);
+                                t++;
                             }
                             else
                             {
-                               temp[t] = Integer.parseInt(args[i]);
-                                t++;
+
+                                weat[w] = args[i];
+                                w++;
                             }
                             i++;
                         }
@@ -127,23 +129,60 @@ public class RouteNetwork
             System.out.println(e.getMessage());
         }
     }
-    public void writeData() throws IOException
+    public void writeData()
     {
-        //Write Airport File airport code,airport city
-        BufferedWriter writer = new BufferedWriter(new FileWriter("airports.txt"));
-        writer.close();
-        //Write connections File: code,time
-        writer = new BufferedWriter(new FileWriter("connections.txt"));
-        writer.close();
-        //Write Delays File: code,delay time
-        writer = new BufferedWriter(new FileWriter("delays.txt"));
-        writer.close();
-        //Write Flights file: origin,destination,depart time, arrival time, flight num, airfare
-        writer = new BufferedWriter(new FileWriter("flights.txt"));
-        writer.close();
-        //Write Weather File: airport, weather, temp...
-        writer = new BufferedWriter(new FileWriter("weather.txt"));
-        writer.close();
+        try {
+
+
+            //Write Airport File airport code,airport city
+            BufferedWriter writer = new BufferedWriter(new FileWriter("./textFiles/airports.txt"));
+            for (Airport a : airports)
+            {
+                writer.write(a.getCode() + "," + a.getCity()+"\n");
+            }
+            writer.close();
+            //Write connections File: code,time
+            writer = new BufferedWriter(new FileWriter("connections.txt"));
+            for(Airport a : airports)
+            {
+                writer.write(a.getCode() + "," + a.getConnections()+ "\n");
+            }
+            writer.close();
+            //Write Delays File: code,delay time
+            writer = new BufferedWriter(new FileWriter("delays.txt"));
+            for(Airport a : airports)
+            {
+                writer.write(a.getCode() + "," + a.getDelays() +"\n");
+            }
+            writer.close();
+
+            //Write Flights file: origin,destination,depart time, arrival time, flight num, airfare
+            writer = new BufferedWriter(new FileWriter("flights.txt"));
+            for(Flight f : flights)
+            {
+                writer.write(f.getOrigin().getCode() + "," + f.getDestination().getCode() + ","
+                        + convertTime(f.getDeparture()) + "," + convertTime(f.getArrival()) + ","
+                        + f.getFlightNumber() + "," + (int)f.getAirfare() + "\n");
+            }
+            writer.close();
+            //Write Weather File: airport, weather, temp...
+            writer = new BufferedWriter(new FileWriter("weather.txt"));
+            for(Airport a : airports)
+            {
+                writer.write(a.getCode()+",");
+                for(int i = 0; i<a.getWeather().length; i++)
+                {
+                    writer.write(a.getWeather()[i] + "," + a.getTemp()[i]+",");
+                }
+                writer.write("\n");
+
+            }
+            writer.close();
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.getMessage());
+        }
 
     }
 
@@ -151,18 +190,47 @@ public class RouteNetwork
     {
 
     }
-
-    public void storeAirport(Airport a)
+    private String convertTime(LocalTime t)
     {
+        String hour = "";
+        String min = Integer.toString(t.getMinute());
+        String ampm = "";
+
+        if(t.getHour() > 12)
+        {
+            hour = t.getHour()-12 +":";
+            ampm = "p";
+        }
+        else
+        {
+            hour = t.getHour() + ":";
+            ampm = "a";
+        }
+        if(min.length() == 1)
+        {
+            min = "0" + min ;
+        }
+
+        return hour + min + ampm;
+
+    }
+
+    public synchronized void storeAirport(Airport a)
+    {
+        boolean inArray = false;
+
         if(airports.size()== 0)
         {
             airports.add(a);
         }
 
-        for (Airport adb : airports)
+        for(int i = 0; i<airports.size(); i++)
         {
+            Airport adb = airports.get(i);
+
             if(adb.getCode().equals(a.getCode()))
             {
+                inArray = true;
                 String codeDB = adb.getCode();
                 String[] weatherDB = adb.getWeather();
                 int[] tempDB = adb.getTemp();
@@ -187,14 +255,13 @@ public class RouteNetwork
 
 
             }
-            else
-            {
-                airports.add(a);
-            }
-
-
 
         }
+        if(!inArray)
+        {
+            airports.add(a);
+        }
+
     }
 
     public Airport getAirport(String code)
@@ -212,11 +279,11 @@ public class RouteNetwork
     private static LocalTime createTime(String time)
     {
         String[] timeSlots = time.split(":");
-        char military = timeSlots[0].charAt(2);
+        char military = timeSlots[1].charAt(2);
         int hour = Integer.parseInt(timeSlots[0]);
         int min = Integer.parseInt(timeSlots[1].substring(0,2));
 
-        if(military == 'p')
+        if(military == 'p' && hour != 12)
         {
             hour += 12;
 
@@ -285,11 +352,32 @@ public class RouteNetwork
     {
 
         RouteNetwork rn = RouteNetwork.getInstance();
-        Airport a = new Airport("ATL", "Atlanta");
+        /*Airport a = new Airport("ATL", "Atlanta");
         rn.storeAirport(a);
-        RouteNetwork rn2 = RouteNetwork.getInstance();
-        System.out.println(rn + " " + rn2);
-        System.out.println(rn.getAirport("ATL") +" "  +rn2.getAirport("ATL"));
+        Airport b = new Airport("BOS", "Boston");
+        rn.storeAirport(b);
+        String[] w = {"hot", "sunny", "humid"};
+        int[] t = {20, 40, 50};
+
+        a.setWeather(w);
+        a.setTemperature(t);
+        b.setWeather(w);
+        b.setTemperature(t);
+        System.out.println(a.getTemperature()+ " "+ a.getWeath());
+        */
+        File f = new File("src/inputFiles/airports.txt");
+        File f1 = new File("src/inputFiles/connections.txt");
+        File f2 = new File("src/inputFiles/delays.txt");
+        File f3 = new File("src/inputFiles/flights.txt");
+        File f4 = new File("src/inputFiles/weather.txt");
+
+        rn.readInfo(f);
+        rn.readInfo(f1);
+        rn.readInfo(f2);
+        rn.readInfo(f3);
+        rn.readInfo(f4);
+        rn.storeAirport(new Airport("ALK", "Alaska"));
+        rn.writeData();
     }
 
 
