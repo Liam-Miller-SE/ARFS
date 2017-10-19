@@ -8,6 +8,10 @@ public class Itinerary
   Airport origin;
   Airport destination;
   
+  public Itinerary(String name)
+  {
+    passengerName = name;
+  }
   public Itinerary(Airport orig, Airport dest, String name)
   {
     origin = orig;
@@ -25,6 +29,8 @@ public class Itinerary
   public void addFlight(Flight f)
   {
     flights.add(f);
+    origin = flights.get(0).getOrigin();
+    destination = flights.get(flights.size() - 1).getDestination();
   } 
   public LocalTime getNextAvailibleTime()
   {
