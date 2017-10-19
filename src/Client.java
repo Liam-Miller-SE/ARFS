@@ -100,12 +100,12 @@ public class Client extends Observable
     private String getFlightInfo(String str)
     {
         String[] params = parseInput(str);
-        if(params.length < 2)
+        if(params.length < 3)
         {
             System.out.println("expected at least 2 parameters (max 4), got " + params.length);
             return "";
         }
-        else if(params.length > 4)
+        else if(params.length > 5)
         {
             System.out.println("Too many parameters, got " + params.length);
         }
@@ -245,10 +245,14 @@ public class Client extends Observable
             if (list[1].equals("info"))
             {
                 setInput("info,origin,destination[,connections[,sort-order]];");
+                setInput("origin/destination are 3-letter airport codes, All CAPS");
+                setInput("connections is a number from 0-2");
+                setInput("sort-order options: departure, arrival, airfare");
             }
             else if (list[1].equals("reserve"))
             {
                 setInput("reserve,id,passenger;");
+                setInput("id is the number identifier ");
             }
             else if (list[1].equals("retrieve"))
             {
