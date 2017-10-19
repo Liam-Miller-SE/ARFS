@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 /**
  * Created by melis on 10/5/2017.
  */
@@ -8,8 +9,8 @@ public class ReservationQuery implements IQuery
 		String ret = "";
 		String pass = query[0];
 		RouteNetwork rn = RouteNetwork.getInstance() ;
-		List<Reservation> r = rn.getReservations();
-		List<Reservation> pmatch = new ArrayList<Reservation>();
+		ArrayList<Reservation> r = rn.getReservations();
+		ArrayList<Reservation> pmatch = new ArrayList<Reservation>();
 		for(int i = 0; i < r.size(); i++)
 		{
 			if(r.get(i).getPassenger() == pass)
@@ -18,9 +19,9 @@ public class ReservationQuery implements IQuery
 				{
 					pmatch.add(r.get(i));
 				}
-				else (if query[1] == "" )
+				else if ( query[1].equals("") )
 				{
-					if (query[2] == r.get(i).getItinerary().getDestination().getCode())
+					if (query[2].equals(r.get(i).getItinerary().getDestination().getCode()))
 					{
 						pmatch.add(r.get(i));
 					}

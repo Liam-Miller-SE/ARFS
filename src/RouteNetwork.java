@@ -9,10 +9,10 @@ import java.time.*;
 public class RouteNetwork
 {
     private HashMap routes = new HashMap();
-    private List<Flight> flights = new ArrayList<Flight>();
-    private List<Airport> airports = new ArrayList<Airport>();
-    private List<Reservation> reservations = new ArrayList<Reservation>();
-    private List<Itinerary> itineraries = new ArrayList<Itinerary>();
+    private ArrayList<Flight> flights = new ArrayList<Flight>();
+    private ArrayList<Airport> airports = new ArrayList<Airport>();
+    private ArrayList<Reservation> reservations = new ArrayList<Reservation>();
+    private ArrayList<Itinerary> itineraries = new ArrayList<Itinerary>();
 
     private RouteNetwork()
     {
@@ -27,7 +27,7 @@ public class RouteNetwork
         return SingletonHolder.INSTANCE;
     }
 
-    public List<Reservation> getReservations()
+    public ArrayList<Reservation> getReservations()
     {
         return reservations;
     }
