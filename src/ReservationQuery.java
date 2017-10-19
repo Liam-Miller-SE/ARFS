@@ -5,6 +5,7 @@ public class ReservationQuery implements IQuery
 {
 	public String processData(String[] query)
 	{
+		//how to query by length of query passed in
 		return null;
 	}
 }
