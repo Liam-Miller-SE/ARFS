@@ -29,7 +29,7 @@ public class ItineraryQuery implements IQuery
 			hops = Integer.parseInt(query[2]);
 			sortMethod = query[3];
 		}
-		itins = rn.createItineraries(i, Integer.parseInt(query[2]));
+		itins = rn.createItineraries(i, hops);
 		switch (sortMethod)
 		{
 			case ("DEPARTURE"):	

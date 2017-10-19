@@ -35,7 +35,7 @@ public class RouteNetwork
     public void readInfo(File f)
     {
         String filename = f.getName();
-        System.out.println(filename);
+        //System.out.println(filename);
         try
         {
             BufferedReader fr = new BufferedReader(new FileReader(f));
@@ -92,8 +92,11 @@ public class RouteNetwork
                         String aCode = args[0];
 
                         int i = 1;
-                        String[] weat = new String[10];
-                        int[] temp = new int[10];
+                        //String[] weat = new String[10];
+                        ArrayList<String> weat = new ArrayList<String>();
+                        ArrayList<Integer> temp = new ArrayList<Integer>();
+
+                        //int[] temp = new int[10];
 
                         int w =0;
                         int t = 0;
@@ -101,13 +104,13 @@ public class RouteNetwork
                         {
                             if(i%2==0)
                             {
-                                temp[t] = Integer.parseInt(args[i]);
+                                temp.add(Integer.parseInt(args[i]));
                                 t++;
                             }
                             else
                             {
 
-                                weat[w] = args[i];
+                                weat.add(args[i]);
                                 w++;
                             }
                             i++;
@@ -142,14 +145,14 @@ public class RouteNetwork
             }
             writer.close();
             //Write connections File: code,time
-            writer = new BufferedWriter(new FileWriter("connections.txt"));
+            writer = new BufferedWriter(new FileWriter("./textFiles/connections.txt"));
             for(Airport a : airports)
             {
                 writer.write(a.getCode() + "," + a.getConnections()+ "\n");
             }
             writer.close();
             //Write Delays File: code,delay time
-            writer = new BufferedWriter(new FileWriter("delays.txt"));
+            writer = new BufferedWriter(new FileWriter("./textFiles/delays.txt"));
             for(Airport a : airports)
             {
                 writer.write(a.getCode() + "," + a.getDelays() +"\n");
@@ -157,7 +160,7 @@ public class RouteNetwork
             writer.close();
 
             //Write Flights file: origin,destination,depart time, arrival time, flight num, airfare
-            writer = new BufferedWriter(new FileWriter("flights.txt"));
+            writer = new BufferedWriter(new FileWriter("./textFiles/flights.txt"));
             for(Flight f : flights)
             {
                 writer.write(f.getOrigin().getCode() + "," + f.getDestination().getCode() + ","
@@ -166,13 +169,13 @@ public class RouteNetwork
             }
             writer.close();
             //Write Weather File: airport, weather, temp...
-            writer = new BufferedWriter(new FileWriter("weather.txt"));
+            writer = new BufferedWriter(new FileWriter("./textFiles/weather.txt"));
             for(Airport a : airports)
             {
                 writer.write(a.getCode()+",");
-                for(int i = 0; i<a.getWeather().length; i++)
+                for(int i = 0; i<a.getWeather().size(); i++)
                 {
-                    writer.write(a.getWeather()[i] + "," + a.getTemp()[i]+",");
+                    writer.write(a.getWeather().get(i) + "," + a.getTemp().get(i)+",");
                 }
                 writer.write("\n");
 
@@ -232,13 +235,19 @@ public class RouteNetwork
             {
                 inArray = true;
                 String codeDB = adb.getCode();
-                String[] weatherDB = adb.getWeather();
-                int[] tempDB = adb.getTemp();
+                ArrayList<String> weatherDB = adb.getWeather();
+                ArrayList<Integer> tempDB = adb.getTemp();
+
+                //String[] weatherDB = adb.getWeather();
+                //int[] tempDB = adb.getTemp();
                 String cityDB = adb.getCity();
 
                 String codeA = a.getCode();
-                String[] weatherA = a.getWeather();
-                int[] tempA = a.getTemp();
+                //String[] weatherA = a.getWeather();
+                //int[] tempA = a.getTemp();
+                ArrayList<String> weatherA = a.getWeather();
+                ArrayList<Integer> tempA = a.getTemp();
+
                 String cityA = a.getCity();
                 if(weatherDB != weatherA && weatherA != null)
                 {
@@ -378,7 +387,7 @@ public class RouteNetwork
         rn.readInfo(f2);
         rn.readInfo(f3);
         rn.readInfo(f4);
-        rn.storeAirport(new Airport("ALK", "Alaska"));
+
         rn.writeData();
     }
 

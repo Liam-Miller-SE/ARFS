@@ -3,17 +3,20 @@ import java.util.ArrayList;
 public class Airport 
 {
 	private String code;
-	private int[] temperature;
+	//private int[] temperature;
+	private ArrayList<Integer> temperature = new ArrayList<Integer>();
+
 	private int tempI;
 	private int weathI; 
-	private String[] weather; 
+	//private String[] weather;
+	private ArrayList<String> weather = new ArrayList<String>();
 	private String city;
     private ArrayList<Flight> flights = new ArrayList<Flight>();
 	private int connectionTime;
 	private int delayTime;
 
 	
-	public Airport(String co, int[] temp, String[] weath, String cit)
+	public Airport(String co, ArrayList<Integer> temp, ArrayList<String> weath, String cit)
 	{
 		code = co; 
 		temperature = temp;
@@ -33,14 +36,14 @@ public class Airport
 	{
 		return this.code; 
 	}
-	public int[] getTemp()
+	public ArrayList<Integer> getTemp()
 	{
 		return this.temperature ;
 	}
 	public String getTemperature()
 	{
-		int tem = this.temperature[this.tempI] ;
-		if(this.tempI == (this.temperature.length - 1))
+		int tem = this.temperature.get(this.tempI) ;
+		if(this.tempI == (this.temperature.size() - 1))
 		{
 			this.tempI = 0;
 		}
@@ -51,14 +54,14 @@ public class Airport
 		String temp = Integer.toString(tem);
 		return temp ;
 	}
-	public String[] getWeather()
+	public ArrayList<String> getWeather()
 	{
 		return this.weather;
 	}
 	public String getWeath()
 	{
-		String weath = this.weather[this.weathI] ;
-		if(this.weathI == (this.weather.length - 1))
+		String weath = this.weather.get(this.weathI) ;
+		if(this.weathI == (this.weather.size() - 1))
 		{
 			this.weathI = 0;
 		}
@@ -85,11 +88,11 @@ public class Airport
 	{
 
 	}
-	public void setTemperature(int[] temps)
+	public void setTemperature(ArrayList<Integer> temps)
 	{
 		temperature = temps;
 	}
-	public void setWeather(String[] weaths)
+	public void setWeather(ArrayList<String> weaths)
 	{
 		weather = weaths;
 	}

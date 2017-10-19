@@ -10,6 +10,7 @@ public class Client extends Observable
 {
     private String S;
     private String UpdateStr;
+    private String response;
 
 
     public void takeInput ()
@@ -96,13 +97,44 @@ public class Client extends Observable
         }
         takeInput();
     }
-    private void getFlightInfo(String str)
+    private String getFlightInfo(String str)
     {
-
+        String[] params = parseInput(str);
+        if(params.length < 2)
+        {
+            System.out.println("expected at least 2 parameters (max 4), got " + params.length);
+            return "";
+        }
+        else if(params.length > 4)
+        {
+            System.out.println("Too many parameters, got " + params.length);
+        }
+        else
+        {
+         response = query(params);
+         setInput(response);
+        }
+        return"";
     }
-    private void getReservationInfo(String str)
+    private String getReservationInfo(String str)
     {
+        String[] params = parseInput(str);
+        if(params.length < 2)
+        {
+            System.out.println("expected at least 2 parameters (max 4), got " + params.length);
+            return "";
+        }
+        else if(params.length > 4)
+        {
+            System.out.println("Too many parameters, got " + params.length);
+        }
+        else
+        {
+            response = query(params);
+            setInput(response);
+        }
 
+        return "";
     }
     private String makeReservation(String str)
     {
@@ -116,7 +148,8 @@ public class Client extends Observable
         {
 
             System.out.println("Retrieving Some data ");
-            //Insert method to retrieve data here
+            Scheduler sc = new Scheduler();
+            //Insert method from Scheduler to retrieve data here
             return "";
         }
     }
@@ -142,6 +175,8 @@ public class Client extends Observable
                 return "";
             }
             System.out.println("Retrieving Reservation data ");
+            response = query(params);
+            setInput(response);
             //Insert method to retrieve data here
             return "";
         }
@@ -156,11 +191,20 @@ public class Client extends Observable
         }
         else
         {
-            System.out.println("Retrieving airport data ");
+            if (params[1].length() == 3)
+            {
+                System.out.println("Retrieving airport data with code " + params[1] );
+                response = query(params);
+                setInput(response);
+            }
+            else
+            {
+                System.out.println("Unknown airport code");
+            }
+
             //Insert method to retrieve data here
             return "";
         }
-
     }
 
     private String[] parseInput(String str)
@@ -188,7 +232,7 @@ public class Client extends Observable
     {
         return this.UpdateStr;
     }
-    private String help(String str)
+    private void help(String str)
     {
         String[] list = parseInput(str);
         if (list.length < 2)
@@ -197,28 +241,26 @@ public class Client extends Observable
         }
         else
         {
-
-
             //System.out.println(list[1]);
             if (list[1].equals("info"))
             {
-                System.out.println("info,origin,destination[,connections[,sort-order]];");
+                setInput("info,origin,destination[,connections[,sort-order]];");
             }
             else if (list[1].equals("reserve"))
             {
-                System.out.println("reserve,id,passenger;");
+                setInput("reserve,id,passenger;");
             }
             else if (list[1].equals("retrieve"))
             {
-                System.out.println("retrieve,passenger[,origin[,destination]];");
+                setInput("retrieve,passenger[,origin[,destination]];");
             }
             else if (list[1].equals("delete"))
             {
-                System.out.println("delete,passenger,origin,destination;");
+                setInput("delete,passenger,origin,destination;");
             }
             else if (list[1].equals("airport"))
             {
-                System.out.println("airport,airport;");
+                setInput("airport,airport;");
             }
             else if (list[1].equals("help"))
             {
@@ -233,9 +275,6 @@ public class Client extends Observable
                 setInput("Unknown help option, please try again.");
             }
         }
-
-
-        return "";
     }
 
     public String query(String[] query)
@@ -244,26 +283,20 @@ public class Client extends Observable
         {
 	    ItineraryQuery iq = new ItineraryQuery() ;
 	    return iq.processData(Arrays.copyOfRange(query, 1, query.length)) ;
-	}
-	else if( query[0].equals("retrieve"))
-	{
-	    ReservationQuery rq = new ReservationQuery() ;
-	    return rq.processData(Arrays.copyOfRange(query, 1, query.length)) ;
-	}
-	else if( query[0].equals("airport"))
-	{
-	    AirportQuery aq = new AirportQuery() ;
-	    return aq.processData(Arrays.copyOfRange(query, 1, query.length)) ;
-	}
-        else
-	{
-	    return null;
-	}
-    }
-    
-    public static void main(String[] args) {
-        Client c = new Client();
-        c.parseInput("test,something,one,two");
-
+	    }
+        else if( query[0].equals("retrieve"))
+        {
+            ReservationQuery rq = new ReservationQuery() ;
+            return rq.processData(Arrays.copyOfRange(query, 1, query.length)) ;
+        }
+        else if( query[0].equals("airport"))
+        {
+            AirportQuery aq = new AirportQuery() ;
+            return aq.processData(Arrays.copyOfRange(query, 1, query.length)) ;
+        }
+            else
+        {
+            return null;
+        }
     }
 }
