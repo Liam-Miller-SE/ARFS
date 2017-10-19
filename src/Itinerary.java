@@ -24,8 +24,8 @@ public class Itinerary
   }
   public String flightsString()
   {
-	  String ret;
-	  for(i = 0; i<this.flights.size(); i++)
+	  String ret = "";
+	  for(Integer i = 0; i<this.flights.size(); i++)
 	  {
 		  ret += this.flights.get(i);
 	  }

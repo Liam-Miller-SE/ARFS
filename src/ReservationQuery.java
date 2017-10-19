@@ -29,7 +29,7 @@ public class ReservationQuery implements IQuery
 				else
 				{
 					if ((query[2].equals(r.get(i).getItinerary().getDestination().getCode()))
-						&& query[1].equals(r.get(i).getItinerary.getOrigin().getCode()))
+						&& query[1].equals(r.get(i).getItinerary().getOrigin().getCode()))
 						{
 							pmatch.add(r.get(i));
 						}
@@ -38,7 +38,7 @@ public class ReservationQuery implements IQuery
 		}
 		for(int j = 0; j < pmatch.size(); j++)
 		{
-			ret += pmatch.get(i);
+			ret += pmatch.get(j);
 		}
 		return ret;
 	}
