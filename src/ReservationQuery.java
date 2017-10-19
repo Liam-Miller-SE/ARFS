@@ -13,13 +13,13 @@ public class ReservationQuery implements IQuery
 		ArrayList<Reservation> pmatch = new ArrayList<Reservation>();
 		for(int i = 0; i < r.size(); i++)
 		{
-			if(r.get(i).getPassenger() == pass)
+			if(r.get(i).getPassenger().equals(pass))
 			{
 				if (query.length == 1)
 				{
 					pmatch.add(r.get(i));
 				}
-				else if ( query[1].equals("") )
+				else if (query[1].equals( "" ) )
 				{
 					if (query[2].equals(r.get(i).getItinerary().getDestination().getCode()))
 					{
@@ -28,8 +28,8 @@ public class ReservationQuery implements IQuery
 				}
 				else
 				{
-					if ((query[2] == r.get(i).getItinerary().getDestination().getCode())
-						&& query[1] == r.get(i).getItinerary.getOrigin().getCode())
+					if ((query[2].equals(r.get(i).getItinerary().getDestination().getCode()))
+						&& query[1].equals(r.get(i).getItinerary.getOrigin().getCode()))
 						{
 							pmatch.add(r.get(i));
 						}
