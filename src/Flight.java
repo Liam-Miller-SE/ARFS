@@ -49,4 +49,9 @@ public class Flight
   {
     return airfare;
   }
+  public String toString()
+  {
+	  return ("Flight Number: " + this.flightNumber + 
+	  "\nAirfare: " + this.airfare + "\n");
+  }
 }

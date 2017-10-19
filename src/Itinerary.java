@@ -18,6 +18,15 @@ public class Itinerary
   {
     return flights;
   }
+  public String flightsString()
+  {
+	  String ret;
+	  for(i = 0; i<this.flights.size(); i++)
+	  {
+		  ret += this.flights.get(i);
+	  }
+	  return ret;
+  }
   public Airport getOrigin()
   {
 	  return this.origin;
@@ -54,4 +63,10 @@ public class Itinerary
     }
   }
   public static int MAXIMUM_TRANSFERS = 3;
+  
+  public String toString()
+  {
+	  return ( "Origin: " + this.getOrigin() + "\nDestination: "
+	  + this.getDestination() + "\n" + this.flightsString() + "\n");
+  }
 }
