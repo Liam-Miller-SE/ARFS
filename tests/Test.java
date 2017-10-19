@@ -1,5 +1,4 @@
-from "../src/" import *;
-
+import AFRS.*;
 class Test
 {
   boolean ASSERT_EQUAL(int a, int b)
