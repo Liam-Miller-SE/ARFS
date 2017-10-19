@@ -37,5 +37,17 @@ public class Itinerary
       return flights.get(flights.size() - 1).getArrival();
     }
   }
+
+  public LocalTime getFirstDeparture()
+  {
+    if(flights.size() > 0)
+    {
+      return null;
+    }
+    else
+    {
+      return flights.get(0).getDeparture();
+    }
+  }
   public static int MAXIMUM_TRANSFERS = 3;
 }
