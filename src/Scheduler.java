@@ -3,4 +3,13 @@
  */
 public class Scheduler
 {
+	RouteNetwork rn;
+	public Scheduler()
+	{
+		rn = RouteNetwork.getInstance();
+	}
+	public void storeItinerary(Itinerary itin)
+	{
+		rn.storeItinerary(itin);
+	}
 }

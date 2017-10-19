@@ -354,8 +354,10 @@ public class RouteNetwork
         return mainList;
       } 
     }
-
-
+    public void storeItinerary(Itinerary itin)
+    {
+      itineraries.add(itin);
+    }
 
     public static void main(String[] args)
     {
