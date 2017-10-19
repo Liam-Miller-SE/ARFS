@@ -8,7 +8,7 @@ public class Airport
 	private int weathI; 
 	private String[] weather; 
 	private String city;
-    private ArrayList<Flight> flights;
+    private ArrayList<Flight> flights = new ArrayList<Flight>();
 	private int connectionTime;
 	private int delayTime;
 
@@ -40,7 +40,7 @@ public class Airport
 	public String getTemperature()
 	{
 		int tem = this.temperature[this.tempI] ;
-		if(this.tempI = (this.temperature.length - 1))
+		if(this.tempI == (this.temperature.length - 1))
 		{
 			this.tempI = 0;
 		}
@@ -48,7 +48,7 @@ public class Airport
 		{
 			this.tempI++;
 		}
-		String tem = Integer.toString(tem);
+		String temp = Integer.toString(tem);
 		return temp ;
 	}
 	public String[] getWeather()
@@ -58,7 +58,7 @@ public class Airport
 	public String getWeath()
 	{
 		String weath = this.weather[this.weathI] ;
-		if(this.weathI = (this.weather.length - 1))
+		if(this.weathI == (this.weather.length - 1))
 		{
 			this.weathI = 0;
 		}
@@ -76,6 +76,10 @@ public class Airport
 	{
 		String delay = Integer.toString(this.delayTime) ;
 		return delay ;
+	}
+	public String getConnections()
+	{
+		return Integer.toString(connectionTime);
 	}
 	public void setCode()
 	{
@@ -110,12 +114,14 @@ public class Airport
 		this.delayTime = min;
 
 	}
+
 	public String toString() 
 	{
+		//return "an airport";
 		return ("Airport Name: " + this.getCity() + " "
-		+ this.getCode()		"\nCurrent Weather: "
+		+ this.getCode()	+	"\nCurrent Weather: "
 		+ this.getWeath() + "\nCurrent Temperature: "
-		+ this.getTemperature() + "\nDelays: " + this.getDelays() + "\n"); 
+		+ this.getTemperature() + "\nDelays: " + this.getDelays() + "\n");
 	}
 }
 

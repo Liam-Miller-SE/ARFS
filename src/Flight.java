@@ -41,4 +41,12 @@ public class Flight
   {
     return departureTime;
   }
+  public int getFlightNumber()
+  {
+    return flightNumber;
+  }
+  public double getAirfare()
+  {
+    return airfare;
+  }
 }

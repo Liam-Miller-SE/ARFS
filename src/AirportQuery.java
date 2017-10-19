@@ -7,6 +7,6 @@ public class AirportQuery implements IQuery
 	{
 		String airport = a[0] ;
 		RouteNetwork rn = RouteNetwork.getInstance() ;
-		return rn.getAirport(airport) ;
+		return rn.getAirport(airport).toString() ;
 	}
 }
