@@ -139,21 +139,21 @@ public class RouteNetwork
 
 
             //Write Airport File airport code,airport city
-            BufferedWriter writer = new BufferedWriter(new FileWriter("./textFiles/airports.txt"));
+            BufferedWriter writer = new BufferedWriter(new FileWriter("src/inputFiles/airports.txt"));
             for (Airport a : airports)
             {
                 writer.write(a.getCode() + "," + a.getCity()+"\n");
             }
             writer.close();
             //Write connections File: code,time
-            writer = new BufferedWriter(new FileWriter("./textFiles/connections.txt"));
+            writer = new BufferedWriter(new FileWriter("src/inputFiles/connections.txt"));
             for(Airport a : airports)
             {
                 writer.write(a.getCode() + "," + a.getConnections()+ "\n");
             }
             writer.close();
             //Write Delays File: code,delay time
-            writer = new BufferedWriter(new FileWriter("./textFiles/delays.txt"));
+            writer = new BufferedWriter(new FileWriter("src/inputFiles/delays.txt"));
             for(Airport a : airports)
             {
                 writer.write(a.getCode() + "," + a.getDelays() +"\n");
@@ -161,7 +161,7 @@ public class RouteNetwork
             writer.close();
 
             //Write Flights file: origin,destination,depart time, arrival time, flight num, airfare
-            writer = new BufferedWriter(new FileWriter("./textFiles/flights.txt"));
+            writer = new BufferedWriter(new FileWriter("src/inputFiles/flights.txt"));
             for(Flight f : flights)
             {
                 writer.write(f.getOrigin().getCode() + "," + f.getDestination().getCode() + ","
@@ -170,7 +170,7 @@ public class RouteNetwork
             }
             writer.close();
             //Write Weather File: airport, weather, temp...
-            writer = new BufferedWriter(new FileWriter("./textFiles/weather.txt"));
+            writer = new BufferedWriter(new FileWriter("src/inputFiles/weather.txt"));
             for(Airport a : airports)
             {
                 writer.write(a.getCode()+",");
