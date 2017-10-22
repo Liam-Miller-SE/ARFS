@@ -11,6 +11,7 @@ public class ItineraryQuery implements IQuery
 		//query is defined as [origin, destination, {connections, sort-order}]
 		RouteNetwork rn = RouteNetwork.getInstance();
 		Itinerary i = new Itinerary(rn.getAirport(query[0]), rn.getAirport(query[1]), "ItineraryQuery");
+		System.out.println(rn.getAirport(query[0]).toString());
 		ArrayList<Itinerary> itins = new ArrayList<Itinerary>();
 		int hops = Itinerary.MAXIMUM_TRANSFERS;
 		String sortMethod = "UNSORTED";

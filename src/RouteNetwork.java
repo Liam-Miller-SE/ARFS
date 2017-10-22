@@ -276,13 +276,16 @@ public class RouteNetwork
 
     public Airport getAirport(String code)
     {
+	System.out.println("Getting airports!");
         for (Airport a: airports)
         {
             if(a.getCode().equals(code))
             {
+		System.out.println("found it boi!");
                 return  a;
             }
         }
+	System.out.println("it null bich");
         return null;
     }
 
@@ -316,13 +319,25 @@ public class RouteNetwork
       //make a list of itins,this will be returned at the end
       ArrayList<Itinerary> mainList = new ArrayList();
       //we need to know where we've been, if anywhere
-      ArrayList<Flight> hops = itin.getFlights();  
+      ArrayList<Flight> hops = itin.getFlights(); 
+      if (hops.size() <= 0)
+      {
+        return null;
+      } 
       ArrayList<Airport> visited = new ArrayList();
       for(Flight f : hops)
       {
         visited.add(f.getOrigin());
       }
-      Airport location = hops.get(hops.size() - 1).getDestination();
+      Airport location;
+      if (hops.size() > 0)
+      {
+        location = hops.get(hops.size() - 1).getDestination();
+      }
+      else
+      {
+       location = itin.getOrigin(); 
+      }
       //base case: is this the final hop?
       if(hopsLeft <= 0)
       {
