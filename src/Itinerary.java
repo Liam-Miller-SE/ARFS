@@ -18,6 +18,7 @@ public class Itinerary
     origin = orig;
     destination = dest;
     passengerName = name;
+    flights = new ArrayList<Flight>();
   }
   public ArrayList<Flight> getFlights()
   {
