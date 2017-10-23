@@ -276,16 +276,13 @@ public class RouteNetwork
 
     public Airport getAirport(String code)
     {
-	System.out.println("Getting airports!");
         for (Airport a: airports)
         {
             if(a.getCode().equals(code))
             {
-		System.out.println("found it boi!");
                 return  a;
             }
         }
-	System.out.println("it null bich");
         return null;
     }
 
