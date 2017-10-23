@@ -20,6 +20,17 @@ public class Itinerary
     passengerName = name;
     flights = new ArrayList<Flight>();
   }
+  public Itinerary(Itinerary copy)
+  {
+    this.passengerName = copy.passengerName;
+    this.origin = copy.origin;
+    this.destination = copy.destination;
+    this.flights = new ArrayList<Flight>();
+    for(Flight f : copy.flights)
+    {
+      this.flights.add(f);
+    }
+  }
   public ArrayList<Flight> getFlights()
   {
     return flights;

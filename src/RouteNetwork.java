@@ -306,66 +306,55 @@ public class RouteNetwork
         return LocalTime.of(hour, min);
     }
     
-    public ArrayList<Itinerary> createItineraries(Itinerary itin)
+    public ArrayList<Itinerary> createItineraries(Itinerary itin, Airport destination)
     {
-      return createItineraries(itin, Itinerary.MAXIMUM_TRANSFERS);
+      return createItineraries(itin, destination, Itinerary.MAXIMUM_TRANSFERS);
     }
 
-    public ArrayList<Itinerary> createItineraries(Itinerary itin, int hopsLeft)
+    public ArrayList<Itinerary> createItineraries(Itinerary itin, Airport destination, int hopsLeft)
     {
-      //make a list of itins,this will be returned at the end
-      ArrayList<Itinerary> mainList = new ArrayList();
-      //we need to know where we've been, if anywhere
-      ArrayList<Flight> hops = itin.getFlights(); 
-      if (hops.size() <= 0)
-      {
-        return null;
-      } 
-      ArrayList<Airport> visited = new ArrayList();
-      for(Flight f : hops)
-      {
-        visited.add(f.getOrigin());
-      }
+      ArrayList<Flight> flights = itin.getFlights();
+      ArrayList<Airport> visited = new ArrayList<Airport>();
+      visited.add(itin.getOrigin());
       Airport location;
-      if (hops.size() > 0)
+      if(flights.size() > 0)
       {
-        location = hops.get(hops.size() - 1).getDestination();
+        location = flights.get(flights.size() - 1).getDestination();
       }
       else
       {
-       location = itin.getOrigin(); 
+        location = itin.getOrigin();
       }
-      //base case: is this the final hop?
-      if(hopsLeft <= 0)
+      for(Flight f : flights)
       {
-        //if so, did we fail to reach our destination?
-        if(location != itin.getDestination())
-        {
-          return null;
-        }
-        //if not, the itinerary is valid
-        else
-        {
-          mainList.add(itin);
-          return mainList;
-        }
+        visited.add(f.getDestination());
       }
-      //we have hops remaining
+      //Mooooom, are we there yet?
+      if (location.getCode().equals(destination.getCode()))
+      {
+        ArrayList<Itinerary> out = new ArrayList<Itinerary>();
+        out.add(itin);
+        return out;
+      }
+      //See if we've reached our last hop
+      if (hopsLeft <= 0)
+      {
+        return new ArrayList<Itinerary>();
+      }
       else
       {
-        for(Flight fl : location.getFlights())
+        ArrayList<Itinerary> itins = new ArrayList<Itinerary>();
+        for(Flight f : location.getFlights())
         {
-          //is the flight after we arrive and to an airport we've never been to?
-          if(fl.getDeparture().isAfter(itin.getNextAvailibleTime()) && !visited.contains(fl.getDestination()))
+          if (!visited.contains(f.getDestination()) /*&& itin.getNextAvailibleTime().isBefore(f.getDeparture())*/)
           {
-            Itinerary cpitin = itin;
-            cpitin.addFlight(fl);
-            //if so, this is a potential transfer flight
-            mainList.addAll(createItineraries(cpitin, hopsLeft - 1));
+            Itinerary newItin = new Itinerary(itin);
+            newItin.addFlight(f);
+            itins.addAll(createItineraries(newItin, destination, hopsLeft - 1));
           }
         }
-        return mainList;
-      } 
+        return itins;
+      }
     }
     public void storeItinerary(Itinerary itin)
     {
