@@ -88,4 +88,26 @@ public class Itinerary
 	  return ( "Origin: " + this.getOrigin() + "\nDestination: "
 	  + this.getDestination() + "\n" + this.flightsString() + "\n");
   }
+  public int getAirfare()
+  {
+    int out = 0;
+    for (Flight f : flights)
+    {
+      out += f.getAirfare();
+    }
+    return out;
+  }
+  public String toOutputString()
+  {
+    String c = ",";
+    String out = this.getAirfare()+c+this.flights.size()+"\n";
+    int num = 0;
+    for(Flight f : flights)
+    {
+      String depart = (f.getDeparture().getHour() % 12) + ":" + f.getDeparture().getMinute();
+      String arrive = (f.getArrival().getHour() % 12) + ":" + f.getArrival().getMinute();
+      out+=num++ +c+f.getFlightNumber()+c+f.getOrigin().getCode()+c+RouteNetwork.convertTime(f.getDeparture())+c+f.getDestination().getCode()+c+RouteNetwork.convertTime(f.getArrival()) + "\n";
+    }
+    return out;
+  }
 }

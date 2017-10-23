@@ -194,7 +194,7 @@ public class RouteNetwork
     {
 
     }
-    private String convertTime(LocalTime t)
+    public static String convertTime(LocalTime t)
     {
         String hour = "";
         String min = Integer.toString(t.getMinute());

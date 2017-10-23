@@ -39,10 +39,12 @@ public class ItineraryQuery implements IQuery
 				itins.sort( (a, b) -> (int)(Duration.between(a.getFirstDeparture(), b.getFirstDeparture()).toMillis()));
 				break;
 		}
+		String output = "info,";//TODO:Number of itins to display
+		int num = 0;
 		for(Itinerary j : itins)
 		{
-			System.out.println(j.toString());
+			output +=num++ + "," +j.toOutputString() + "\n";
 		}
-		return null;
+		return output;
 	}
 }
