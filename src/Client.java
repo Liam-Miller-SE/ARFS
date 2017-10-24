@@ -67,23 +67,23 @@ public class Client extends Observable
                 switch (newin)
                 {
                     case "info":
-                        System.out.println("info for flights");
+                        //System.out.println("info for flights");
                         getFlightInfo(inp);
                         break;
                     case "reserve":
-                        System.out.println("making a reservation");
+                        //System.out.println("making a reservation");
                         makeReservation(inp);
                         break;
                     case "retrieve":
-                        System.out.println("finding a reservation");
+                        //System.out.println("finding a reservation");
                         getReservationInfo(inp);
                         break;
                     case "delete":
-                        System.out.println("deleting a reservation");
+                        //System.out.println("deleting a reservation");
                         deleteReservation(inp);
                         break;
                     case "airport":
-                        System.out.println("info for an airport");
+                        //System.out.println("info for an airport");
                         getAirportInfo(inp);
                         break;
                     case "help":
@@ -150,6 +150,8 @@ public class Client extends Observable
 
             System.out.println("Retrieving Some data ");
             Scheduler sc = new Scheduler();
+
+            //sc.storeItinerary();
             //Insert method from Scheduler to retrieve data here
             return "";
         }

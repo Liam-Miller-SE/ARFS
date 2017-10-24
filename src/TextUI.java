@@ -11,8 +11,6 @@ public class TextUI implements Observer
     private static ArrayList<String> Files;
     private File f;
 
-
-
     public TextUI(Client c)
     {
         this.c = c;
