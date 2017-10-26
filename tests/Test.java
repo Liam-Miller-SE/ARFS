@@ -1,4 +1,4 @@
-import AFRS.*;
+import src.*;
 class Test
 {
   boolean ASSERT_EQUAL(int a, int b)
