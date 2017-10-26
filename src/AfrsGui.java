@@ -20,6 +20,8 @@ import javafx.stage.Stage;
 import javafx.*;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.paint.Color;
+
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Observer;
 import java.util.Observable;
@@ -36,11 +38,15 @@ public class AfrsGui extends Application implements Observer {
 
 
     //TimersModel model;
-    Stage stage;
+    private Stage stage;
+    private Client c;
+    private static ArrayList<String> Files;
+    private File f;
 
-
-
-    public AfrsGui() {
+    public AfrsGui()
+    {
+        //this.c = c;
+        //c.addObserver(this);
 
     }
 
@@ -144,11 +150,48 @@ public class AfrsGui extends Application implements Observer {
         return border;
     }
 
-    public void update(Observable t, Object o){
+    public void update(Observable t, Object o)
+    {
+        String output = c.getInput();
+        System.out.println(output);
 
     }
 
-    public static void main(String[] args) {
+    public static void getFiles()
+    {
+        Files = new ArrayList<String>();
+        Files.add("airports.txt");
+        Files.add("weather.txt");
+        Files.add("connections.txt");
+        Files.add("delays.txt");
+        Files.add("flights.txt");
+    }
+
+    public static void loadFiles()
+    {
+        RouteNetwork rn = RouteNetwork.getInstance();
+
+        for(int i = 0; i < Files.size(); i ++)
+        {
+            File f = new File("src/inputFiles/" + Files.get(i) );
+            rn.readInfo(f);
+        }
+    }
+
+    public static void main(String[] args)
+    {
+        getFiles();
+        loadFiles();
+        System.out.println("Welcome to AFRS!");
+        System.out.println("We are now in the first release of development...");
+        System.out.println("What are you looking to do?");
+        System.out.println("If unsure about inputs... Type 'help;'");
+
+        //Client c = new Client();
+        //Observer o = new AfrsGui(c);
+
+        //c.takeInput();
+
         Application.launch(args);
     }
 }
