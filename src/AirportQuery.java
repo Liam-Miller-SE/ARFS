@@ -11,8 +11,5 @@ public class AirportQuery extends ACalling implements IQuery
 		return rn.getAirport(airport).toString() ;
 	}
 
-	@Override
-	public String[] query() {
-		return new String[0];
-	}
+
 }

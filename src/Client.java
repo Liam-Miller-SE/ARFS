@@ -103,12 +103,12 @@ public class Client extends Observable
         String[] params = parseInput(str);
         if(params.length < 3)
         {
-            System.out.println("expected at least 2 parameters (max 4), got " + params.length);
+            setInput("expected at least 2 parameters (max 4), got " + params.length);
             return "";
         }
         else if(params.length > 5)
         {
-            System.out.println("Too many parameters, got " + params.length);
+            setInput("Too many parameters, got " + params.length);
         }
         else
         {
@@ -122,12 +122,12 @@ public class Client extends Observable
         String[] params = parseInput(str);
         if(params.length < 2)
         {
-            System.out.println("expected at least 2 parameters (max 4), got " + params.length);
+            setInput("expected at least 2 parameters (max 4), got " + params.length);
             return "";
         }
         else if(params.length > 4)
         {
-            System.out.println("Too many parameters, got " + params.length);
+            setInput("Too many parameters, got " + params.length);
         }
         else
         {
@@ -142,13 +142,13 @@ public class Client extends Observable
         String[] params = parseInput(str);
         if (params.length != 3)
         {
-            System.out.println("error, unknown Something");
+            setInput("error, unknown Something");
             return "";
         }
         else
         {
 
-            System.out.println("Retrieving Some data ");
+            setInput("Retrieving Some data ");
             Scheduler sc = new Scheduler();
 
             //sc.storeItinerary();
@@ -162,22 +162,22 @@ public class Client extends Observable
         System.out.println(params.length);
         if (params.length != 4)
         {
-            System.out.println("error, Incorrect number of parameters, expected 4, got " + params.length);
+            setInput("error, Incorrect number of parameters, expected 4, got " + params.length);
             return "";
         }
         else
         {
             if (params[2].length() != 3)
             {
-                System.out.println("Unknown origin airport ");
+                setInput("Unknown origin airport ");
                 return "";
             }
             if (params[params.length-1].length() != 3)
             {
-                System.out.println("Unknown destination airport");
+                setInput("Unknown destination airport");
                 return "";
             }
-            System.out.println("Retrieving Reservation data ");
+            setInput("Retrieving Reservation data ");
             //response = query(params);
             setInput(response);
             //Insert method to retrieve data here
@@ -189,20 +189,20 @@ public class Client extends Observable
         String[] params = parseInput(str);
         if (params.length != 2)
         {
-            System.out.println("error, unknown airport");
+            setInput("error, unknown airport");
             return "";
         }
         else
         {
             if (params[1].length() == 3)
             {
-                System.out.println("Retrieving airport data with code " + params[1] );
+                setInput("Retrieving airport data with code " + params[1] );
                 //response = query(params);
                 setInput(response);
             }
             else
             {
-                System.out.println("Unknown airport code");
+                setInput("Unknown airport code");
             }
 
             //Insert method to retrieve data here
@@ -240,7 +240,7 @@ public class Client extends Observable
         String[] list = parseInput(str);
         if (list.length < 2)
         {
-            System.out.println("error incorrect command usage.");
+            setInput("error incorrect command usage.");
         }
         else
         {
