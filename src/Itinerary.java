@@ -72,7 +72,7 @@ public class Itinerary
 
   public LocalTime getFirstDeparture()
   {
-    if(flights.size() > 0)
+    if(flights.size() <= 0)
     {
       return null;
     }

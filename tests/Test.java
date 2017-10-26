@@ -1,4 +1,4 @@
-import src.*;
+import src.Flight;
 class Test
 {
   boolean ASSERT_EQUAL(int a, int b)
