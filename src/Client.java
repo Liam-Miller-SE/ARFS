@@ -39,6 +39,8 @@ public class Client extends Observable
             else if (inp.equals("exit;"))
             {
                 setInput("Goodbye!");
+                RouteNetwork rn = RouteNetwork.getInstance();
+                rn.writeData();
                 return;
             }
 

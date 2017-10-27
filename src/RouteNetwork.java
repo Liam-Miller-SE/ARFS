@@ -1,4 +1,5 @@
 //package ARFS;
+import javax.naming.spi.ResolveResult;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,10 +20,15 @@ public class RouteNetwork
     {
 
     }
+
+    /**
+     * This class holds a reference to the RouteNetwork Object
+     */
     private static class SingletonHolder
     {
         private static RouteNetwork INSTANCE = new RouteNetwork();
     }
+
     public static RouteNetwork getInstance()
     {
         return SingletonHolder.INSTANCE;
@@ -33,6 +39,10 @@ public class RouteNetwork
         return reservations;
     }
 
+    /**
+     * This method takes in a file and parses it and stores the data taken based on its filename
+     * @param f: takes in a file for reading
+     */
     public void readInfo(File f)
     {
         String filename = f.getName();
@@ -80,10 +90,6 @@ public class RouteNetwork
                         flights.add(fly);
                         oa.addFlight(fly);
                         da.addFlight(fly);
-
-
-                        //System.out.println(args[0] + " " + args[1] + " " + args[2] + " " +
-                         //       args[3] + " " + args[4] + " " + args[5]);
                         break;
                     case "weather.txt":
                         //input csv not always the same number of args
@@ -120,6 +126,14 @@ public class RouteNetwork
                         weatA.setTemperature(temp);
                         weatA.setWeather(weat);
                         break;
+                    case "reservation.txt":
+                        //this case is for the reservation file across system startup and shutdown
+                        /**
+                         * Reservations csv file format;
+                         *  passengerName,Origin,Destination,flight num, flight num, flight num
+                         */
+                        
+                        break;
                     default:
                         System.out.println(line);
                         break;
@@ -133,6 +147,10 @@ public class RouteNetwork
             System.out.println(e.getMessage());
         }
     }
+
+    /**
+     * This method writes the data to the csv files so that the data can persist through system startups
+     */
     public void writeData()
     {
         try {
@@ -182,6 +200,21 @@ public class RouteNetwork
 
             }
             writer.close();
+
+
+            writer = new BufferedWriter(new FileWriter("src/inputFiles/reservations.txt"));
+            for(Reservation r : reservations)
+            {
+                writer.write(r.getPassenger());
+                Itinerary i = r.getItinerary();
+                writer.write("," + i.getOrigin().getCode() + "," + i.getDestination().getCode()+",");
+                for(Flight f : i.getFlights())
+                {
+                    writer.write(getFlightnum(f) + ",");
+                }
+                writer.write("\n");
+            }
+            writer.close();
         }
         catch (Exception e)
         {
@@ -194,6 +227,28 @@ public class RouteNetwork
     {
 
     }
+    public void storeReservation(Reservation r)
+    {
+        reservations.add(r);
+    }
+
+    public void deleteReservation(Reservation r)
+    {
+        for(Reservation db : reservations)
+        {
+            if (db.equals(r))
+            {
+                reservations.remove(db);
+            }
+        }
+    }
+
+
+    /**
+     * Converts a LocalTime to a 12 hr readable time format
+     * @param t: LocalTime that contains a military time
+     * @return String of 12 hour human readable time format
+     */
     public static String convertTime(LocalTime t)
     {
         String hour = "";
@@ -219,6 +274,12 @@ public class RouteNetwork
 
     }
 
+    /**
+     * Adds an airport into the array of airports. If the airport already exists in the system, it will overwrite
+     * it's non null data to the airport and then not be stored itself. If no airport already exists, it is stored
+     *
+     * @param a: Airport
+     */
     public synchronized void storeAirport(Airport a)
     {
         boolean inArray = false;
@@ -274,6 +335,12 @@ public class RouteNetwork
 
     }
 
+    /**
+     * Returns the matching airport object with the passed in airport code
+     * @param code: String that represents the 3 letter unique airport code
+     * @return Airport  that matches the 3 letter airport code, unless one does not exist in which case it will return
+     * null
+     */
     public Airport getAirport(String code)
     {
         for (Airport a: airports)
@@ -286,6 +353,15 @@ public class RouteNetwork
         return null;
     }
 
+    private static int getFlightnum(Flight f)
+    {
+        return f.getFlightNumber();
+    }
+    /***
+     * Takes in a string and makes a LocalTime out of it
+     * @param time: String - time string read in through the files
+     * @return LocalTime: formatted so it can be compared easily to other LocalTimes
+     */
     private static LocalTime createTime(String time)
     {
         String[] timeSlots = time.split(":");
@@ -361,12 +437,24 @@ public class RouteNetwork
       itineraries.add(itin);
     }
 
+/*
     public static void main(String[] args)
     {
 
         RouteNetwork rn = RouteNetwork.getInstance();
-        /*Airport a = new Airport("ATL", "Atlanta");
+        Airport a = new Airport("ATL", "Atlanta");
         rn.storeAirport(a);
+        Airport b = new Airport("BOS", "BOSTON");
+        rn.storeAirport(b);
+        Flight f = new Flight(a, b,  LocalTime.MIDNIGHT,  LocalTime.NOON, 123, 400 );
+        rn.storeFlight(f);
+        Itinerary i = new Itinerary(a, b, "Joe");
+        i.addFlight(f);
+        Reservation r = new Reservation("Joe", i);
+        rn.storeItinerary(i);
+        rn.storeReservation(r);
+        rn.writeData();
+
         Airport b = new Airport("BOS", "Boston");
         rn.storeAirport(b);
         String[] w = {"hot", "sunny", "humid"};
@@ -377,7 +465,7 @@ public class RouteNetwork
         b.setWeather(w);
         b.setTemperature(t);
         System.out.println(a.getTemperature()+ " "+ a.getWeath());
-        */
+
         File f = new File("src/inputFiles/airports.txt");
         File f1 = new File("src/inputFiles/connections.txt");
         File f2 = new File("src/inputFiles/delays.txt");
@@ -392,6 +480,8 @@ public class RouteNetwork
 
         rn.writeData();
     }
+    */
+
 
 
 

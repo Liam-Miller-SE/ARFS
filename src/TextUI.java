@@ -32,6 +32,7 @@ public class TextUI implements Observer
         Files.add("connections.txt");
         Files.add("delays.txt");
         Files.add("flights.txt");
+        Files.add("reservations.txt");
     }
 
     public static void loadFiles()
