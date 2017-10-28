@@ -132,7 +132,18 @@ public class RouteNetwork
                          * Reservations csv file format;
                          *  passengerName,Origin,Destination,flight num, flight num, flight num
                          */
-                        
+                        String name = args[0];
+                        Airport origin = getAirport(args[1]);
+                        Airport destination = RouteNetwork.getInstance().getAirport(args[2]);
+                        //ArrayList<Flight> flightList = new ArrayList<Flight>();
+                        Itinerary itin = new Itinerary(origin, destination, name);
+                        for(int x = 3; x <args.length; x++)
+                        {
+                            Flight flightHop = getFlight(Integer.parseInt(args[x]));
+                            itin.addFlight(flightHop);
+                        }
+                        Reservation r = new Reservation(name, itin);
+                        reservations.add(r);
                         break;
                     default:
                         System.out.println(line);
@@ -357,6 +368,19 @@ public class RouteNetwork
     {
         return f.getFlightNumber();
     }
+    public Flight getFlight(int flightNum)
+    {
+
+        for(Flight f : flights)
+        {
+            if(f.getFlightNumber() == flightNum)
+            {
+                return f;
+            }
+        }
+        return null;
+    }
+
     /***
      * Takes in a string and makes a LocalTime out of it
      * @param time: String - time string read in through the files
