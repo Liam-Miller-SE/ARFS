@@ -234,10 +234,6 @@ public class RouteNetwork
 
     }
 
-    public void storeFlight(Flight f)
-    {
-
-    }
     public void storeReservation(Reservation r)
     {
         reservations.add(r);
@@ -406,56 +402,6 @@ public class RouteNetwork
         return LocalTime.of(hour, min);
     }
     
-    public ArrayList<Itinerary> createItineraries(Itinerary itin, Airport destination)
-    {
-      return createItineraries(itin, destination, Itinerary.MAXIMUM_TRANSFERS);
-    }
-
-    public ArrayList<Itinerary> createItineraries(Itinerary itin, Airport destination, int hopsLeft)
-    {
-      ArrayList<Flight> flights = itin.getFlights();
-      ArrayList<Airport> visited = new ArrayList<Airport>();
-      visited.add(itin.getOrigin());
-      Airport location;
-      if(flights.size() > 0)
-      {
-        location = flights.get(flights.size() - 1).getDestination();
-      }
-      else
-      {
-        location = itin.getOrigin();
-      }
-      for(Flight f : flights)
-      {
-        visited.add(f.getDestination());
-      }
-      //Mooooom, are we there yet?
-      if (location.getCode().equals(destination.getCode()))
-      {
-        ArrayList<Itinerary> out = new ArrayList<Itinerary>();
-        out.add(itin);
-        return out;
-      }
-      //See if we've reached our last hop
-      if (hopsLeft <= 0)
-      {
-        return new ArrayList<Itinerary>();
-      }
-      else
-      {
-        ArrayList<Itinerary> itins = new ArrayList<Itinerary>();
-        for(Flight f : location.getFlights())
-        {
-          if (!visited.contains(f.getDestination()) /*&& itin.getNextAvailibleTime().isBefore(f.getDeparture())*/)
-          {
-            Itinerary newItin = new Itinerary(itin);
-            newItin.addFlight(f);
-            itins.addAll(createItineraries(newItin, destination, hopsLeft - 1));
-          }
-        }
-        return itins;
-      }
-    }
     public void storeItinerary(Itinerary itin)
     {
       itineraries.add(itin);
