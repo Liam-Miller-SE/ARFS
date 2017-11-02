@@ -2,7 +2,7 @@
 /**
  * Created by melis on 10/5/2017.
  */
-public class AirportQuery extends ACalling implements IQuery
+public class AirportQuery implements IQuery
 {
 	public String processData(String[] a)
 	{

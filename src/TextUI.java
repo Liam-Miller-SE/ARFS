@@ -27,11 +27,12 @@ public class TextUI implements Observer
     public void sendString()
     {
         sc = new Scanner(System.in);
-        //while(true)
-        //{
-            s = sc.nextLine();
-            setString(s);
-        //}
+        while(true)
+        {
+            //s = sc.nextLine();
+            c.parseInput(sc);
+            //setString(s);
+        }
     }
 
     private void setString(String str)
@@ -51,11 +52,15 @@ public class TextUI implements Observer
         System.out.println("We are now in the first release of development...");
         System.out.println("What are you looking to do?");
         System.out.println("If unsure about inputs... Type 'help;'");
-
-        AFRSapi c = new AFRSapi();
+        Parser p = new Parser();
+        AFRSapi c = new AFRSapi(p);
         c.getFiles();
         c.loadFiles();
-        Observer o = new TextUI(c);
+        //Observer o = new TextUI(c);
+        //Observer oapi = new AFRSapi(p);
+        TextUI t = new TextUI(c);
+        t.sendString();
+
 
          //sc = new Scanner(System.in);
          //c.parseInput(sc);

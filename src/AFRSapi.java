@@ -1,20 +1,24 @@
 //package ARFS;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Arrays;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * Created by melis on 10/5/2017.
  * Implementation done by Josh
  */
-public class AFRSapi extends Observable
+public class AFRSapi extends Observable implements Observer
 {
     private String S;
     private String UpdateStr;
     private String response;
     private static ArrayList<String> Files;
+    private Parser p;
+
+    public AFRSapi(Parser p)
+    {
+        this.p = p;
+        p.addObserver(this);
+    }
 
 
 
@@ -24,12 +28,19 @@ public class AFRSapi extends Observable
         setChanged();
         notifyObservers();
 
+
     }
     public String getInput()
     {
         return this.UpdateStr;
     }
 
+
+    @Override
+    public void update(Observable o, Object arg) {
+        String fullString = p.getString();
+        setInput(fullString);
+    }
 
     public void getFiles()
     {
@@ -76,8 +87,7 @@ public class AFRSapi extends Observable
     }
     public void parseInput(Scanner sc)
     {
-        Parser par = new Parser();
-        par.takeInput(sc);
+        p.takeInput(sc);
     }
 
 

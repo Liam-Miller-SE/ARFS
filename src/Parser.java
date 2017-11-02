@@ -1,7 +1,27 @@
+import java.util.Observable;
+import java.util.Observer;
 import java.util.Scanner;
 
-public class Parser {
+public class Parser extends Observable {
 
+    private String s;
+
+    public Parser()
+    {
+
+    }
+
+    public String getString()
+    {
+        return this.s;
+    }
+
+    public void setInput(String str)
+    {
+            this.s = str;
+            setChanged();
+            notifyObservers();
+    }
 
     public void takeInput (Scanner scan)
     {
@@ -10,6 +30,7 @@ public class Parser {
         //Scanner scan = new Scanner(System.in);
         String inp;
         String newin;
+
 
         while(true)
         {
@@ -85,7 +106,7 @@ public class Parser {
             }
             S = inp;
         }
-        takeInput();
+
     }
 
     private String getFlightInfo(String str)
@@ -103,7 +124,7 @@ public class Parser {
         else
         {
             //response = query(params);
-            setInput(response);
+            //setInput(response);
         }
         return"";
     }
@@ -122,7 +143,7 @@ public class Parser {
         else
         {
             //response = query(params);
-            setInput(response);
+            //setInput(response);
         }
 
         return "";
@@ -169,7 +190,7 @@ public class Parser {
             }
             setInput("Retrieving Reservation data ");
             //response = query(params);
-            setInput(response);
+            //setInput(response);
             //Insert method to retrieve data here
             return "";
         }
@@ -188,7 +209,7 @@ public class Parser {
             {
                 setInput("Retrieving airport data with code " + params[1] );
                 //response = query(params);
-                setInput(response);
+                //setInput(response);
             }
             else
             {
