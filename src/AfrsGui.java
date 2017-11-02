@@ -1,8 +1,4 @@
 import javafx.application.Application;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -10,22 +6,15 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
-import javafx.*;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.paint.Color;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Observer;
 import java.util.Observable;
-import java.util.Random;
 
 import javafx.scene.text.Text;
 
@@ -39,7 +28,7 @@ public class AfrsGui extends Application implements Observer {
 
     //TimersModel model;
     private Stage stage;
-    private Client c;
+    private AFRSapi c;
     private static ArrayList<String> Files;
     private File f;
 
@@ -157,37 +146,16 @@ public class AfrsGui extends Application implements Observer {
 
     }
 
-    public static void getFiles()
-    {
-        Files = new ArrayList<String>();
-        Files.add("airports.txt");
-        Files.add("weather.txt");
-        Files.add("connections.txt");
-        Files.add("delays.txt");
-        Files.add("flights.txt");
-    }
 
-    public static void loadFiles()
-    {
-        RouteNetwork rn = RouteNetwork.getInstance();
-
-        for(int i = 0; i < Files.size(); i ++)
-        {
-            File f = new File("src/inputFiles/" + Files.get(i) );
-            rn.readInfo(f);
-        }
-    }
 
     public static void main(String[] args)
     {
-        getFiles();
-        loadFiles();
         System.out.println("Welcome to AFRS!");
         System.out.println("We are now in the first release of development...");
         System.out.println("What are you looking to do?");
         System.out.println("If unsure about inputs... Type 'help;'");
 
-        //Client c = new Client();
+        //AFRSapi c = new AFRSapi();
         //Observer o = new AfrsGui(c);
 
         //c.takeInput();

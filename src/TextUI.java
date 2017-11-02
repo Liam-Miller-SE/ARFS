@@ -1,17 +1,17 @@
 //package ARFS;
 import java.io.File;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.Scanner;
 
 public class TextUI implements Observer
 {
-    private Client c;
-    private static ArrayList<String> Files;
-    private File f;
+    private AFRSapi c;
+    private static Scanner sc;
+    private String s;
 
-    public TextUI(Client c)
+    public TextUI(AFRSapi c)
     {
         this.c = c;
         c.addObserver(this);
@@ -24,40 +24,43 @@ public class TextUI implements Observer
         System.out.println(output);
     }
 
-    public static void getFiles()
+    public void sendString()
     {
-        Files = new ArrayList<String>();
-        Files.add("airports.txt");
-        Files.add("weather.txt");
-        Files.add("connections.txt");
-        Files.add("delays.txt");
-        Files.add("flights.txt");
+        sc = new Scanner(System.in);
+        //while(true)
+        //{
+            s = sc.nextLine();
+            setString(s);
+        //}
     }
 
-    public static void loadFiles()
+    private void setString(String str)
     {
-        RouteNetwork rn = RouteNetwork.getInstance();
-
-        for(int i = 0; i < Files.size(); i ++)
-        {
-            File f = new File("src/inputFiles/" + Files.get(i) );
-            rn.readInfo(f);
-        }
+        this.s = str;
     }
+    public String getString()
+    {
+        return this.s;
+    }
+
+
 
     public static void main(String[] args)
     {
-        getFiles();
-        loadFiles();
         System.out.println("Welcome to AFRS!");
         System.out.println("We are now in the first release of development...");
         System.out.println("What are you looking to do?");
         System.out.println("If unsure about inputs... Type 'help;'");
 
-        Client c = new Client();
+        AFRSapi c = new AFRSapi();
+        c.getFiles();
+        c.loadFiles();
         Observer o = new TextUI(c);
 
-        c.takeInput();
+         //sc = new Scanner(System.in);
+         //c.parseInput(sc);
+
+        //c.takeInput();
 
     }
 }

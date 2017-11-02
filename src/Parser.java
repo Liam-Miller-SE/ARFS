@@ -1,24 +1,13 @@
-//package ARFS;
-import java.util.Observable;
 import java.util.Scanner;
-import java.util.Arrays;
 
-/**
- * Created by melis on 10/5/2017.
- * Implementation done by Josh
- */
-public class Client extends Observable
-{
-    private String S;
-    private String UpdateStr;
-    private String response;
+public class Parser {
 
 
-    public void takeInput ()
+    public void takeInput (Scanner scan)
     {
 
-        S = "";
-        Scanner scan = new Scanner(System.in);
+        String S = "";
+        //Scanner scan = new Scanner(System.in);
         String inp;
         String newin;
 
@@ -98,6 +87,7 @@ public class Client extends Observable
         }
         takeInput();
     }
+
     private String getFlightInfo(String str)
     {
         String[] params = parseInput(str);
@@ -112,8 +102,8 @@ public class Client extends Observable
         }
         else
         {
-         //response = query(params);
-         setInput(response);
+            //response = query(params);
+            setInput(response);
         }
         return"";
     }
@@ -224,17 +214,6 @@ public class Client extends Observable
 
     }
 
-    private void setInput(String str)
-    {
-        this.UpdateStr = str;
-        setChanged();
-        notifyObservers();
-
-    }
-    public String getInput()
-    {
-        return this.UpdateStr;
-    }
     private void help(String str)
     {
         String[] list = parseInput(str);
