@@ -4,5 +4,6 @@
  */
 public interface IQuery 
 {	
+	//interface for queries
 	public String processData(String[] query);
 }

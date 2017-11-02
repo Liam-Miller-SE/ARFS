@@ -3,6 +3,9 @@ import java.util.ArrayList;
 
 public class Airport 
 {
+	//holds info for airports identified by "code"
+	//get and set all attributes
+	
 	private String code;
 	//private int[] temperature;
 	private ArrayList<Integer> temperature = new ArrayList<Integer>();

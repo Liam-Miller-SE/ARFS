@@ -3,6 +3,7 @@ import java.time.*;
 
 public class Flight 
 {
+	//holds airports times, and flight numbers and airfare
   Airport origin;
   Airport destination;
   LocalTime departureTime;

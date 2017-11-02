@@ -7,6 +7,10 @@ public class ReservationQuery implements IQuery
 {
 	public String processData(String[] query)
 	{
+		//if no match found, returns empty string
+		//takes in request in form:
+		//["passenger name", (optional)"origin", (optional)"destination"]
+		//returns all reservations that match request
 		String ret = "";
 		String pass = query[0];
 		RouteNetwork rn = RouteNetwork.getInstance() ;

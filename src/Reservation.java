@@ -1,6 +1,7 @@
 //package ARFS;
 public class Reservation 
 {
+	//class holding an itinerary, and the passengers name
   private Itinerary itinerary;
   private String passengerName;
   public Reservation(String name, Itinerary itin)
