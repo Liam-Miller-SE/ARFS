@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Scanner;
@@ -5,9 +6,11 @@ import java.util.Scanner;
 public class Parser extends Observable {
 
     private String s;
+    private ArrayList<String> inputRequest;
 
     public Parser()
     {
+        inputRequest = new ArrayList<>();
 
     }
 
@@ -23,7 +26,7 @@ public class Parser extends Observable {
             notifyObservers();
     }
 
-    public void takeInput (Scanner scan)
+    public void takeInput (String myInput)
     {
 
         String S = "";
@@ -34,27 +37,14 @@ public class Parser extends Observable {
 
         while(true)
         {
-            inp = S + scan.nextLine();
+            inp = S + myInput;
             String lastChar = inp.substring(inp.length() -1);
             newin = "";
-
-            if(inp.equals("help;"))
-            {
-                setInput("Options are: info, reserve, retrieve, delete, airport, help, exit");
-                setInput("Please note that all responses should end with a ';'");
-                setInput("For more info about a specific option, Type 'help,[option];' ");
-                break;
-            }
-
-            else if (inp.equals("exit;"))
-            {
-                setInput("Goodbye!");
-                return;
-            }
 
             if (!(lastChar.equals(";")))
             {
                 setInput("partial-request");
+                break;
             }
             else
             {
@@ -104,8 +94,11 @@ public class Parser extends Observable {
                 }
                 break;
             }
-            S = inp;
+            //S = inp;
+            //takeInput(S);
         }
+
+
 
     }
 

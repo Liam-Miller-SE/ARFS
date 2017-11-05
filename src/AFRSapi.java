@@ -85,9 +85,9 @@ public class AFRSapi extends Observable implements Observer
             return null;
         }
     }
-    public void parseInput(Scanner sc)
+    public void parseInput(String myInput)
     {
-        p.takeInput(sc);
+        p.takeInput(myInput);
     }
 
 

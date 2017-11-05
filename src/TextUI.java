@@ -21,7 +21,23 @@ public class TextUI implements Observer
     public void update(Observable o, Object arg)
     {
         String output = c.getInput();
-        System.out.println(output);
+        if(output.equals("exit"))
+        {
+            System.out.println("Goodbye!");
+            return;
+        }
+        else if(output.equals("help"))
+        {
+            System.out.println("Options are: info, reserve, retrieve, delete, airport, help, exit");
+            System.out.println("Please note that all responses should end with a ';'");
+            System.out.println("For more info about a specific option, Type 'help,[option];' ");
+        }
+        else
+        {
+            System.out.println(output);
+
+        }
+
     }
 
     public void sendString()
@@ -29,8 +45,31 @@ public class TextUI implements Observer
         sc = new Scanner(System.in);
         while(true)
         {
+            String myInput = sc.nextLine();
+            String lastChar = myInput.substring(myInput.length() -1);
+
+
+
+            if (myInput.equals("help;"))
+            {
+                System.out.println("Options are: info, reserve, retrieve, delete, airport, help, exit");
+                System.out.println("Please note that all responses should end with a ';'");
+                System.out.println("For more info about a specific option, Type 'help,[option];' ");
+
+            }
+            else if (myInput.equals("exit;"))
+            {
+                System.out.println("Goodbye!");
+                return;
+            }
+            else
+            {
+                c.parseInput(myInput);
+
+            }
+
             //s = sc.nextLine();
-            c.parseInput(sc);
+            //c.parseInput(myInput);
             //setString(s);
         }
     }
