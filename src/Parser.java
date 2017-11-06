@@ -41,7 +41,7 @@ public class Parser extends Observable {
             String lastChar = inp.substring(inp.length() -1);
             newin = "";
 
-            if (!(lastChar.equals(";")))
+            if (!(lastChar.equals(";"))) //Shouldn't need this check anymore -> moved to textui
             {
                 setInput("partial-request");
                 break;
@@ -85,9 +85,6 @@ public class Parser extends Observable {
                     case "airport":
                         //System.out.println("info for an airport");
                         getAirportInfo(inp);
-                        break;
-                    case "help":
-                        help(inp);
                         break;
                     default:
                         setInput("error,unknown request: " + newin);
@@ -228,54 +225,7 @@ public class Parser extends Observable {
 
     }
 
-    private void help(String str)
-    {
-        String[] list = parseInput(str);
-        if (list.length < 2)
-        {
-            setInput("error incorrect command usage.");
-        }
-        else
-        {
-            //System.out.println(list[1]);
-            if (list[1].equals("info"))
-            {
-                setInput("info,origin,destination[,connections[,sort-order]];");
-                setInput("origin/destination are 3-letter airport codes, All CAPS");
-                setInput("connections is a number from 0-2");
-                setInput("sort-order options: departure, arrival, airfare");
-            }
-            else if (list[1].equals("reserve"))
-            {
-                setInput("reserve,id,passenger;");
-                setInput("id is the number identifier ");
-            }
-            else if (list[1].equals("retrieve"))
-            {
-                setInput("retrieve,passenger[,origin[,destination]];");
-            }
-            else if (list[1].equals("delete"))
-            {
-                setInput("delete,passenger,origin,destination;");
-            }
-            else if (list[1].equals("airport"))
-            {
-                setInput("airport,airport;");
-            }
-            else if (list[1].equals("help"))
-            {
-                setInput("Only usage is 'help;'");
-            }
-            else if (list[1].equals("exit"))
-            {
-                setInput("Only usage is 'exit;'");
-            }
-            else
-            {
-                setInput("Unknown help option, please try again.");
-            }
-        }
-    }
+
 
 
 }
