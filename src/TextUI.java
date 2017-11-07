@@ -42,8 +42,10 @@ public class TextUI implements Observer
 
     public void sendString()
     {
-        sc = new Scanner(System.in);
-        while(true)
+        if (sc == null)
+        {
+            sc = new Scanner(System.in);
+        }
         {
             String myInput = sc.nextLine();
             String lastChar = myInput.substring(myInput.length() -1);
@@ -55,12 +57,7 @@ public class TextUI implements Observer
 
             //System.out.println(isHelp);
 
-
-            if(!lastChar.equals(";"))
-            {
-                System.out.println("partial-request");
-            }
-            else if (isHelp.equals("help"))
+            if (isHelp.equals("help"))
             {
                 if (command.length() > 4) //Either there's a ',' meaning an extra command arg
                 {
@@ -81,9 +78,11 @@ public class TextUI implements Observer
             }
             else
             {
-                c.parseInput(myInput);
+                c.updateString(myInput);
+
 
             }
+            sendString();
 
             //s = sc.nextLine();
             //c.parseInput(myInput);
@@ -137,10 +136,12 @@ public class TextUI implements Observer
     {
         this.s = str;
     }
+    /**
     public String getString()
     {
         return this.s;
     }
+     **/
 
 
 

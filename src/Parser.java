@@ -11,7 +11,7 @@ public class Parser extends Observable {
     public Parser()
     {
         inputRequest = new ArrayList<>();
-
+        s = "";
     }
 
     public String getString()

@@ -10,21 +10,32 @@ public class AFRSapi extends Observable implements Observer
 {
     private String S;
     private String UpdateStr;
+    private String input;
     private String response;
     private static ArrayList<String> Files;
     private Parser p;
+    public boolean ready;
 
     public AFRSapi(Parser p)
     {
         this.p = p;
         p.addObserver(this);
+        this.ready  = false;
+        this.UpdateStr = "";
     }
 
 
 
     private void setInput(String str)
     {
-        this.UpdateStr = str;
+        if (ready)
+        {
+            this.UpdateStr = str;
+        }
+        else
+        {
+            this.S = str;
+        }
         setChanged();
         notifyObservers();
 
@@ -32,6 +43,10 @@ public class AFRSapi extends Observable implements Observer
     }
     public String getInput()
     {
+        if (!ready)
+        {
+            return this.S;
+        }
         return this.UpdateStr;
     }
 
@@ -85,9 +100,31 @@ public class AFRSapi extends Observable implements Observer
             return null;
         }
     }
+
+    public void updateString(String s )
+    {
+        this.UpdateStr = UpdateStr + s;
+        if (UpdateStr.substring(UpdateStr.length()-1).equals(";"))
+        {
+            this.ready = true;
+        }
+        else
+        {
+            this.S = "partial-request";
+            setInput(S);
+        }
+        parseInput(this.UpdateStr);
+    }
+
     public void parseInput(String myInput)
     {
-        p.takeInput(myInput);
+        if (ready)
+        {
+            p.takeInput(this.UpdateStr);
+            ready = false;
+            UpdateStr = "";
+        }
+
     }
 
 

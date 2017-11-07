@@ -155,9 +155,11 @@ public class AfrsGui extends Application implements Observer {
         System.out.println("What are you looking to do?");
         System.out.println("If unsure about inputs... Type 'help;'");
 
-        //AFRSapi c = new AFRSapi();
+        Parser p = new Parser();
+        AFRSapi c = new AFRSapi(p);
         //Observer o = new AfrsGui(c);
-
+        c.getFiles();
+        c.loadFiles();
         //c.takeInput();
 
         Application.launch(args);
