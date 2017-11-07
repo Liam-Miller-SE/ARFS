@@ -55,6 +55,9 @@ public class AFRSapi extends Observable implements Observer
     public void update(Observable o, Object arg) {
         String fullString = p.getString();
         setInput(fullString);
+
+        String[] query = p.getQuery();
+        setInput(query(query));
     }
 
     public void getFiles()
@@ -94,6 +97,7 @@ public class AFRSapi extends Observable implements Observer
         {
             AirportQuery aq = new AirportQuery() ;
             return aq.processData(Arrays.copyOfRange(query, 1, query.length)) ;
+
         }
         else
         {

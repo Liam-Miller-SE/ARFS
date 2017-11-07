@@ -7,11 +7,13 @@ public class Parser extends Observable {
 
     private String s;
     private ArrayList<String> inputRequest;
+    private String[] query;
 
     public Parser()
     {
         inputRequest = new ArrayList<>();
         s = "";
+
     }
 
     public String getString()
@@ -19,12 +21,25 @@ public class Parser extends Observable {
         return this.s;
     }
 
-    public void setInput(String str)
+    private void setInput(String str)
     {
             this.s = str;
             setChanged();
             notifyObservers();
     }
+
+    private void setQuery(String[] query)
+    {
+        this.query = query;
+        setChanged();
+        notifyObservers();
+    }
+    public String[] getQuery()
+    {
+        return this.query;
+    }
+
+
 
     public void takeInput (String myInput)
     {
@@ -68,44 +83,41 @@ public class Parser extends Observable {
                 {
                     case "info":
                         //System.out.println("info for flights");
-                        getFlightInfo(inp);
+                        setQuery(getFlightInfo(inp));
                         break;
                     case "reserve":
                         //System.out.println("making a reservation");
-                        makeReservation(inp);
+                        setQuery(makeReservation(inp));
                         break;
                     case "retrieve":
                         //System.out.println("finding a reservation");
-                        getReservationInfo(inp);
+                        setQuery(getReservationInfo(inp));
                         break;
                     case "delete":
                         //System.out.println("deleting a reservation");
-                        deleteReservation(inp);
+                        setQuery(deleteReservation(inp));
                         break;
                     case "airport":
                         //System.out.println("info for an airport");
-                        getAirportInfo(inp);
+                        setQuery(getAirportInfo(inp));
                         break;
                     default:
                         setInput("error,unknown request: " + newin);
                 }
+
                 break;
             }
             //S = inp;
             //takeInput(S);
         }
-
-
-
     }
 
-    private String getFlightInfo(String str)
+    private String[] getFlightInfo(String str)
     {
         String[] params = parseInput(str);
         if(params.length < 3)
         {
             setInput("expected at least 2 parameters (max 4), got " + params.length);
-            return "";
         }
         else if(params.length > 5)
         {
@@ -113,18 +125,18 @@ public class Parser extends Observable {
         }
         else
         {
+
             //response = query(params);
             //setInput(response);
         }
-        return"";
+        return params;
     }
-    private String getReservationInfo(String str)
+    private String[] getReservationInfo(String str)
     {
         String[] params = parseInput(str);
         if(params.length < 2)
         {
             setInput("expected at least 2 parameters (max 4), got " + params.length);
-            return "";
         }
         else if(params.length > 4)
         {
@@ -135,16 +147,14 @@ public class Parser extends Observable {
             //response = query(params);
             //setInput(response);
         }
-
-        return "";
+        return params;
     }
-    private String makeReservation(String str)
+    private String[] makeReservation(String str)
     {
         String[] params = parseInput(str);
         if (params.length != 3)
         {
             setInput("error, unknown Something");
-            return "";
         }
         else
         {
@@ -154,52 +164,49 @@ public class Parser extends Observable {
 
             //sc.storeItinerary();
             //Insert method from Scheduler to retrieve data here
-            return "";
         }
+        return params;
     }
-    private String deleteReservation(String str)
+    private String[] deleteReservation(String str)
     {
         String[] params = parseInput(str);
         System.out.println(params.length);
         if (params.length != 4)
         {
             setInput("error, Incorrect number of parameters, expected 4, got " + params.length);
-            return "";
         }
         else
         {
             if (params[2].length() != 3)
             {
                 setInput("Unknown origin airport ");
-                return "";
             }
             if (params[params.length-1].length() != 3)
             {
                 setInput("Unknown destination airport");
-                return "";
             }
             setInput("Retrieving Reservation data ");
             //response = query(params);
             //setInput(response);
             //Insert method to retrieve data here
-            return "";
         }
+        return params;
     }
-    private String getAirportInfo(String str)
+    private String[] getAirportInfo(String str)
     {
         String[] params = parseInput(str);
         if (params.length != 2)
         {
             setInput("error, unknown airport");
-            return "";
         }
         else
         {
             if (params[1].length() == 3)
             {
-                setInput("Retrieving airport data with code " + params[1] );
+                //setInput("Retrieving airport data with code " + params[1] );
                 //response = query(params);
                 //setInput(response);
+                return params;
             }
             else
             {
@@ -207,8 +214,8 @@ public class Parser extends Observable {
             }
 
             //Insert method to retrieve data here
-            return "";
         }
+        return null;
     }
 
     private String[] parseInput(String str)
