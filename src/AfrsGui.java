@@ -19,6 +19,7 @@ import java.util.Observer;
 import java.util.Observable;
 
 import javafx.scene.text.Text;
+import javafx.stage.WindowEvent;
 
 public class AfrsGui extends Application implements Observer {
 
@@ -48,6 +49,12 @@ public class AfrsGui extends Application implements Observer {
         //new AfrsGui();
 
         BorderPane bp = welcomeScene();
+
+        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            public void handle(WindowEvent we) {
+                System.out.println("Stage is closing");
+            }
+        });
 
         stage.setTitle("AFRS : " + c.ID);
         stage.setScene(new Scene(bp));
@@ -147,10 +154,6 @@ public class AfrsGui extends Application implements Observer {
     }
 
 
-
-
-
-
     public void update(Observable t, Object o)
     {
         String output = c.getInput();
@@ -158,9 +161,15 @@ public class AfrsGui extends Application implements Observer {
 
     }
 
+    @Override
+    public void stop() //Methods for after system shutdown should go here
+    {
+        //Only after the very last window to closes
+        System.out.println("I made it to closing");
+    }
+
     public static void main(String[] args)
     {
-
 
         Parser p = new Parser();
         AFRSapi c = new AFRSapi(p);
