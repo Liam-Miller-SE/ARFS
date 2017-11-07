@@ -13,8 +13,10 @@ public class AFRSapi extends Observable implements Observer
     private String input;
     private String response;
     private static ArrayList<String> Files;
+    private static ArrayList<Integer> IDs = new ArrayList<Integer>();
     private Parser p;
-    public boolean ready;
+    private boolean ready;
+    public int ID;
 
     public AFRSapi(Parser p)
     {
@@ -22,6 +24,21 @@ public class AFRSapi extends Observable implements Observer
         p.addObserver(this);
         this.ready  = false;
         this.UpdateStr = "";
+
+        Random r = new Random();
+        while(true)
+        {
+            int tempID = r.nextInt(100);
+            if (!IDs.contains(tempID))
+            {
+                IDs.add(this.ID);
+                this.ID = tempID;
+                break;            }
+        }
+
+
+        //System.out.println(this.ID);
+
     }
 
 
