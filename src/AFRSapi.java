@@ -74,7 +74,7 @@ public class AFRSapi extends Observable implements Observer
         setInput(fullString);
 
         String[] query = p.getQuery();
-        setInput(query(query));
+        setInput(query(query).toString());
     }
 
     public void getFiles()
@@ -98,7 +98,7 @@ public class AFRSapi extends Observable implements Observer
         }
     }
 
-    public String query(String[] query)
+    public Object query(String[] query)
     {
         if( query[0].equals("info"))
         {
