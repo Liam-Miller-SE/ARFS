@@ -1,3 +1,5 @@
+package main;
+
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -28,7 +30,7 @@ public class AfrsGui extends Application implements Observer {
     private final int wind_width = 750;
     private final int wind_height = 750;
 
-
+    private boolean isLocalService;
     private Stage stage;
     private AFRSapi c;
     private static ArrayList<String> Files;
@@ -40,18 +42,21 @@ public class AfrsGui extends Application implements Observer {
         AFRSapi c = new AFRSapi(p);
         this.c = c;
         c.addObserver(this);
+        isLocalService = true;
 
     }
 
     @Override
     public void start(Stage stage) {
+
         this.stage = stage;
         //new AfrsGui();
 
         BorderPane bp = welcomeScene();
 
         stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-            public void handle(WindowEvent we) {
+            public void handle(WindowEvent we)
+            {
                 System.out.println("Stage is closing");
             }
         });
@@ -143,14 +148,55 @@ public class AfrsGui extends Application implements Observer {
             }
         });
 
+        VBox Settings = new VBox();
         HBox newClient = new HBox();
+        HBox changeServ = new HBox();
+        changeServ.setAlignment(Pos.TOP_RIGHT);
+        Button toggleService = new Button("Use Test Service");
+        toggleService.setPadding(new Insets(10,20,10,20));
+
+
+        toggleService.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                isLocalService = !isLocalService; //Toggle Service
+                changeService();
+                if(isLocalService)
+                {
+                    toggleService.setText("Use Web Service");
+                }
+                else
+                {
+                    toggleService.setText("Use Local Service");
+                }
+            }
+        });
+
+        changeServ.getChildren().add(toggleService);
+        Settings.getChildren().addAll(newClient,changeServ);
+
         newClient.setAlignment(Pos.TOP_RIGHT);
         newClient.getChildren().add(addClient);
 
         b.setCenter(options);
-        b.setTop(newClient);
+        b.setTop(Settings);
 
         return b;
+    }
+
+
+
+    private void changeService()
+    {
+        //Need to add funcitonality for switching search models
+        if (isLocalService)
+        {
+            System.out.println("Now using Local Service");
+        }
+        else
+        {
+            System.out.println("Now using Web Service");
+        }
     }
 
 
