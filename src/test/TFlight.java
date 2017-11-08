@@ -1,0 +1,3 @@
+class TFlight extends Test
+{
+}

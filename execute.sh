@@ -1,2 +1,2 @@
 ./compile.sh
-java -cp src TextUI
+java -cp src/main TextUI
