@@ -1,4 +1,3 @@
 clear
-javac -cp . src/*.java
-javac -cp . tests/*.java
+./testCompile.sh
 java -cp tests TestMain

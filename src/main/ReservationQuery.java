@@ -5,7 +5,7 @@ import java.util.ArrayList;
  */
 public class ReservationQuery implements IQuery
 {
-	public String processData(String[] query)
+	public ArrayList<Reservation> processData(String[] query)
 	{
 		String ret = "";
 		String pass = query[0];
@@ -37,10 +37,14 @@ public class ReservationQuery implements IQuery
 				}
 			}
 		}
+		return pmatch;
+		//TODO move to TextUI
+		/*
 		for(int j = 0; j < pmatch.size(); j++)
 		{
 			ret += pmatch.get(j);
 		}
 		return ret;
+		*/
 	}
 }
