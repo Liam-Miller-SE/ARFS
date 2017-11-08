@@ -1,4 +1,4 @@
-//package ARFS;
+package main;
 public class Reservation 
 {
   private Itinerary itinerary;
