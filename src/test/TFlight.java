@@ -1,11 +1,15 @@
-import org.junit.*;
+package test;
+//import org.junit.*;
 
-public class TFlight 
+
+import main.Flight;
+
+public class TFlight
 {
-    @Test
+    //@Test
     public void testname() 
 	{
-        Flight tester = new Flight();
+        //Flight tester = new Flight();
 
         // assert statements
         //assertEquals(0, tester.multiply(10, 0), "10 x 0 must be 0");
