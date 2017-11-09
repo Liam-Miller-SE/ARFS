@@ -6,7 +6,7 @@ import java.time.Duration;
  */
 public class ItineraryQuery implements IQuery
 {
-	public ArrayList<Itinerary> processData(String[] query)
+	public ArrayList<Object> processData(String[] query)
 	{
 		//query is defined as [origin, destination, {connections, sort-order}]
 		RouteNetwork rn = RouteNetwork.getInstance();
@@ -14,10 +14,10 @@ public class ItineraryQuery implements IQuery
 		Airport dest = rn.getAirport(query[1]);
 		if (orig == null || dest == null)
 		{
-			return new ArrayList<Itinerary>();
+			return new ArrayList<Object>();
 		}
 		Itinerary i = new Itinerary(orig, dest, "ItineraryQuery");
-		ArrayList<Itinerary> itins = new ArrayList<Itinerary>();
+		ArrayList<Object> itins = new ArrayList<Object>();
 		int hops = Itinerary.MAXIMUM_TRANSFERS;
 		String sortMethod = "UNSORTED";
 		if(query.length == 3)
@@ -40,11 +40,11 @@ public class ItineraryQuery implements IQuery
 			catch(Exception ex){}
 			sortMethod = query[3];
 		}
-		itins = createItineraries(i, dest, hops);
+		itins.addAll(createItineraries(i, dest, hops));
 		switch (sortMethod)
 		{
 			case ("DEPARTURE"):
-				itins.sort( (a, b) -> (a.getFirstDeparture().compareTo(b.getFirstDeparture())));
+				itins.sort( (a, b) -> (((Itinerary)a).getFirstDeparture().compareTo(((Itinerary)b).getFirstDeparture())));
 				break;
 		}
 		return itins;
