@@ -211,6 +211,8 @@ public class AfrsGui extends Application implements Observer {
     public void stop() //Methods for after system shutdown should go here
     {
         //Only after the very last window to closes
+        c.quit();
+
         System.out.println("I made it to closing");
     }
 

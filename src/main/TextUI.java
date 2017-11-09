@@ -23,6 +23,7 @@ public class TextUI implements Observer
         String output = c.getInput();
         if(output.equals("exit"))
         {
+            c.quit();
             System.out.println("Goodbye!");
             return;
         }
