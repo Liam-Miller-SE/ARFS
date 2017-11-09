@@ -18,8 +18,11 @@ import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URL;
 
-public class WebService {
-    public static void main(String[] args) throws IOException {
+public class WebService implements IState 
+{
+    public static void getAirport(String[] code) throws IOException 
+	{
+		ArrayList<Airport> Airports; 
         String url = "http://services.faa.gov/airport/status/BOS/?format=application/xml";
         // Create a URL and open a connection
         URL airportURL = new URL(url);
@@ -73,7 +76,18 @@ public class WebService {
                     System.out.println("ICAO : " + eElement.getElementsByTagName("ICAO").item(0).getTextContent());
                     System.out.println("City : " + eElement.getElementsByTagName("City").item(0).getTextContent());
                     System.out.println("Status : " + eElement.getElementsByTagName("Status").item(0).getTextContent());
-
+					NodeList w = doc.getElementsByTagName("Weather");
+					Node weath = w.item(0);
+					Element e = (Element) w;
+					String temperature = e.getElementsByTagName("Weather").item(0).getTextContent();
+					String weath = e.getElementsByTagName("Temp").item(0).getTextContent();
+					ArrayList<String> temp = new ArrayList<String>(); 
+					temp.add(temperature);
+					ArrayList<String> weather = new ArrayList<String>();
+					weather.add(weath); 
+					String city = eElement.getElementsByTagName("City").item(0).getTextContent();
+					Airport newport = Airport(code, temp, weather, city);
+					Airports.add(newport);
                 }
 
 
@@ -88,5 +102,6 @@ public class WebService {
 
         // response is the contents of the XML
         //System.out.println(response.toString());
+		return Airports;
     }
 }

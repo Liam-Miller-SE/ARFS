@@ -18,12 +18,22 @@ public class Airport
     private ArrayList<Flight> flights = new ArrayList<Flight>();
 	private int connectionTime;
 	private int delayTime;
+	private ArrayList<String> Stemperature = new ArrayList<String>(); 
 
 	
 	public Airport(String co, ArrayList<Integer> temp, ArrayList<String> weath, String cit)
 	{
 		code = co; 
 		temperature = temp;
+		weather = weath;
+		city = cit;
+		tempI = 0;
+		weathI = 0;
+	}
+	public Airport(String co, ArrayList<String> temp, ArrayList<String> weath, String cit)
+	{
+		code = co; 
+		Stemperature = temp;
 		weather = weath;
 		city = cit;
 		tempI = 0;
@@ -44,10 +54,10 @@ public class Airport
 	{
 		return this.temperature ;
 	}
-	public String getTemperature()
+	public String getSTemperature()
 	{
-		int tem = this.temperature.get(this.tempI) ;
-		if(this.tempI == (this.temperature.size() - 1))
+		int tem = this.Stemperature.get(this.tempI) ;
+		if(this.tempI == (this.Stemperature.size() - 1))
 		{
 			this.tempI = 0;
 		}
@@ -57,6 +67,28 @@ public class Airport
 		}
 		String temp = Integer.toString(tem);
 		return temp ;
+	}
+	public String getTemperature()
+	{
+		if (this.temp != null)
+		{
+			int tem = this.temperature.get(this.tempI) ;
+			if(this.tempI == (this.temperature.size() - 1))
+			{
+				this.tempI = 0;
+			}
+			else
+			{
+				this.tempI++;
+			}
+			String temp = Integer.toString(tem);
+			return temp ;
+		}
+		else
+		{
+			return null;
+		}
+		
 	}
 	public ArrayList<String> getWeather()
 	{
@@ -125,10 +157,21 @@ public class Airport
 	public String toString() 
 	{
 		//return "an airport";
-		return ("Airport Name: " + this.getCity() + " "
-		+ this.getCode()	+	"\nCurrent Weather: "
-		+ this.getWeath() + "\nCurrent Temperature: "
-		+ this.getTemperature() + "\nDelays: " + this.getDelays() + "\n");
+		if (this.getTemperature() == null)
+		{
+			return ("Airport Name: " + this.getCity() + " "
+			+ this.getCode()	+	"\nCurrent Weather: "
+			+ this.getWeath() + "\nCurrent Temperature: "
+			+ this.getSTemperature() + "\nDelays: " + this.getDelays() + "\n");
+		}
+		else
+		{
+			return ("Airport Name: " + this.getCity() + " "
+			+ this.getCode()	+	"\nCurrent Weather: "
+			+ this.getWeath() + "\nCurrent Temperature: "
+			+ this.getTemperature() + "\nDelays: " + this.getDelays() + "\n");
+		}
+		
 	}
 }
 
