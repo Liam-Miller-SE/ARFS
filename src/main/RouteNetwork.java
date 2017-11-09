@@ -243,7 +243,10 @@ public class RouteNetwork
     {
         for(Reservation db : reservations)
         {
-            if (db.equals(r))
+
+            if (db.getPassenger().equals(r.getPassenger()) &&
+                    db.getItinerary().getOrigin().getCode().equals(r.getItinerary().getOrigin().getCode())
+                    && db.getItinerary().getDestination().getCode().equals(r.getItinerary().getDestination().getCode()))
             {
                 reservations.remove(db);
             }

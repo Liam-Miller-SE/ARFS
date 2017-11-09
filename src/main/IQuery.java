@@ -6,10 +6,6 @@ import java.util.ArrayList;
  */
 public interface IQuery 
 {	
-<<<<<<< HEAD:src/IQuery.java
 	//interface for queries
-	public String processData(String[] query);
-=======
-	public Object processData(String[] query);
->>>>>>> 73c37f4cacce4a0c77dc2dfd9f5233a71a521260:src/main/IQuery.java
+	public ArrayList<Object> processData(String[] query);
 }

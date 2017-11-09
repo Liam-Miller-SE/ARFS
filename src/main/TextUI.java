@@ -23,6 +23,7 @@ public class TextUI implements Observer
         String output = c.getInput();
         if(output.equals("exit"))
         {
+            c.quit();
             System.out.println("Goodbye!");
             return;
         }
@@ -158,6 +159,7 @@ public class TextUI implements Observer
         //Observer oapi = new AFRSapi(p);
         TextUI t = new TextUI(c);
         t.sendString();
+
 
 
          //sc = new Scanner(System.in);

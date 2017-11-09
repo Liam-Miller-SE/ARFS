@@ -5,11 +5,11 @@ import java.util.ArrayList;
  */
 public class AirportQuery implements IQuery
 {
-	public ArrayList<Airport> processData(String[] a)
+	public ArrayList<Object> processData(String[] a)
 	{
 		String airport = a[0] ;
 		RouteNetwork rn = RouteNetwork.getInstance() ;
-		ArrayList<Airport> output = new ArrayList<Airport>();
+		ArrayList<Object> output = new ArrayList<Object>();
 		output.add(rn.getAirport(airport));
 		return output;
 	}

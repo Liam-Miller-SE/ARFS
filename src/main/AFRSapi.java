@@ -17,6 +17,8 @@ public class AFRSapi extends Observable implements Observer
     private Parser p;
     private boolean ready;
     public int ID;
+    private Scheduler scheduler = new Scheduler();
+
 
     public AFRSapi(Parser p)
     {
@@ -98,6 +100,7 @@ public class AFRSapi extends Observable implements Observer
         }
     }
 
+
     public Object query(String[] query)
     {
         if( query[0].equals("info"))
@@ -115,6 +118,21 @@ public class AFRSapi extends Observable implements Observer
             AirportQuery aq = new AirportQuery() ;
             return aq.processData(Arrays.copyOfRange(query, 1, query.length)) ;
 
+        }
+        else if(query[0].equals("undo"))
+        {
+            //TODO where is the client id gotten from?
+            Integer num = 12;
+            scheduler.undo(num);
+            return 0;
+
+        }
+        else if(query[0].equals("redo"))
+        {
+            //TODO where is the client id gotten from?
+            Integer num = 12;
+            scheduler.redo(num);
+            return 0;
         }
         else
         {
@@ -147,6 +165,12 @@ public class AFRSapi extends Observable implements Observer
         }
 
     }
+    public void quit()
+    {
+        RouteNetwork rn = RouteNetwork.getInstance();
+        rn.writeData();
+    }
+
 
 
 }
