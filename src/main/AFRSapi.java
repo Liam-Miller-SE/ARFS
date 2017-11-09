@@ -6,8 +6,7 @@ import java.util.*;
  * Created by melis on 10/5/2017.
  * Implementation done by Josh
  */
-public class AFRSapi extends Observable implements Observer
-{
+public class AFRSapi extends Observable implements Observer {
     private String S;
     private String UpdateStr;
     private String input;
@@ -20,22 +19,20 @@ public class AFRSapi extends Observable implements Observer
     private Scheduler scheduler = new Scheduler();
 
 
-    public AFRSapi(Parser p)
-    {
+    public AFRSapi(Parser p) {
         this.p = p;
         p.addObserver(this);
-        this.ready  = false;
+        this.ready = false;
         this.UpdateStr = "";
 
         Random r = new Random();
-        while(true)
-        {
+        while (true) {
             int tempID = r.nextInt(100);
-            if (!IDs.contains(tempID))
-            {
+            if (!IDs.contains(tempID)) {
                 IDs.add(this.ID);
                 this.ID = tempID;
-                break;            }
+                break;
+            }
         }
 
 
@@ -44,15 +41,10 @@ public class AFRSapi extends Observable implements Observer
     }
 
 
-
-    private void setInput(String str)
-    {
-        if (ready)
-        {
+    private void setInput(String str) {
+        if (ready) {
             this.UpdateStr = str;
-        }
-        else
-        {
+        } else {
             this.S = str;
         }
         setChanged();
@@ -60,10 +52,9 @@ public class AFRSapi extends Observable implements Observer
 
 
     }
-    public String getInput()
-    {
-        if (!ready)
-        {
+
+    public String getInput() {
+        if (!ready) {
             return this.S;
         }
         return this.UpdateStr;
@@ -79,8 +70,7 @@ public class AFRSapi extends Observable implements Observer
         setInput(query(query).toString());
     }
 
-    public void getFiles()
-    {
+    public void getFiles() {
         Files = new ArrayList<String>();
         Files.add("airports.txt");
         Files.add("weather.txt");
@@ -89,56 +79,63 @@ public class AFRSapi extends Observable implements Observer
         Files.add("flights.txt");
     }
 
-    public void loadFiles()
-    {
+    public void loadFiles() {
         RouteNetwork rn = RouteNetwork.getInstance();
 
-        for(int i = 0; i < Files.size(); i ++)
-        {
-            File f = new File("src/inputFiles/" + Files.get(i) );
+        for (int i = 0; i < Files.size(); i++) {
+            File f = new File("src/inputFiles/" + Files.get(i));
             rn.readInfo(f);
         }
     }
 
 
-    public Object query(String[] query)
-    {
-        if( query[0].equals("info"))
-        {
-            ItineraryQuery iq = new ItineraryQuery() ;
-            return iq.processData(Arrays.copyOfRange(query, 1, query.length)) ;
-        }
-        else if( query[0].equals("retrieve"))
-        {
-            ReservationQuery rq = new ReservationQuery() ;
-            return rq.processData(Arrays.copyOfRange(query, 1, query.length)) ;
-        }
-        else if( query[0].equals("airport"))
-        {
-            AirportQuery aq = new AirportQuery() ;
-            return aq.processData(Arrays.copyOfRange(query, 1, query.length)) ;
+    public Object query(String[] query) {
+        if (query[0].equals("info")) {
+            ItineraryQuery iq = new ItineraryQuery();
+            return iq.processData(Arrays.copyOfRange(query, 1, query.length));
+        } else if (query[0].equals("retrieve")) {
+            ReservationQuery rq = new ReservationQuery();
+            return rq.processData(Arrays.copyOfRange(query, 1, query.length));
+        } else if (query[0].equals("airport")) {
+            AirportQuery aq = new AirportQuery();
+            return aq.processData(Arrays.copyOfRange(query, 1, query.length));
 
+        } else {
+            return null;
         }
-        else if(query[0].equals("undo"))
-        {
+    }
+    /*
+    private int reservations(int cid, String[]) {
+
+        if (query[0].equals("reserve")) {
+            Itinerary i = new Itinerary("name");
+            String name = "name";
+            // Airport origin = new Airport("org", "Origin Airport");
+            Reservation r = new Reservation(name, i);
+
+            scheduler.makeReservation(i, name);
+            scheduler.addElementUndo(12, r);
+
+            return 0;
+        } else if (query[0].equals("delete")) {
+            scheduler.deleteReservation("name", new Airport("org", "Origin"), new Airport("des", "destination"));
+            return 0;
+        } else if (query[0].equals("undo")) {
             //TODO where is the client id gotten from?
             Integer num = 12;
             scheduler.undo(num);
             return 0;
 
-        }
-        else if(query[0].equals("redo"))
-        {
+        } else if (query[0].equals("redo")) {
             //TODO where is the client id gotten from?
             Integer num = 12;
             scheduler.redo(num);
             return 0;
         }
-        else
-        {
-            return null;
-        }
+        return 0;
     }
+    */
+
 
     public void updateString(String s )
     {
