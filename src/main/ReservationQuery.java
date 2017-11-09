@@ -5,13 +5,13 @@ import java.util.ArrayList;
  */
 public class ReservationQuery implements IQuery
 {
-	public ArrayList<Reservation> processData(String[] query)
+	public ArrayList<Object> processData(String[] query)
 	{
 		String ret = "";
 		String pass = query[0];
 		RouteNetwork rn = RouteNetwork.getInstance() ;
 		ArrayList<Reservation> r = rn.getReservations();
-		ArrayList<Reservation> pmatch = new ArrayList<Reservation>();
+		ArrayList<Object> pmatch = new ArrayList<Object>();
 		for(int i = 0; i < r.size(); i++)
 		{
 			if(r.get(i).getPassenger().equals(pass))
