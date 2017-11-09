@@ -1,3 +1,4 @@
+package main;
 import com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderFactoryImpl;
 import com.sun.org.apache.xerces.internal.parsers.DOMParser;
 import com.sun.org.apache.xerces.internal.xni.parser.XMLInputSource;
@@ -17,12 +18,13 @@ import java.io.StringReader;
 import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URL;
+import java.util.ArrayList;
 
 public class WebService implements IState 
 {
-    public static void getAirport(String[] code) throws IOException 
+    public Airport getAirport(String code) throws IOException
 	{
-		ArrayList<Airport> Airports; 
+		ArrayList<Airport> Airports = new ArrayList<Airport>();
         String url = "http://services.faa.gov/airport/status/BOS/?format=application/xml";
         // Create a URL and open a connection
         URL airportURL = new URL(url);
@@ -80,14 +82,14 @@ public class WebService implements IState
 					Node weath = w.item(0);
 					Element e = (Element) w;
 					String temperature = e.getElementsByTagName("Weather").item(0).getTextContent();
-					String weath = e.getElementsByTagName("Temp").item(0).getTextContent();
+					String weaths = e.getElementsByTagName("Temp").item(0).getTextContent();
 					ArrayList<String> temp = new ArrayList<String>(); 
 					temp.add(temperature);
-					ArrayList<String> weather = new ArrayList<String>();
-					weather.add(weath); 
 					String city = eElement.getElementsByTagName("City").item(0).getTextContent();
-					Airport newport = Airport(code, temp, weather, city);
+					Airport newport = new Airport(code, temp, weaths, city);
 					Airports.add(newport);
+
+					return newport;
                 }
 
 
@@ -100,8 +102,9 @@ public class WebService implements IState
         // MAKE SURE TO CLOSE YOUR CONNECTION!
         in.close();
 
+        return null;
+
         // response is the contents of the XML
         //System.out.println(response.toString());
-		return Airports;
     }
 }

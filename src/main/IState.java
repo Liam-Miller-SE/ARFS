@@ -2,5 +2,5 @@ package main;
 
 public interface IState 
 {
-	getAirport(String code);
+	public Airport getAirport(String code) throws Exception;
 }

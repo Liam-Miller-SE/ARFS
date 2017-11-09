@@ -1,4 +1,5 @@
 package main;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -26,7 +27,16 @@ public class AirportQuery implements IQuery
 		else if(localWeb.equals("web"))
 		{
 			//calling the webService getAirport method
+			WebService ws = new WebService();
+			try
+			{
+				output.add(ws.getAirport(airport));
 
+			}
+			catch (IOException e)
+			{
+				e.getMessage();
+			}
 		}
 			return output;
 	}

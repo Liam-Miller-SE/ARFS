@@ -30,11 +30,11 @@ public class Airport
 		tempI = 0;
 		weathI = 0;
 	}
-	public Airport(String co, ArrayList<String> temp, ArrayList<String> weath, String cit)
+	public Airport(String co, ArrayList<String> temp, String weath, String cit)
 	{
 		code = co; 
 		Stemperature = temp;
-		weather = weath;
+		weather.add(weath);
 		city = cit;
 		tempI = 0;
 		weathI = 0;
@@ -56,7 +56,7 @@ public class Airport
 	}
 	public String getSTemperature()
 	{
-		int tem = this.Stemperature.get(this.tempI) ;
+		String tem = this.Stemperature.get(this.tempI) ;
 		if(this.tempI == (this.Stemperature.size() - 1))
 		{
 			this.tempI = 0;
@@ -65,12 +65,11 @@ public class Airport
 		{
 			this.tempI++;
 		}
-		String temp = Integer.toString(tem);
-		return temp ;
+		return tem ;
 	}
 	public String getTemperature()
 	{
-		if (this.temp != null)
+		if (this.temperature != null)
 		{
 			int tem = this.temperature.get(this.tempI) ;
 			if(this.tempI == (this.temperature.size() - 1))
