@@ -119,25 +119,45 @@ public class AFRSapi extends Observable implements Observer
             return aq.processData(Arrays.copyOfRange(query, 1, query.length)) ;
 
         }
-        else if(query[0].equals("undo"))
-        {
-            //TODO where is the client id gotten from?
-            Integer num = 12;
-            scheduler.undo(num);
-            return 0;
 
-        }
-        else if(query[0].equals("redo"))
-        {
-            //TODO where is the client id gotten from?
-            Integer num = 12;
-            scheduler.redo(num);
-            return 0;
-        }
         else
         {
             return null;
         }
+    }
+    private int reservations(int cid, String[])
+    if(query[0].equals("reserve"))
+    {
+        Itinerary i = new Itinerary("name");
+        String name = "name";
+        // Airport origin = new Airport("org", "Origin Airport");
+        Reservation r = new Reservation(name, i);
+
+        scheduler.makeReservation(i, name);
+        scheduler.addElementUndo(12, r );
+
+        return 0;
+    }
+    else if(query[0].equals("delete"))
+    {
+        scheduler.deleteReservation("name", new Airport("org","Origin"), new Airport("des", "destination"));
+        return 0;
+    }
+    else if(query[0].equals("undo"))
+    {
+        //TODO where is the client id gotten from?
+        Integer num = 12;
+        scheduler.undo(num);
+        return 0;
+
+    }
+    else if(query[0].equals("redo"))
+    {
+        //TODO where is the client id gotten from?
+        Integer num = 12;
+        scheduler.redo(num);
+        return 0;
+    }
     }
 
     public void updateString(String s )

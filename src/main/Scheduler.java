@@ -53,7 +53,7 @@ public class Scheduler
 	 * Delete Reservation - take in a reservation and remove it from the
 	 * RouteNetwork sends a success message
 	 */
-	public int deleteReservation(Integer cid, String name, Airport org, Airport dest)
+	public int deleteReservation(String name, Airport org, Airport dest)
 	{
 		int error = 1;
 
@@ -65,7 +65,7 @@ public class Scheduler
 					&& r.getItinerary().getDestination().getCode().equals(dest.getCode()))
 			{
 
-				addElementUndo(cid, r);
+				//addElementUndo(cid, r);
 				rn.deleteReservation(r);
 				error = 0;
 			}
