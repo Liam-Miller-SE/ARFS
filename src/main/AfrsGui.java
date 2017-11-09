@@ -39,6 +39,7 @@ public class AfrsGui extends Application implements Observer {
     private static ArrayList<String> Files;
     private File f;
     private String response;
+    private int ID;
 
     public AfrsGui()
     {
