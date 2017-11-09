@@ -38,6 +38,7 @@ public class AfrsGui extends Application implements Observer {
     private AFRSapi c;
     private static ArrayList<String> Files;
     private File f;
+    private String response;
 
     public AfrsGui()
     {
@@ -306,22 +307,11 @@ public class AfrsGui extends Application implements Observer {
                 Scene sc = new Scene(displayAirport_Scene());
                 stage.setScene(sc);
                 stage.show();
-
             }
         });
 
         HBox airportCont = new HBox(airports,submit);
         b.setCenter(airportCont);
-
-        /**
-        ComboBox<Airport> airports = new ComboBox<>();
-        //airports.setItems();
-        airports.getSelectionModel().selectFirst();
-        airports.setPrefHeight(50);
-        airports.setPrefWidth(100);
-
-        b.setCenter(airports);
-         **/
 
         return b;
     }
@@ -334,7 +324,38 @@ public class AfrsGui extends Application implements Observer {
         b.setPrefWidth(wind_width);
         b.setPrefHeight(wind_height);
 
+        Text info = new Text("Airport Results:");
+        info.underlineProperty().set(true);
+        info.setFont(Font.font(24));
 
+        Text resp = new Text();
+        resp.setText(response);
+        resp.setFont(Font.font(16));
+
+        VBox vb = new VBox();
+        vb.getChildren().addAll(info,resp);
+        vb.setAlignment(Pos.CENTER);
+
+        HBox hb = new HBox();
+        Button restart = new Button("New Request");
+        restart.setPadding(new Insets(20,20,20,20));
+
+        restart.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+
+                Scene sc = new Scene(init_Scene());
+                stage.setScene(sc);
+                stage.show();
+
+            }
+        });
+
+        hb.getChildren().addAll(restart);
+        hb.setAlignment(Pos.TOP_RIGHT);
+
+        b.setCenter(vb);
+        b.setRight(hb);
         return b;
     }
 
@@ -356,8 +377,8 @@ public class AfrsGui extends Application implements Observer {
     {
         String output = c.getInput();
         System.out.println(output);
+        this.response = output;
 
-        
 
     }
 
