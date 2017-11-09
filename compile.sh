@@ -1,2 +1,2 @@
 clear
-javac -cp . src/*.java
+javac -cp . src/main/*.java

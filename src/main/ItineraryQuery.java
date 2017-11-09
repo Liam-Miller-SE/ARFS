@@ -1,4 +1,4 @@
-//package ARFS;
+package main;
 import java.util.ArrayList;
 import java.time.Duration;
 /**
@@ -6,7 +6,7 @@ import java.time.Duration;
  */
 public class ItineraryQuery implements IQuery
 {
-	public String processData(String[] query)
+	public ArrayList<Itinerary> processData(String[] query)
 	{
 		//query is defined as [origin, destination, {connections, sort-order}]
 		RouteNetwork rn = RouteNetwork.getInstance();
@@ -14,7 +14,7 @@ public class ItineraryQuery implements IQuery
 		Airport dest = rn.getAirport(query[1]);
 		if (orig == null || dest == null)
 		{
-			return "Invalid airport ID!";
+			return new ArrayList<Itinerary>();
 		}
 		Itinerary i = new Itinerary(orig, dest, "ItineraryQuery");
 		ArrayList<Itinerary> itins = new ArrayList<Itinerary>();
@@ -47,6 +47,9 @@ public class ItineraryQuery implements IQuery
 				itins.sort( (a, b) -> (a.getFirstDeparture().compareTo(b.getFirstDeparture())));
 				break;
 		}
+		return itins;
+		//TODO Move to TEXTUI
+		/*
 		String output = "info,";
 		int num = 0;
 		for(Itinerary j : itins)
@@ -54,6 +57,7 @@ public class ItineraryQuery implements IQuery
 			output +=num++ + "," +j.toOutputString() + "\n";
 		}
 		return output;
+		*/
 	}
     private ArrayList<Itinerary> createItineraries(Itinerary itin, Airport destination)
     {

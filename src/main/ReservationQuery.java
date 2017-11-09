@@ -1,11 +1,11 @@
-//package ARFS;
+package main;
 import java.util.ArrayList;
 /**
  * Created by melis on 10/5/2017.
  */
 public class ReservationQuery implements IQuery
 {
-	public String processData(String[] query)
+	public ArrayList<Reservation> processData(String[] query)
 	{
 		//if no match found, returns empty string
 		//takes in request in form:
@@ -41,10 +41,14 @@ public class ReservationQuery implements IQuery
 				}
 			}
 		}
+		return pmatch;
+		//TODO move to TextUI
+		/*
 		for(int j = 0; j < pmatch.size(); j++)
 		{
 			ret += pmatch.get(j);
 		}
 		return ret;
+		*/
 	}
 }

@@ -1,4 +1,4 @@
-//package ARFS;
+package main;
 public class Reservation 
 {
 	//class holding an itinerary, and the passengers name

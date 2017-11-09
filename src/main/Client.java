@@ -1,4 +1,4 @@
-//package ARFS;
+package main;
 import java.util.Observable;
 import java.util.Scanner;
 import java.util.Arrays;
@@ -114,7 +114,7 @@ public class Client extends Observable
         }
         else
         {
-         response = query(params);
+         response = query(params).toString();
          setInput(response);
         }
         return"";
@@ -133,7 +133,7 @@ public class Client extends Observable
         }
         else
         {
-            response = query(params);
+            response = query(params).toString();
             setInput(response);
         }
 
@@ -180,7 +180,7 @@ public class Client extends Observable
                 return "";
             }
             System.out.println("Retrieving Reservation data ");
-            response = query(params);
+            response = query(params).toString();
             setInput(response);
             //Insert method to retrieve data here
             return "";
@@ -199,7 +199,7 @@ public class Client extends Observable
             if (params[1].length() == 3)
             {
                 System.out.println("Retrieving airport data with code " + params[1] );
-                response = query(params);
+                response = query(params).toString();
                 setInput(response);
             }
             else
@@ -286,22 +286,22 @@ public class Client extends Observable
         }
     }
 
-    public String query(String[] query)
+    public Object query(String[] query)
     {
         if( query[0].equals("info"))
         {
 	    ItineraryQuery iq = new ItineraryQuery() ;
-	    return iq.processData(Arrays.copyOfRange(query, 1, query.length)) ;
-	    }
+	    return iq.processData(Arrays.copyOfRange(query, 1, query.length));
+	}
         else if( query[0].equals("retrieve"))
         {
             ReservationQuery rq = new ReservationQuery() ;
-            return rq.processData(Arrays.copyOfRange(query, 1, query.length)) ;
+            return rq.processData(Arrays.copyOfRange(query, 1, query.length));
         }
         else if( query[0].equals("airport"))
         {
             AirportQuery aq = new AirportQuery() ;
-            return aq.processData(Arrays.copyOfRange(query, 1, query.length)) ;
+            return aq.processData(Arrays.copyOfRange(query, 1, query.length));
         }
             else
         {
