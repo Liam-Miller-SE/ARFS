@@ -100,6 +100,7 @@ public class AFRSapi extends Observable implements Observer
         }
     }
 
+
     public Object query(String[] query)
     {
         if( query[0].equals("info"))

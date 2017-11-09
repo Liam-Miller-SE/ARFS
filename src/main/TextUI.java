@@ -161,6 +161,7 @@ public class TextUI implements Observer
         t.sendString();
 
 
+
          //sc = new Scanner(System.in);
          //c.parseInput(sc);
 
