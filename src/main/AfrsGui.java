@@ -1,6 +1,8 @@
 package main;
 
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -40,7 +42,6 @@ public class AfrsGui extends Application implements Observer {
     private File f;
     private String response;
     private int ID;
-    private boolean makeRes;
     private String terminate = ";";
 
     public AfrsGui()
@@ -126,17 +127,25 @@ public class AfrsGui extends Application implements Observer {
         b.setPrefWidth(wind_width);
         b.setPrefHeight(wind_height);
 
-
-
-
         VBox options = new VBox();
         options.setAlignment(Pos.CENTER);
 
-        HBox testText = new HBox();
-        Text test = new Text("Testing where this goes");
-        test.setFont(Font.font(24));
-        testText.setAlignment(Pos.CENTER);
-        testText.getChildren().add(test);
+        HBox hb = new HBox();
+        hb.setAlignment(Pos.CENTER);
+        Button schedule = new Button("Schedule");
+        schedule.setPadding(new Insets(10,20,10,20));
+
+        schedule.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+
+                Scene sc = new Scene(setFlights_Scene());
+                stage.setScene(sc);
+                stage.show();
+            }
+        });
+        hb.getChildren().add(schedule);
+
 
         Button getInfo = new Button("Get Info");
         getInfo.setPadding(new Insets(10,20,10,20));
@@ -151,9 +160,7 @@ public class AfrsGui extends Application implements Observer {
             }
         });
 
-
-        options.getChildren().addAll(getInfo,testText);
-
+        options.getChildren().addAll(getInfo,hb);
 
         Button addClient = new Button("Add a new Client");
         addClient.setPadding(new Insets(10,20,10,20));
@@ -174,7 +181,6 @@ public class AfrsGui extends Application implements Observer {
         changeServ.setAlignment(Pos.TOP_RIGHT);
         Button toggleService = new Button("Use Test Service");
         toggleService.setPadding(new Insets(10,20,10,20));
-
 
         toggleService.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -200,6 +206,72 @@ public class AfrsGui extends Application implements Observer {
 
         b.setCenter(options);
         b.setTop(Settings);
+
+        return b;
+    }
+
+    private BorderPane setFlights_Scene()
+    {
+        BorderPane b = new BorderPane();
+        b.setPrefWidth(wind_width);
+        b.setPrefHeight(wind_height);
+
+        VBox vb = new VBox();
+        HBox hb = new HBox();
+
+
+        TextField orig = new TextField("Origin");
+        orig.setPrefColumnCount(10);
+        orig.setPrefWidth(140);
+        orig.setPrefHeight(50);
+        orig.setFont(Font.font(20));
+
+        TextField dest = new TextField("Destination");
+        dest.setPrefColumnCount(10);
+        dest.setPrefWidth(140);
+        dest.setPrefHeight(50);
+        dest.setFont(Font.font(20));
+
+        hb.getChildren().addAll(orig,dest);
+        hb.setAlignment(Pos.CENTER);
+        vb.getChildren().add(hb);
+
+        HBox but  = new HBox();
+        Button submit = new Button("Submit");
+
+        submit.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+
+                Scene sc = new Scene(displayFlights_Scene());
+                stage.setScene(sc);
+                stage.show();
+            }
+        });
+        but.getChildren().add(submit);
+        but.setAlignment(Pos.CENTER);
+
+        vb.setAlignment(Pos.CENTER);
+
+        ObservableList<Integer> numHops = FXCollections.observableArrayList(0,1,2);
+        ComboBox<Integer> hops = new ComboBox<>();
+        hops.setItems(numHops);
+        hops.getSelectionModel().selectFirst();
+        hops.setPrefHeight(50);
+        hops.setPrefWidth(100);
+
+        vb.getChildren().addAll(hops,but);
+        b.setCenter(vb);
+
+        return b;
+    }
+
+    private BorderPane displayFlights_Scene()
+    {
+        BorderPane b = new BorderPane();
+        b.setPrefWidth(wind_width);
+        b.setPrefHeight(wind_height);
+
 
         return b;
     }
@@ -252,12 +324,10 @@ public class AfrsGui extends Application implements Observer {
             public void handle(ActionEvent event) {
 
                 Scene sc = new Scene(getReservation_Scene());
-                makeRes = false;
                 stage.setScene(sc);
                 stage.show();
             }
         });
-
 
         buttons.getChildren().addAll(Search,findAirport,findFlight,findReservation);
         buttons.setAlignment(Pos.CENTER);
@@ -277,14 +347,7 @@ public class AfrsGui extends Application implements Observer {
         Text reserv = new Text();
         reserv.underlineProperty().set(true);
         reserv.setFont(Font.font(24));
-        if(makeRes)
-        {
-            reserv.setText("Making a Reservation");
-        }
-        else
-        {
-            reserv.setText("Finding a Reservation");
-        }
+        reserv.setText("Finding a Reservation");
 
         HBox hb = new HBox();
         TextField name = new TextField("Name");
