@@ -270,6 +270,11 @@ public class RouteNetwork
             hour = t.getHour()-12 +":";
             ampm = "p";
         }
+        else if(t.getHour()==12)
+        {
+            hour = 12 + ":";
+            ampm = "p";
+        }
         else
         {
             hour = t.getHour() + ":";
