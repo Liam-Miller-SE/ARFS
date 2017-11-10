@@ -270,6 +270,16 @@ public class RouteNetwork
             hour = t.getHour()-12 +":";
             ampm = "p";
         }
+        else if(t.getHour()==12)
+        {
+            hour = 12 + ":";
+            ampm = "p";
+        }
+        else if(t.getHour()==0)
+        {
+            hour = 12 +":";
+            ampm = "a";
+        }
         else
         {
             hour = t.getHour() + ":";
@@ -396,6 +406,10 @@ public class RouteNetwork
         {
             hour += 12;
 
+        }
+        else if (hour == 12 && military =='a')
+        {
+            hour = 0;
         }
         else
         {

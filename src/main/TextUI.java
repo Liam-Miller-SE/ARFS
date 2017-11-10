@@ -25,7 +25,7 @@ public class TextUI implements Observer
         {
             c.quit();
             System.out.println("Goodbye!");
-            return;
+
         }
         else if(output.equals("help"))
         {
@@ -72,9 +72,10 @@ public class TextUI implements Observer
                     System.out.println("For more info about a specific option, Type 'help,[option];' ");
                 }
             }
-            else if (command.equals("exit;"))
+            else if (command.equals("exit"))
             {
                 System.out.println("Goodbye!");
+                c.quit();
                 return;
             }
             else
