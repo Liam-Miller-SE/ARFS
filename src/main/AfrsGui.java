@@ -40,6 +40,8 @@ public class AfrsGui extends Application implements Observer {
     private File f;
     private String response;
     private int ID;
+    private boolean makeRes;
+    private String terminate = ";";
 
     public AfrsGui()
     {
@@ -250,6 +252,7 @@ public class AfrsGui extends Application implements Observer {
             public void handle(ActionEvent event) {
 
                 Scene sc = new Scene(getReservation_Scene());
+                makeRes = false;
                 stage.setScene(sc);
                 stage.show();
             }
@@ -271,19 +274,119 @@ public class AfrsGui extends Application implements Observer {
         b.setPrefWidth(wind_width);
         b.setPrefHeight(wind_height);
 
-        TextField name = new TextField("Input Name");
+        Text reserv = new Text();
+        reserv.underlineProperty().set(true);
+        reserv.setFont(Font.font(24));
+        if(makeRes)
+        {
+            reserv.setText("Making a Reservation");
+        }
+        else
+        {
+            reserv.setText("Finding a Reservation");
+        }
+
+        HBox hb = new HBox();
+        TextField name = new TextField("Name");
+        name.setPrefColumnCount(20);
+        name.setPrefWidth(280);
+        name.setPrefHeight(50);
+        name.setFont(Font.font(20));
+
+        hb.getChildren().add(name);
+        hb.setAlignment(Pos.CENTER);
+
         TextField orig = new TextField("Origin");
+        orig.setPrefColumnCount(10);
+        orig.setPrefWidth(140);
+        orig.setPrefHeight(50);
+        orig.setFont(Font.font(20));
+
         TextField dest = new TextField("Destination");
+        dest.setPrefColumnCount(10);
+        dest.setPrefWidth(140);
+        dest.setPrefHeight(50);
+        dest.setFont(Font.font(20));
+
+        Button submit = new Button("Submit");
+
+        submit.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+
+                String nameInp = name.getCharacters().toString();
+                String origInp = orig.getCharacters().toString();
+                String destInp = dest.getCharacters().toString();
+                c.updateString("retrieve" + "," + nameInp + "," + origInp + "," + destInp + terminate); //Send the Retrieve request
+
+                Scene sc = new Scene(displayReservation_Scene());
+                stage.setScene(sc);
+                stage.show();
+            }
+        });
+
+
+
+
+
         VBox vb = new VBox();
+        //vb.setPadding(new Insets(20,20,20,20));
         HBox ports = new HBox();
         ports.getChildren().addAll(orig, dest);
+        ports.setAlignment(Pos.CENTER);
 
-        vb.getChildren().addAll(name, ports);
+        vb.getChildren().addAll(reserv,hb, ports,submit);
         vb.setAlignment(Pos.CENTER);
         b.setCenter(vb);
 
         return b;
     }
+
+    private BorderPane displayReservation_Scene()
+    {
+        BorderPane b = new BorderPane();
+        b.setPrefWidth(wind_width);
+        b.setPrefHeight(wind_height);
+
+        Text info = new Text("Reservation Results:");
+        info.underlineProperty().set(true);
+        info.setFont(Font.font(24));
+
+
+        Text results = new Text();
+        results.setText(response);
+        results.setFont(Font.font(16));
+
+
+        VBox vb = new VBox();
+        vb.getChildren().addAll(info,results);
+        vb.setAlignment(Pos.CENTER);
+
+        HBox hb = new HBox();
+        hb.setAlignment(Pos.TOP_RIGHT);
+        Button restart = new Button("New Request");
+        restart.setPadding(new Insets(20,20,20,20));
+
+        restart.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+
+                Scene sc = new Scene(init_Scene());
+                stage.setScene(sc);
+                stage.show();
+
+            }
+        });
+        hb.getChildren().add(restart);
+
+
+
+        b.setCenter(vb);
+        b.setTop(hb);
+
+        return b;
+    }
+
     private BorderPane getFlight_Scene()
     {
         BorderPane b = new BorderPane();
@@ -297,7 +400,6 @@ public class AfrsGui extends Application implements Observer {
     {
         String air = "airport,";
         c.updateString(air);
-        String terminate = ";";
 
         BorderPane b = new BorderPane();
         b.setPrefWidth(wind_width);
