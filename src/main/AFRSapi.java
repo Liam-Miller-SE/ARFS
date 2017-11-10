@@ -65,9 +65,13 @@ public class AFRSapi extends Observable implements Observer {
     public void update(Observable o, Object arg) {
         String fullString = p.getString();
         setInput(fullString);
+        //client id is in the 0 index of the string array
+        
 
         String[] query = p.getQuery();
         setInput(query(query).toString());
+        //everything in here needs to be changed to accept the models
+
     }
 
     public void getFiles() {

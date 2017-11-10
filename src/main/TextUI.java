@@ -75,6 +75,7 @@ public class TextUI implements Observer
             else if (command.equals("exit;"))
             {
                 System.out.println("Goodbye!");
+                c.quit();
                 return;
             }
             else
