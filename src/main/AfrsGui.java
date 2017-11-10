@@ -271,6 +271,16 @@ public class AfrsGui extends Application implements Observer {
         b.setPrefWidth(wind_width);
         b.setPrefHeight(wind_height);
 
+        TextField name = new TextField("Input Name");
+        TextField orig = new TextField("Origin");
+        TextField dest = new TextField("Destination");
+        VBox vb = new VBox();
+        HBox ports = new HBox();
+        ports.getChildren().addAll(orig, dest);
+
+        vb.getChildren().addAll(name, ports);
+        vb.setAlignment(Pos.CENTER);
+        b.setCenter(vb);
 
         return b;
     }
@@ -294,6 +304,7 @@ public class AfrsGui extends Application implements Observer {
         b.setPrefHeight(wind_height);
 
         TextField airports = new TextField("Airport Code");
+        airports.setPrefColumnCount(10);
         Button submit = new Button("Submit");
         submit.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -312,6 +323,7 @@ public class AfrsGui extends Application implements Observer {
         });
 
         HBox airportCont = new HBox(airports,submit);
+        airportCont.setAlignment(Pos.CENTER);
         b.setCenter(airportCont);
 
         return b;
