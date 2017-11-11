@@ -42,13 +42,5 @@ public class ReservationQuery implements IQuery
 			}
 		}
 		return pmatch;
-		//TODO move to TextUI
-		/*
-		for(int j = 0; j < pmatch.size(); j++)
-		{
-			ret += pmatch.get(j);
-		}
-		return ret;
-		*/
 	}
 }
