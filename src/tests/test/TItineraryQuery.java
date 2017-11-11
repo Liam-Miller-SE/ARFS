@@ -83,7 +83,16 @@ class TItineraryQuery
         assertEquals(102, i0.getFlights().get(0).getFlightNumber(), "Itinerary 0: Flight 0: Number should be 102");
         assertEquals(120, i0.getFlights().get(1).getFlightNumber(), "Itinerary 0: Flight 1: Number should be 120");
 
-        assertEquals(101, i0.getFlights().get(0).getFlightNumber(), "Itinerary 1: Flight 0: Number should be 101");
-        assertEquals(120, i0.getFlights().get(1).getFlightNumber(), "Itinerary 1: Flight 1: Number should be 120");
+        assertEquals(101, i1.getFlights().get(0).getFlightNumber(), "Itinerary 1: Flight 0: Number should be 101");
+        assertEquals(120, i1.getFlights().get(1).getFlightNumber(), "Itinerary 1: Flight 1: Number should be 120");
    }
+
+    @Test
+    void processDataLimitHops()
+    {
+        ItineraryQuery iq = new ItineraryQuery();
+        String[] input = {"ROC", "BOS", "1"};
+        ArrayList<Object> itins = iq.processData(input);
+        assertEquals(0, itins.size(), "There should be 0 single hop routes from ROC to BOS");
+    }
 }
