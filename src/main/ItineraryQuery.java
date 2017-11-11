@@ -46,6 +46,9 @@ public class ItineraryQuery implements IQuery
 			case ("DEPARTURE"):
 				itins.sort( (a, b) -> (((Itinerary)a).getFirstDeparture().compareTo(((Itinerary)b).getFirstDeparture())));
 				break;
+            case ("AIRFARE"):
+                itins.sort( (a, b) -> (((Itinerary)a).getAirfare().compareTo(((Itinerary)b).getAirfare())));
+                break;
 		}
 		return itins;
 		//TODO Move to TEXTUI
@@ -98,9 +101,9 @@ public class ItineraryQuery implements IQuery
       else
       {
         ArrayList<Itinerary> itins = new ArrayList<Itinerary>();
-        for(Flight f : location.getFlights())
+        for(Flight f : location.getFlightsFromHere())
         {
-          if (!visited.contains(f.getDestination()) /*&& itin.getNextAvailibleTime().isBefore(f.getDeparture())*/)
+          if (!visited.contains(f.getDestination()) && itin.getNextAvailibleTime().isBefore(f.getDeparture()))
           {
             Itinerary newItin = new Itinerary(itin);
             newItin.addFlight(f);

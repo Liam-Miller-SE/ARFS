@@ -10,6 +10,7 @@ import java.time.*;
 
 public class RouteNetwork
 {
+    private boolean dataFlushed = false; //used to make sure we don't write to files during testing
     private HashMap routes = new HashMap();
     private ArrayList<Flight> flights = new ArrayList<Flight>();
     private ArrayList<Airport> airports = new ArrayList<Airport>();
@@ -19,6 +20,16 @@ public class RouteNetwork
     private RouteNetwork()
     {
 
+    }
+
+    //used for testing ONLY, otherwise DO NOT CALL
+    public void flushData()
+    {
+        dataFlushed = true;
+        flights.clear();
+        airports.clear();
+        reservations.clear();
+        itineraries.clear();
     }
 
     /**
@@ -164,6 +175,10 @@ public class RouteNetwork
      */
     public void writeData()
     {
+        if (dataFlushed)
+        {
+            return;
+        }
         try {
 
 

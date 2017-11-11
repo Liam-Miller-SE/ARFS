@@ -62,7 +62,7 @@ public class Itinerary
   {
     if (flights.size() == 0)
     {
-      return null;
+      return LocalTime.MIN;
     }
     else
     {
@@ -88,7 +88,7 @@ public class Itinerary
 	  return ( "Origin: " + this.getOrigin() + "\nDestination: "
 	  + this.getDestination() + "\n" + this.flightsString() + "\n");
   }
-  public int getAirfare()
+  public Integer getAirfare()
   {
     int out = 0;
     for (Flight f : flights)

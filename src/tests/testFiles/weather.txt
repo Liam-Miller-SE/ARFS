@@ -1,0 +1,3 @@
+ATL,sunny,95,rain,100
+BOS,partly cloudy,70,cloudy,80
+ROC,snow,15,rain,40

@@ -143,6 +143,18 @@ public class Airport
 	{
 		return flights;
 	}
+	public ArrayList<Flight> getFlightsFromHere()
+	{
+		ArrayList<Flight> out = new ArrayList<>();
+		for (Flight f : flights)
+		{
+			if (f.getOrigin() == this)
+			{
+				out.add(f);
+			}
+		}
+		return out;
+	}
 	public void setConnection(int min)
 	{
 		this.connectionTime = min;
