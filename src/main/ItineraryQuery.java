@@ -51,16 +51,7 @@ public class ItineraryQuery implements IQuery
                 break;
 		}
 		return itins;
-		//TODO Move to TEXTUI
-		/*
-		String output = "info,";
-		int num = 0;
-		for(Itinerary j : itins)
-		{
-			output +=num++ + "," +j.toOutputString() + "\n";
-		}
-		return output;
-		*/
+
 	}
     private ArrayList<Itinerary> createItineraries(Itinerary itin, Airport destination)
     {

@@ -43,6 +43,7 @@ public class AfrsGui extends Application implements Observer {
     private String response;
     private int ID;
     private String terminate = ";";
+    private ArrayList<Itinerary> itins;
 
     public AfrsGui()
     {
@@ -139,7 +140,8 @@ public class AfrsGui extends Application implements Observer {
             @Override
             public void handle(ActionEvent event) {
 
-                Scene sc = new Scene(setFlights_Scene());
+
+                Scene sc = new Scene(genFlights_Scene());
                 stage.setScene(sc);
                 stage.show();
             }
@@ -153,6 +155,7 @@ public class AfrsGui extends Application implements Observer {
         getInfo.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+
 
                 Scene sc = new Scene(getInfo_Scene());
                 stage.setScene(sc);
@@ -210,7 +213,7 @@ public class AfrsGui extends Application implements Observer {
         return b;
     }
 
-    private BorderPane setFlights_Scene()
+    private BorderPane genFlights_Scene()
     {
         BorderPane b = new BorderPane();
         b.setPrefWidth(wind_width);
@@ -239,39 +242,47 @@ public class AfrsGui extends Application implements Observer {
         HBox but  = new HBox();
         Button submit = new Button("Submit");
 
-        submit.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-
-                Scene sc = new Scene(displayFlights_Scene());
-                stage.setScene(sc);
-                stage.show();
-            }
-        });
         but.getChildren().add(submit);
         but.setAlignment(Pos.CENTER);
 
         vb.setAlignment(Pos.CENTER);
 
-        ObservableList<Integer> numHops = FXCollections.observableArrayList(0,1,2);
+        ObservableList<Integer> numHops = FXCollections.observableArrayList(2,1,0);
         ComboBox<Integer> hops = new ComboBox<>();
         hops.setItems(numHops);
         hops.getSelectionModel().selectFirst();
         hops.setPrefHeight(50);
         hops.setPrefWidth(100);
 
-        vb.getChildren().addAll(hops,but);
+        ObservableList<String> sortOrder = FXCollections.observableArrayList("departure", "arrival", "airfare");
+
+        ComboBox<String> sort = new ComboBox<>();
+        sort.setItems(sortOrder);
+        sort.getSelectionModel().selectFirst();
+        sort.setPrefHeight(50);
+        sort.setPrefWidth(100);
+
+        submit.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+
+                String inf = "info";
+                String or = orig.getCharacters().toString();
+                String de = dest.getCharacters().toString();
+                String con = hops.getSelectionModel().getSelectedItem().toString();
+                String sor = sort.getSelectionModel().getSelectedItem();
+
+                c.updateString(inf + "," + or + "," + de + "," + con + "," + sor + terminate);
+
+                Scene sc = new Scene(getFlight_Scene());
+                stage.setScene(sc);
+                stage.show();
+
+            }
+        });
+
+        vb.getChildren().addAll(hops,sort, but);
         b.setCenter(vb);
-
-        return b;
-    }
-
-    private BorderPane displayFlights_Scene()
-    {
-        BorderPane b = new BorderPane();
-        b.setPrefWidth(wind_width);
-        b.setPrefHeight(wind_height);
-
 
         return b;
     }
@@ -297,7 +308,7 @@ public class AfrsGui extends Application implements Observer {
             @Override
             public void handle(ActionEvent event) {
 
-                Scene sc = new Scene(getFlight_Scene());
+                Scene sc = new Scene(genFlights_Scene());
                 stage.setScene(sc);
                 stage.show();
             }
@@ -388,10 +399,6 @@ public class AfrsGui extends Application implements Observer {
             }
         });
 
-
-
-
-
         VBox vb = new VBox();
         //vb.setPadding(new Insets(20,20,20,20));
         HBox ports = new HBox();
@@ -442,8 +449,6 @@ public class AfrsGui extends Application implements Observer {
         });
         hb.getChildren().add(restart);
 
-
-
         b.setCenter(vb);
         b.setTop(hb);
 
@@ -456,6 +461,28 @@ public class AfrsGui extends Application implements Observer {
         b.setPrefWidth(wind_width);
         b.setPrefHeight(wind_height);
 
+
+        Text info = new Text();
+        info.setText(response);
+
+        Button restart = new Button("New Request");
+        restart.setPadding(new Insets(20,20,20,20));
+
+        restart.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+
+                Scene sc = new Scene(init_Scene());
+                stage.setScene(sc);
+                stage.show();
+
+            }
+        });
+
+
+
+        b.setCenter(info);
+        b.setTop(restart);
 
         return b;
     }
@@ -556,7 +583,6 @@ public class AfrsGui extends Application implements Observer {
         String output = c.getInput();
         System.out.println(output);
         this.response = output;
-
 
     }
 

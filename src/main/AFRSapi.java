@@ -17,6 +17,8 @@ public class AFRSapi extends Observable implements Observer {
     private boolean ready;
     public int ID;
     private Scheduler scheduler = new Scheduler();
+    private ArrayList<Itinerary> tempItin = new ArrayList<Itinerary>();
+
 
 
     public AFRSapi(Parser p) {
@@ -41,12 +43,14 @@ public class AFRSapi extends Observable implements Observer {
     }
 
 
-    private void setInput(String str) {
+    private void setInput(String str, ArrayList<Itinerary> itins) {
         if (ready) {
             this.UpdateStr = str;
         } else {
             this.S = str;
         }
+
+        tempItin = itins;
         setChanged();
         notifyObservers();
 
@@ -64,12 +68,61 @@ public class AFRSapi extends Observable implements Observer {
     @Override
     public void update(Observable o, Object arg) {
         String fullString = p.getString();
-        setInput(fullString);
-        //client id is in the 0 index of the string array
-        
+        setInput(fullString, null);
+        //TODO setInput takes in the complete response string that is needed by the GUI and TUI
+        //TODO add the client id to all the response strings
 
         String[] query = p.getQuery();
-        setInput(query(query).toString());
+        ID = Integer.parseInt(query[0]);
+        query = Arrays.copyOfRange(query, 1, query.length);
+
+
+
+        if(query[0].equals("delete") || query[0].equals("reserve") || query[0].equals("undo") || query[0].equals("redo"))
+        {
+            String success = reservations(ID, query, tempItin);
+            setInput(success, null);
+        }
+
+        Object output = query(query);
+        if(output instanceof ArrayList<?>)
+        {
+            ArrayList<?> out = (ArrayList<?>) output;
+            if(out.get(0) instanceof Airport)
+            {
+                //setInput needs to allow an object
+                setInput(out.get(0).toString(), null);
+            }
+            else if(out.get(0) instanceof Itinerary )
+            {
+
+                tempItin = (ArrayList<Itinerary>) out;
+                String ot = "info,";
+                int num = 0;
+                for(Itinerary j : tempItin)
+                {
+                    output +=num++ + "," +j.toOutputString() + "\n";
+                }
+                setInput(ot, tempItin);
+            }
+            else if(out.get(0) instanceof Reservation)
+            {
+                String ret ="";
+                for(int j = 0; j < out.size(); j++)
+                {
+                    ret += out.get(j).toString();
+                }
+                setInput(ret, null);
+            }
+        }
+        else
+        {
+
+            setInput("error,unknown request", null);
+        }
+
+
+        setInput(query(query).toString(), null);
         //everything in here needs to be changed to accept the models
 
     }
@@ -97,48 +150,73 @@ public class AFRSapi extends Observable implements Observer {
         if (query[0].equals("info")) {
             ItineraryQuery iq = new ItineraryQuery();
             return iq.processData(Arrays.copyOfRange(query, 1, query.length));
+            //returns list of itineraries
         } else if (query[0].equals("retrieve")) {
             ReservationQuery rq = new ReservationQuery();
             return rq.processData(Arrays.copyOfRange(query, 1, query.length));
+            //returns a list of reservations of a specified client name
         } else if (query[0].equals("airport")) {
             AirportQuery aq = new AirportQuery();
             return aq.processData(Arrays.copyOfRange(query, 1, query.length));
-
+            //returns a single airport in an array list of airports
         } else {
             return null;
         }
     }
-    /*
-    private int reservations(int cid, String[]) {
 
-        if (query[0].equals("reserve")) {
-            Itinerary i = new Itinerary("name");
-            String name = "name";
-            // Airport origin = new Airport("org", "Origin Airport");
-            Reservation r = new Reservation(name, i);
+    private String reservations(int cid, String[] query, ArrayList<Itinerary> itins)
+    {
+        switch (query[0]){
+            case ("reserve"):
 
-            scheduler.makeReservation(i, name);
-            scheduler.addElementUndo(12, r);
+                Itinerary i = itins.get(Integer.parseInt(query[1]));
+                String name = query[2];
+                Reservation r = new Reservation(name, i);
+                int success = scheduler.makeReservation(i, name);
+                if(success == 1)
+                {
+                    return "error,duplicate reservation";
+                }
+                else
+                {
+                    scheduler.addElementUndo(cid, r);
+                    return "success";
+                }
 
-            return 0;
-        } else if (query[0].equals("delete")) {
-            scheduler.deleteReservation("name", new Airport("org", "Origin"), new Airport("des", "destination"));
-            return 0;
-        } else if (query[0].equals("undo")) {
-            //TODO where is the client id gotten from?
-            Integer num = 12;
-            scheduler.undo(num);
-            return 0;
+            case ("delete"):
+                Reservation reserv = scheduler.deleteReservation(query[1], RouteNetwork.getInstance().getAirport(query[2]),
+                        RouteNetwork.getInstance().getAirport(query[3]));
+                if(reserv != null)
+                {
+                    scheduler.addElementUndo(cid, reserv);
+                    //TODO add in the right string responses for successfully deleting a reservation
+                    return "success";
+                }
+                else
+                {
+                    //TODO add in the right string responses for unsuccessfully deleting a reservation
+                   return "error";
+                }
 
-        } else if (query[0].equals("redo")) {
-            //TODO where is the client id gotten from?
-            Integer num = 12;
-            scheduler.redo(num);
-            return 0;
+            case ("undo"):
+                String opo = scheduler.undo(cid);
+                //TODO add in the right response string for undo
+                return opo;
+
+
+            case ("redo"):
+                String operation = scheduler.redo(cid);
+                //TODO add in the right response string for redo
+                return operation;
+
+            default:
+                return "unknown request";
         }
-        return 0;
+
+
+
     }
-    */
+
 
 
     public void updateString(String s )
@@ -151,7 +229,7 @@ public class AFRSapi extends Observable implements Observer {
         else
         {
             this.S = "partial-request";
-            setInput(S);
+            setInput(S, tempItin);
         }
         parseInput(this.UpdateStr);
     }
