@@ -14,6 +14,7 @@ public class Scheduler {
 
 	private Stack<Pair> undo;
 	private Stack<Pair> redo;
+	private Reservation undoElement;
 	RouteNetwork rn;
 
 	public Scheduler() {
@@ -99,6 +100,8 @@ public class Scheduler {
 		while (check) {
 			Pair<Integer, Reservation> ele = undo.pop();
 			if (ele.getKey().equals(id)) {
+
+
 				//See if the reservation is in the route network
 				//if it is then remove it from rn else add it
 				boolean inRN = false;
@@ -109,6 +112,7 @@ public class Scheduler {
 
 						rn.deleteReservation(r);
 						operation = "reserve";
+						undoElement = ele.getValue();
 						inRN = true;
 					}
 				}
@@ -171,4 +175,8 @@ public class Scheduler {
 		return operation;
 	}
 
+	public Reservation getElement()
+	{
+		return undoElement;
+	}
 }
