@@ -75,13 +75,15 @@ public class AFRSapi extends Observable implements Observer {
         String[] query = p.getQuery();
         ID = Integer.parseInt(query[0]);
         query = Arrays.copyOfRange(query, 1, query.length);
-
+        //String send = "";
 
 
         if(query[0].equals("delete") || query[0].equals("reserve") || query[0].equals("undo") || query[0].equals("redo"))
         {
             String success = reservations(ID, query, tempItin);
-            setInput(success, null);
+            String finalOut = ID +"," + success;
+
+            setInput(finalOut, null);
         }
 
         Object output = query(query);
@@ -90,14 +92,16 @@ public class AFRSapi extends Observable implements Observer {
             ArrayList<?> out = (ArrayList<?>) output;
             if(out.get(0) instanceof Airport)
             {
-                //setInput needs to allow an object
-                setInput(out.get(0).toString(), null);
+                String outString = ID + ",";
+                Airport a = (Airport)out.get(0);
+                outString += a.toString();
+                setInput(outString, null);
             }
             else if(out.get(0) instanceof Itinerary )
             {
 
                 tempItin = (ArrayList<Itinerary>) out;
-                String ot = "info,";
+                String ot = ID + ",info,";
                 int num = 0;
                 for(Itinerary j : tempItin)
                 {
@@ -107,7 +111,7 @@ public class AFRSapi extends Observable implements Observer {
             }
             else if(out.get(0) instanceof Reservation)
             {
-                String ret ="";
+                String ret =ID +",retrieve,";
                 for(int j = 0; j < out.size(); j++)
                 {
                     ret += out.get(j).toString();
@@ -117,8 +121,7 @@ public class AFRSapi extends Observable implements Observer {
         }
         else
         {
-
-            setInput("error,unknown request", null);
+            setInput(ID + ",error,unknown request", null);
         }
 
 
@@ -180,7 +183,7 @@ public class AFRSapi extends Observable implements Observer {
                 else
                 {
                     scheduler.addElementUndo(cid, r);
-                    return "success";
+                    return "reserve,successful";
                 }
 
             case ("delete"):
@@ -189,28 +192,28 @@ public class AFRSapi extends Observable implements Observer {
                 if(reserv != null)
                 {
                     scheduler.addElementUndo(cid, reserv);
-                    //TODO add in the right string responses for successfully deleting a reservation
-                    return "success";
+
+                    return "delete,success";
                 }
                 else
                 {
-                    //TODO add in the right string responses for unsuccessfully deleting a reservation
-                   return "error";
+                   return "error,reservation not found";
                 }
 
             case ("undo"):
                 String opo = scheduler.undo(cid);
+
                 //TODO add in the right response string for undo
-                return opo;
+                return "undo," + opo + "";
 
 
             case ("redo"):
                 String operation = scheduler.redo(cid);
                 //TODO add in the right response string for redo
-                return operation;
+                return "redo," + operation +"";
 
             default:
-                return "unknown request";
+                return "error,unknown request";
         }
 
 
