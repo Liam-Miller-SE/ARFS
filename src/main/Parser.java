@@ -57,6 +57,9 @@ public class Parser extends Observable {
             String lastChar = inp.substring(inp.length() -1);
             newin = "";
 
+
+
+
             if (!(lastChar.equals(";"))) //Shouldn't need this check anymore -> moved to textui
             {
                 setInput("partial-request");
@@ -64,11 +67,28 @@ public class Parser extends Observable {
             }
             else
             {
-                int i = 0;
-
-                while (i < (inp.length()))
+                String id = "";
+                String parsedInp = "";
+                for(int i = 0 ; i < myInput.length() ; i ++ )
                 {
-                    char in = inp.charAt(i);
+                    if (myInput.charAt(i) == ',')
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        id += myInput.charAt(i);
+                    }
+                    System.out.println(id);
+
+                }
+                parsedInp = myInput.substring(id.length()+1);
+                //System.out.println("Input will be " + parsedInp);
+
+                int i = 0;
+                while (i < (parsedInp.length()))
+                {
+                    char in = parsedInp.charAt(i);
                     if (in != ',')
                     {
                         newin = newin + in;
@@ -77,8 +97,10 @@ public class Parser extends Observable {
                     else
                     {
                         break;
+
                     }
                 }
+                System.out.println(newin);
 
                 switch (newin)
                 {
@@ -196,13 +218,13 @@ public class Parser extends Observable {
     private String[] getAirportInfo(String str)
     {
         String[] params = parseInput(str);
-        if (params.length != 2)
+        if (params.length != 3)
         {
             setInput("error, unknown airport");
         }
         else
         {
-            if (params[1].length() == 3)
+            if (params[2].length() == 3)
             {
                 //setInput("Retrieving airport data with code " + params[1] );
                 //response = query(params);

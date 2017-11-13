@@ -10,11 +10,13 @@ public class TextUI implements Observer
     private AFRSapi c;
     private static Scanner sc;
     private String s;
+    private String id;
 
     public TextUI(AFRSapi c)
     {
         this.c = c;
         c.addObserver(this);
+        this.id = "0";
     }
 
     @Override
@@ -80,7 +82,7 @@ public class TextUI implements Observer
             }
             else
             {
-                c.updateString(myInput);
+                c.updateString(id + "," + myInput);
 
 
             }
