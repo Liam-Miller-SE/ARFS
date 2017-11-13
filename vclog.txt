@@ -1,0 +1,1191 @@
+commit ec0756d4e6706efbaa492084b6ee203d8ecd875b
+Author: Melissa Gould <mag8224@g.rit.edu>
+Date:   Mon Nov 13 17:35:17 2017 -0500
+
+    Commenting things
+
+commit ebc45402cc9126b99412ac685e20a9f6e9ffeedc
+Merge: 6f9de10 58b6ad2
+Author: Joshua Eng <jpe4602@rit.edu>
+Date:   Mon Nov 13 16:43:43 2017 -0500
+
+    Merge branch 'master' of https://github.com/Liam-Miller-SE/ARFS
+
+commit 6f9de103c2fdf71118a26d3fcbacabe9341ff461
+Author: Joshua Eng <jpe4602@rit.edu>
+Date:   Mon Nov 13 16:43:04 2017 -0500
+
+    Adjusting Parser and Query Params
+
+commit 58b6ad2b1a99b2a292cf0acc790ea53722c39605
+Author: Melissa Gould <mag8224@g.rit.edu>
+Date:   Mon Nov 13 15:49:47 2017 -0500
+
+    Updated Listing.pdf
+
+commit aa3c574953501bec08c4dec3b29063e2b40bb3ea
+Author: Melissa Gould <mag8224@g.rit.edu>
+Date:   Sun Nov 12 14:00:48 2017 -0500
+
+    Return Strings
+    
+    Finished setting all the proper return strings for the various outputs requested
+
+commit da32113434cabf86eab7f6553ac46b8638b9b376
+Author: Melissa Gould <mag8224@g.rit.edu>
+Date:   Sun Nov 12 10:21:00 2017 -0500
+
+    Return Strings
+    
+    Got most return strings to be the proper format. Still need to fix undo and redo return strings
+
+commit 8d20102c8d7d4453f2154577250969f20f712b8f
+Merge: e558016 de9e666
+Author: Liam Miller <lgm5590@g.rit.edu>
+Date:   Sat Nov 11 13:12:01 2017 -0500
+
+    Merged
+
+commit e55801626fb9054b4f0a317a70a663f0ccaf1c95
+Author: Liam Miller <lgm5590@g.rit.edu>
+Date:   Sat Nov 11 13:10:35 2017 -0500
+
+    Added file to let me push
+
+commit 6b2e2e76524090b764f7fb27d8742602a02f6377
+Author: Liam Miller <lgm5590@g.rit.edu>
+Date:   Sat Nov 11 13:09:33 2017 -0500
+
+    Finished up tests for Flight, ItineraryQuery, Airport and Airport Query
+
+commit a0e31a22b386a23b7a971c25d72876503e4a4cd3
+Author: Liam Miller <lgm5590@g.rit.edu>
+Date:   Sat Nov 11 12:45:57 2017 -0500
+
+    Working on tests, had to touch up ItinQuery and add a flush data function to routenetwork
+
+commit de9e666a7b47a14f897a943548dfd9fdb959cc6b
+Author: Melissa Gould <mag8224@g.rit.edu>
+Date:   Sat Nov 11 10:56:41 2017 -0500
+
+    Operations with reservations called
+    
+    Changed a bunch of things,
+    returning models instead of strictly strings, moved the itinerary tostrings to the api instead of the queries
+
+commit ca34b363801bda9bca12b0ed47d46cd27a68ec0b
+Author: Joshua Eng <jpe4602@rit.edu>
+Date:   Sat Nov 11 10:56:22 2017 -0500
+
+    Info Command Added to GUI, Finally Removed Client Class...
+
+commit 30be9bfa24327967fb6de10e961d0dddb687f19d
+Merge: fb59710 490f05c
+Author: Liam Miller <lgm5590@g.rit.edu>
+Date:   Sat Nov 11 10:48:46 2017 -0500
+
+    Merge branch 'master' of https://github.com/Liam-Miller-SE/ARFS
+
+commit fb59710fab5b30818a190762a05795a8bc2f8177
+Author: Liam Miller <lgm5590@g.rit.edu>
+Date:   Sat Nov 11 10:48:35 2017 -0500
+
+    Set up testing (FINALLY\!)
+
+commit 490f05c625fed5dc7ef38ea16aac7b055796a36c
+Author: Joshua Eng <jpe4602@rit.edu>
+Date:   Fri Nov 10 13:25:13 2017 -0500
+
+    GUI Setup for Querying for Flights
+
+commit 59af49d1ea365a2f9dd698432d2cc2e31ad4917c
+Author: Joshua Eng <jpe4602@rit.edu>
+Date:   Fri Nov 10 10:04:19 2017 -0500
+
+    Finding Reservation in GUI Done
+
+commit 3813a1f0b9f6047742458df01b7e15e8ad152166
+Merge: 32f73c3 f5e85e4
+Author: Joshua Eng <jpe4602@rit.edu>
+Date:   Fri Nov 10 08:02:36 2017 -0500
+
+    Merge branch 'master' of https://github.com/Liam-Miller-SE/ARFS
+
+commit 32f73c3fe581fc65d3093c38f519ba38d8af7083
+Author: Joshua Eng <jpe4602@rit.edu>
+Date:   Fri Nov 10 08:02:28 2017 -0500
+
+    Initial Reservation  Scene
+
+commit f5e85e48bbeec2e7d9880e2e517c93f7d22defa2
+Author: Melissa Gould <mag8224@g.rit.edu>
+Date:   Thu Nov 9 21:55:25 2017 -0500
+
+    Time and TextUI
+    
+    Time fixes and fixed TextUI so it didn't throw a nullpointerException on exit
+
+commit a8e8e2380e5de4966fc0fa74dad3d91bbc0519b3
+Author: Melissa Gould <mag8224@g.rit.edu>
+Date:   Thu Nov 9 21:19:33 2017 -0500
+
+    Problem with writing times
+    
+    Changed military 12:00 to pm instead of it used to be making it am
+
+commit a67527b3cd707acebf17ff9f2f21c3a3c8f27b20
+Author: Melissa Gould <mag8224@g.rit.edu>
+Date:   Thu Nov 9 21:16:21 2017 -0500
+
+    Added writing files to the TextUI
+
+commit 36079ad49d2f5c58ec3ce9b92324bc81e2e1bfd7
+Author: Joshua Eng <jpe4602@rit.edu>
+Date:   Thu Nov 9 15:49:49 2017 -0500
+
+    Fixed Up Webservices, Deleted Un needed Files
+
+commit 772814c21198210bfafe93e87a72d9602161044c
+Merge: 31da2c6 cbaad39
+Author: Joshua Eng <jpe4602@rit.edu>
+Date:   Thu Nov 9 15:06:14 2017 -0500
+
+    Merge branch 'master' of https://github.com/Liam-Miller-SE/ARFS
+
+commit 31da2c636184b1ee58ad1ff782f463d6ea1f8c37
+Author: Joshua Eng <jpe4602@rit.edu>
+Date:   Thu Nov 9 15:05:37 2017 -0500
+
+    Added ID to GUI
+
+commit cbaad39ccc46bbfa471b78ad6ddb89b754e4da81
+Merge: 4ce5a8a 1187061
+Author: tzahald <tylerjdavis.96@gmail.com>
+Date:   Thu Nov 9 15:05:29 2017 -0500
+
+    Merge branch 'master' of https://github.com/Liam-Miller-SE/ARFS
+
+commit 4ce5a8a14d97afec502aab5610700838c9f4ddb4
+Author: tzahald <tylerjdavis.96@gmail.com>
+Date:   Thu Nov 9 15:05:24 2017 -0500
+
+    Web Service should work :/
+
+commit 11870611eeb347494458fe12d7584cdb95d4674a
+Author: Melissa Gould <mag8224@g.rit.edu>
+Date:   Thu Nov 9 14:31:40 2017 -0500
+
+    Accidently pushed unfinished code
+    
+    Commenting out the unfinished code
+
+commit 694fde614fd67554dda860c70fa680da875ded1b
+Author: Melissa Gould <mag8224@g.rit.edu>
+Date:   Thu Nov 9 14:29:00 2017 -0500
+
+    Set up Airport Query for the state Pattern
+
+commit 9939d63b571ee1898ba24c94887693a62ac78f70
+Author: tzahald <tylerjdavis.96@gmail.com>
+Date:   Thu Nov 9 14:14:37 2017 -0500
+
+    changed name of web service
+
+commit 9602e9b8f363ee58c95f96a9572a9205d4b9eaac
+Merge: ae9cde4 7ffb4be
+Author: tzahald <tylerjdavis.96@gmail.com>
+Date:   Thu Nov 9 14:12:10 2017 -0500
+
+    Merge branch 'master' of https://github.com/Liam-Miller-SE/ARFS
+
+commit ae9cde475d28f5ac49822e4481f273162b86b5e0
+Merge: 515a982 73c37f4
+Author: tzahald <tylerjdavis.96@gmail.com>
+Date:   Thu Nov 9 14:09:20 2017 -0500
+
+    Merge branch 'master' of https://github.com/Liam-Miller-SE/ARFS
+
+commit 7ffb4beaae035fa856eef1979cf251b85fb26749
+Merge: a331bc9 4991797
+Author: Melissa Gould <mag8224@g.rit.edu>
+Date:   Thu Nov 9 12:35:41 2017 -0500
+
+    Merge branch 'master' of https://github.com/Liam-Miller-SE/ARFS
+
+commit a331bc976d38048baabf3d91c0513d09bed59404
+Author: Melissa Gould <mag8224@g.rit.edu>
+Date:   Thu Nov 9 12:35:38 2017 -0500
+
+    Writing files when client completes interaction
+    
+    Added write method to gui and textui
+
+commit 49917970eb5d58335120e2ea2f70e089eb6b7272
+Author: Joshua Eng <jpe4602@rit.edu>
+Date:   Thu Nov 9 11:23:20 2017 -0500
+
+    Querying an Airport now Returns Results in GUI
+
+commit f961ad9c698d23103af6a84c97f119bb3d5d5e46
+Merge: 5664a11 d50c33d
+Author: Joshua Eng <jpe4602@rit.edu>
+Date:   Thu Nov 9 10:31:21 2017 -0500
+
+    Merge branch 'master' of https://github.com/Liam-Miller-SE/ARFS
+
+commit 5664a116e7edf5da489473368d5ff99a392473e2
+Author: Joshua Eng <jpe4602@rit.edu>
+Date:   Thu Nov 9 10:31:16 2017 -0500
+
+    Get Airport Functionality in GUI
+
+commit d50c33dd39240469aef33a1ba577bd731140098f
+Author: Liam Miller <lgm5590@g.rit.edu>
+Date:   Thu Nov 9 08:53:16 2017 -0500
+
+    Fixed up data return values for queries
+
+commit 73c37f4cacce4a0c77dc2dfd9f5233a71a521260
+Author: Liam Miller <lgm5590@g.rit.edu>
+Date:   Thu Nov 9 08:15:47 2017 -0500
+
+    Removed old test folder
+
+commit a85e554e0f4bce9a5a0432b44578ab2ea4de8c70
+Author: Joshua Eng <jpe4602@rit.edu>
+Date:   Thu Nov 9 08:09:01 2017 -0500
+
+    Commenting out Testing For Compiling
+
+commit 39f2e4ce4f416606f6695c51960c539a5eabb040
+Merge: 695b297 6962866
+Author: Melissa Gould <mag8224@g.rit.edu>
+Date:   Wed Nov 8 12:15:55 2017 -0500
+
+    Merge branch 'master' of https://github.com/Liam-Miller-SE/ARFS
+
+commit 696286624b8113525270297d7433b04804d2c722
+Author: Joshua Eng <jpe4602@rit.edu>
+Date:   Wed Nov 8 11:18:56 2017 -0500
+
+    Adding the package for every class
+
+commit f36c51e465c74c6c733b6cdaecdd78890fcaa12b
+Merge: 6cc4e5c 31094f1
+Author: Joshua Eng <jpe4602@rit.edu>
+Date:   Wed Nov 8 10:51:52 2017 -0500
+
+    Merge branch 'master' of https://github.com/Liam-Miller-SE/ARFS
+
+commit 6cc4e5ce65739b32795031d1b9509c1df1f64e6c
+Author: Joshua Eng <jpe4602@rit.edu>
+Date:   Wed Nov 8 10:51:17 2017 -0500
+
+    Beginning functionality for toggling Weather Services
+
+commit 31094f1362c976842d2e5a28089418c7d90a985c
+Author: Liam Miller <lgm5590@g.rit.edu>
+Date:   Wed Nov 8 10:02:11 2017 -0500
+
+    Commented out stuff in the test folder
+
+commit 695b297cc084c6a686ef8a6a1aeb8820a69a5ddc
+Merge: fc1e2dc 63598a3
+Author: Melissa Gould <mag8224@g.rit.edu>
+Date:   Wed Nov 8 09:44:05 2017 -0500
+
+    Merge branch 'master' of https://github.com/Liam-Miller-SE/ARFS
+
+commit fc1e2dc25cb0ffb627a12f7c362d3da384a9c087
+Author: Melissa Gould <mag8224@g.rit.edu>
+Date:   Wed Nov 8 09:43:55 2017 -0500
+
+    Added Undo/Redo
+    
+    Undo/Redo functionality
+
+commit 63598a39d53220210b4342fdfffc3846f30c56f4
+Author: Liam Miller <lgm5590@g.rit.edu>
+Date:   Wed Nov 8 09:35:44 2017 -0500
+
+    Reorganized file system for JUnit testing
+
+commit 48a1722f495ccf335ddd178efc6b3b66eca2ea4f
+Author: Liam Miller <lgm5590@g.rit.edu>
+Date:   Tue Nov 7 16:40:41 2017 -0500
+
+    Whoops, pretend I didn't break that...
+
+commit e6fd5509361b24139ab86d98d0cc4cb5ee861177
+Merge: ca30b8d 986fb51
+Author: Liam Miller <lgm5590@g.rit.edu>
+Date:   Tue Nov 7 16:25:49 2017 -0500
+
+    Merge branch 'master' of https://github.com/Liam-Miller-SE/ARFS
+
+commit 986fb51db2b8979db5922ddf24dab43e18d85781
+Author: Joshua Eng <jpe4602@rit.edu>
+Date:   Tue Nov 7 12:26:39 2017 -0500
+
+    Added Methodology for Closing Clients
+
+commit 554b710e57cc2d4947af2e64f105749b96b6d947
+Author: Joshua Eng <jpe4602@rit.edu>
+Date:   Tue Nov 7 12:10:54 2017 -0500
+
+    Initial GUI Stuff
+    
+    Can add multiple clients. clients have an ID now.
+
+commit 32c3730e62851e06500213c606d6cd176ab5bd98
+Author: Joshua Eng <jpe4602@rit.edu>
+Date:   Tue Nov 7 10:17:04 2017 -0500
+
+    Merging One at a time
+    
+    TextUi Changes
+
+commit 503d9344f76cd42c43e23807f7aab2528afd94db
+Merge: 603708b 2849151
+Author: Joshua Eng <jpe4602@rit.edu>
+Date:   Tue Nov 7 10:16:39 2017 -0500
+
+    Merge branch 'R1-Refactoring'
+
+commit 284915177aff17ea16962b8499c1942d877d8517
+Author: Joshua Eng <jpe4602@rit.edu>
+Date:   Tue Nov 7 10:11:39 2017 -0500
+
+    Refactoring 90% Complete
+    
+    Up to point where it can handle String returns on query.
+
+commit d9093c2735e18cae6a2a71c0fc730817d09ce47f
+Author: Joshua Eng <jpe4602@rit.edu>
+Date:   Tue Nov 7 09:44:25 2017 -0500
+
+    Handling of Partial Requests
+    
+    Strings updating and printing outputs.
+    Not including model returns yet
+
+commit ca30b8d2ab07aac6f38541bfbf820c2007546324
+Author: Liam Miller <lgm5590@g.rit.edu>
+Date:   Tue Nov 7 08:34:46 2017 -0500
+
+    Changed return type for queries
+
+commit d0d8fada295ae7dd3c95175f7f17fb31014656d7
+Author: Joshua Eng <jpe4602@rit.edu>
+Date:   Sun Nov 5 20:07:06 2017 -0500
+
+    Moved help commands over to Textui
+    
+    Since help will vary based on type of UI
+
+commit 22c41d650f5477e4864ba5d9f48091c978df8af7
+Author: Joshua Eng <jpe4602@rit.edu>
+Date:   Sun Nov 5 14:44:02 2017 -0500
+
+    Part 2 Continuation
+
+commit 01c7fa3569d0605e985f1f4c8d1761947e95a6ba
+Author: Joshua Eng <jpe4602@rit.edu>
+Date:   Thu Nov 2 13:17:55 2017 -0400
+
+    Print Statements for TextUI back in action
+    
+    Parser API Observer pattern used.
+
+commit 1e3e4ef8048620f0a864d71286672346e9946340
+Author: Joshua Eng <jpe4602@rit.edu>
+Date:   Thu Nov 2 09:29:06 2017 -0400
+
+    Moving behavior between parser textui and api
+
+commit 515a98274d53cf3d6ada788977e84dfe66669ee7
+Author: tzahald <tylerjdavis.96@gmail.com>
+Date:   Thu Nov 2 00:50:08 2017 -0400
+
+    some comments
+
+commit 603708b26970d20bfb01906251937455f35428d6
+Author: Melissa Gould <mag8224@g.rit.edu>
+Date:   Tue Oct 31 15:17:51 2017 -0400
+
+    Implemented Scheduler
+    
+    Added the methods that make a reservation for a client and delete a reservation. Making reservation also checks to make sure a passenger doesn't already have a reservation to the specified orgin and destination
+
+commit 2886dbbfe0f7b143d6330af81ad7ba15ae3eb0c6
+Author: Liam Miller <lgm5590@g.rit.edu>
+Date:   Tue Oct 31 14:43:00 2017 -0400
+
+    Moved createItineraries to ItineraryQuery
+
+commit b01724bd49d69242584296a1bb5b0d210738b890
+Author: Melissa Gould <mag8224@g.rit.edu>
+Date:   Sat Oct 28 17:52:07 2017 -0400
+
+    Read of Reservations
+    
+    Added the reading in of reservations to RouteNetwork
+
+commit bfd406177b435aa5cacdb3aa5b06d44af453c4a4
+Author: Melissa Gould <mag8224@g.rit.edu>
+Date:   Fri Oct 27 17:45:15 2017 -0400
+
+    Writing Reservations to CSV
+    
+    Added the function to write reservations to a reservations.txt csv file. That will be read in with the starting files as well. Still have to implement reading the file in
+
+commit 8617d2b2c695d74e10f74d0fa0c37748f157eddf
+Author: Joshua Eng <jpe4602@rit.edu>
+Date:   Thu Oct 26 16:55:34 2017 -0400
+
+    Transferring TextUI to GUI
+
+commit b2d940297914e2523987bb9fbc86ad18145e52be
+Author: Liam Miller <lgm5590@g.rit.edu>
+Date:   Thu Oct 26 16:26:44 2017 -0400
+
+    Fixed sorting bug in itinerary query. Blank or incorrect airport codes no longer crash itinerary query
+
+commit fb57df386e8febd6a315b172d9ddd88cbae55a60
+Author: Joshua Eng <jpe4602@rit.edu>
+Date:   Thu Oct 26 16:17:05 2017 -0400
+
+    First Setup for GUI
+    
+    imports and initial Panes
+
+commit e51b71585f6714f917b92945e7dbd7c76b0fea09
+Author: Joshua Eng <jpe4602@rit.edu>
+Date:   Thu Oct 26 15:41:25 2017 -0400
+
+    Creatig ACalling
+    
+    Working on shifting things over
+
+commit 9289c66387aebb7966cc2feb18f115ac03f6916b
+Author: Liam Miller <lgm5590@g.rit.edu>
+Date:   Thu Oct 26 09:19:26 2017 -0400
+
+    Started basic setup for testing
+
+commit 2bedaa4e2653cca963423d74e7132ede08ed7da6
+Author: Joshua Eng <jpe4602@rit.edu>
+Date:   Tue Oct 24 01:58:05 2017 -0400
+
+    README updated
+    
+    we have a lot of defects...
+
+commit b1a051d75169e15f5592f6461f899f85243f8713
+Author: Joshua Eng <jpe4602@rit.edu>
+Date:   Tue Oct 24 01:39:29 2017 -0400
+
+    Removing Print Statements
+    
+    Tyring to match more of intended functionality.
+
+commit b9831a859b3dc1d7b305ba697e516a89f25ca505
+Author: Liam Miller <lgm5590@g.rit.edu>
+Date:   Mon Oct 23 22:28:44 2017 -0400
+
+    Added jar and start.bat
+
+commit a9d9c2bbcbacaecd15d4f5d5b71e00caeccd2507
+Author: Liam Miller <lgm5590@g.rit.edu>
+Date:   Mon Oct 23 20:13:03 2017 -0400
+
+    Added run.bat
+
+commit 2fb620c8dafb27294a688196ddc47fd8e5ad672e
+Author: Liam Miller <lgm5590@g.rit.edu>
+Date:   Mon Oct 23 19:34:05 2017 -0400
+
+    removed swp files
+
+commit 89f229af0f7ed1e560422cfd2d2de779ca542cee
+Author: Liam Miller <lgm5590@g.rit.edu>
+Date:   Mon Oct 23 19:33:26 2017 -0400
+
+    Finished ItinQuery implementation
+
+commit 36333de5d97fd8e3f80067408d6981a6f27ca507
+Author: Melissa Gould <mag8224@g.rit.edu>
+Date:   Mon Oct 23 17:13:04 2017 -0400
+
+    Adding Listing.pdf
+
+commit edebb3e6fd4c08030848771ebec2c0bc5d43e2cc
+Author: Liam Miller <lgm5590@g.rit.edu>
+Date:   Sun Oct 22 22:19:51 2017 -0400
+
+    Delved into the depths of recursion hell, fought off three waves of demons and emerged victorious
+
+commit 91d19ed26075bc9a555e0e4c867e75ec6ab5d1bc
+Author: Liam Miller <lgm5590@g.rit.edu>
+Date:   Sun Oct 22 20:38:24 2017 -0400
+
+    Mucked around with shell scripts. Oh Java, thou art a heartless monster
+
+commit d7b70a537fc0be45423565d9ff16d88ac717c0e6
+Author: Liam Miller <lgm5590@g.rit.edu>
+Date:   Sun Oct 22 19:48:19 2017 -0400
+
+    Added run.sh script and worked on the null pointer exception
+
+commit 2ecc0608348bb2a03f543808700ffa2c7e9113cd
+Author: Liam Miller <lgm5590@g.rit.edu>
+Date:   Sun Oct 22 19:20:22 2017 -0400
+
+    Fixed null pointer in RoutNetwork call to getFlights
+
+commit e1759ecdcad63c4f86b697574f7355d2cf5b1cb7
+Author: Melissa Gould <mag8224@g.rit.edu>
+Date:   Fri Oct 20 11:57:40 2017 -0400
+
+    Writing to same place reading from
+    
+    Changed file output path to the input files
+
+commit bcf308338fb09c6ad1d8f625b9b74a50a725ec3e
+Author: Liam Miller <lgm5590@g.rit.edu>
+Date:   Fri Oct 20 09:36:44 2017 -0400
+
+    Removed package
+
+commit f9bade134041b5150bf3816b0581841d352c04d6
+Author: Liam Miller <lgm5590@g.rit.edu>
+Date:   Thu Oct 19 15:55:53 2017 -0400
+
+    Added my shell script cause I don't want to lose it if I have to repull code
+
+commit 2d857dacd15d6494822bee63b26f6dd0e087921c
+Merge: 41a1c06 2af714e
+Author: Liam Miller <lgm5590@g.rit.edu>
+Date:   Thu Oct 19 15:43:17 2017 -0400
+
+    Merge branch 'master' of https://github.com/Liam-Miller-SE/ARFS
+
+commit 41a1c06431110a4a07513d420fb3885124b0ae72
+Author: Liam Miller <lgm5590@g.rit.edu>
+Date:   Thu Oct 19 15:43:15 2017 -0400
+
+    Created ARFS package
+
+commit 2af714e237a2334ff06fc011c0b6208c85719c6b
+Author: Joshua Eng <jpe4602@rit.edu>
+Date:   Thu Oct 19 15:37:19 2017 -0400
+
+    Changing Params Check, Added more help stuff
+
+commit 927e02b88ecb0a5e6a025eafeb41c8d98ca7ffce
+Author: Liam Miller <lgm5590@g.rit.edu>
+Date:   Thu Oct 19 15:27:09 2017 -0400
+
+    Escaped the depths of merge hell
+
+commit 5525e976cfb0ccda86bc0412833fe7a83e2f9390
+Merge: df343cc 87edfa0
+Author: Liam Miller <lgm5590@g.rit.edu>
+Date:   Thu Oct 19 15:22:54 2017 -0400
+
+    Continuing merge hell
+    Merge remote-tracking branch 'refs/remotes/origin/master'
+
+commit df343ccbff3be5995373015fb735161e3c13ea12
+Author: Liam Miller <lgm5590@g.rit.edu>
+Date:   Thu Oct 19 15:22:16 2017 -0400
+
+    Starting mergeing hell...
+
+commit 87edfa06f5a5f601b00c31612894e8dd57c9cc8b
+Author: tzahald <tylerjdavis.96@gmail.com>
+Date:   Thu Oct 19 15:20:42 2017 -0400
+
+    .equals im sorry
+
+commit dda3f155d636ffee4fc0df8f96efa37ba83970f7
+Merge: b91a883 c23bfc7
+Author: tzahald <tylerjdavis.96@gmail.com>
+Date:   Thu Oct 19 15:15:11 2017 -0400
+
+    Merge branch 'master' of https://github.com/Liam-Miller-SE/ARFS
+
+commit b91a883e8c7609f0491efa78e79cde131e9f39c6
+Author: tzahald <tylerjdavis.96@gmail.com>
+Date:   Thu Oct 19 15:15:05 2017 -0400
+
+    more tostrings
+
+commit c23bfc7f7bdbb233a124235c1ff9387fce59f3cd
+Merge: ed495d2 62a4881
+Author: Liam Miller <lgm5590@g.rit.edu>
+Date:   Thu Oct 19 15:07:55 2017 -0400
+
+    continued working on merges
+
+commit ed495d24ac4abd87675223fb8815c6cc0c5665ee
+Author: Liam Miller <lgm5590@g.rit.edu>
+Date:   Thu Oct 19 15:05:53 2017 -0400
+
+    Mucked about with the test files, fixed some broken code
+
+commit 62a4881e981017a5d1dcd3d2db30aeaf5c6ef70a
+Author: tzahald <tylerjdavis.96@gmail.com>
+Date:   Thu Oct 19 15:03:44 2017 -0400
+
+    itinerary Reservation reservation query
+
+commit a2defd1d64591e5c6c6cb7d9f70d3bc3250439b7
+Merge: d68192f ca9c132
+Author: tzahald <tylerjdavis.96@gmail.com>
+Date:   Thu Oct 19 14:36:47 2017 -0400
+
+    Merge branch 'master' of https://github.com/Liam-Miller-SE/ARFS
+
+commit d68192f2da672bd77eba7540383782ec2622f896
+Author: tzahald <tylerjdavis.96@gmail.com>
+Date:   Thu Oct 19 14:36:31 2017 -0400
+
+    reservation
+    
+    reservation get methods and query started
+
+commit ca9c13201b875f4688e9034a753e5bf497347b7b
+Merge: ca92c2c 7b3043a
+Author: Melissa Gould <mag8224@g.rit.edu>
+Date:   Thu Oct 19 14:21:10 2017 -0400
+
+    Merge branch 'master' of https://github.com/Liam-Miller-SE/ARFS
+
+commit ca92c2c173ff771ce7a08ce37b41460338282b54
+Author: Melissa Gould <mag8224@g.rit.edu>
+Date:   Thu Oct 19 14:21:04 2017 -0400
+
+    Weather and temp array to ArrayList
+    
+    All the changes for making the Weather and Temperature variables in airport to be ArrayLists instead of basic array
+
+commit 7b3043afa3ceaf413a519e2f38ac84e1380f4c20
+Author: Liam Miller <lgm5590@g.rit.edu>
+Date:   Thu Oct 19 14:16:28 2017 -0400
+
+    Fixed error in itinque where hops was not being passed into method call
+
+commit b23754fabbf76f83e94fd31fd2d13d6aa94f6084
+Author: Liam Miller <lgm5590@g.rit.edu>
+Date:   Thu Oct 19 14:13:55 2017 -0400
+
+    Fixed off by one error in itineraryquery
+
+commit 876d1f9d1f277cd131825b0b2fd9cbf3e77b0a5a
+Author: Joshua Eng <jpe4602@rit.edu>
+Date:   Thu Oct 19 14:01:53 2017 -0400
+
+    Loads in Files, Cleaning up Client
+    
+    Uses Observer Pattern over simple system print lines, bug fixing with parameters
+
+commit 3cc62ef1e38359c7609b97b537602a8a3c103e09
+Merge: 2f92526 a40a627
+Author: tzahald <tylerjdavis.96@gmail.com>
+Date:   Thu Oct 19 13:58:46 2017 -0400
+
+    Merge branch 'master' of https://github.com/Liam-Miller-SE/ARFS
+
+commit 2f925263aa8652e077e3b807d369787b90325028
+Author: tzahald <tylerjdavis.96@gmail.com>
+Date:   Thu Oct 19 13:58:31 2017 -0400
+
+    comment
+
+commit a40a627756781049e812ec12ec8dfa5d422750a4
+Merge: 75caf08 bd19e90
+Author: Liam Miller <lgm5590@g.rit.edu>
+Date:   Thu Oct 19 09:19:48 2017 -0400
+
+    Merged changes
+
+commit 75caf085122e5a7a76c431f57a4652125e0473c0
+Author: Liam Miller <lgm5590@g.rit.edu>
+Date:   Thu Oct 19 09:18:13 2017 -0400
+
+    Implemented Scheduler
+
+commit bd19e90dfc327a845d3e90299e2894cd5eb20ce1
+Author: Melissa Gould <mag8224@g.rit.edu>
+Date:   Wed Oct 18 23:43:52 2017 -0400
+
+    Write to file
+    
+    Added writing to a file to the Route Network
+
+commit 285def48e126c6add624f94704d75c91a5ccc9f2
+Author: Melissa Gould <mag8224@g.rit.edu>
+Date:   Wed Oct 18 13:03:22 2017 -0400
+
+    Compile Fixes
+    
+    Fixed the errors that Airport and AirportQuery was giving so now it is compilable.
+    AirportQuery Return statement needs to be changed to the proper return
+
+commit 433a4c3066d82b7886815219cd840168cd5b0214
+Merge: 0d5cbb1 0274a97
+Author: Joshua Eng <jpe4602@rit.edu>
+Date:   Wed Oct 18 09:19:12 2017 -0400
+
+    Merge branch 'master' of https://github.com/Liam-Miller-SE/ARFS
+
+commit 0d5cbb13e0994663804fcd749bb8e122e1f276ff
+Author: Joshua Eng <jpe4602@rit.edu>
+Date:   Wed Oct 18 09:19:08 2017 -0400
+
+    Added the helper methods to properly load in the files
+    
+    If these can move into Route Network that would be ideal.
+
+commit 0274a97a2af4cf40b091767e93cfa62313fb418a
+Author: Melissa Gould <mag8224@g.rit.edu>
+Date:   Tue Oct 17 15:21:53 2017 -0400
+
+    Added a method for Writing Files
+    
+    Flushed out for writing to files
+
+commit 51cd4947736f90b682dc2ff7c8bdb9ac5f19047e
+Author: tzahald <tylerjdavis.96@gmail.com>
+Date:   Tue Oct 17 15:08:04 2017 -0400
+
+    Airport new functions
+    
+    toString
+    getWeather
+    getTemp
+    added weathI and tempI
+
+commit 170b9d7a5b06c2073b602382bd96c5ec09f20164
+Author: tzahald <tylerjdavis.96@gmail.com>
+Date:   Tue Oct 17 14:41:36 2017 -0400
+
+    airportQuery
+
+commit d79cf02a4d4a096c27449b01a9aa1e275d0883f0
+Merge: 8d7e9f9 e91883f
+Author: Melissa Gould <mag8224@g.rit.edu>
+Date:   Tue Oct 17 14:20:12 2017 -0400
+
+    Merge branch 'master' of https://github.com/Liam-Miller-SE/ARFS
+
+commit 8d7e9f9a13aa885c9268961965cd6bcc73d91f7d
+Author: Melissa Gould <mag8224@g.rit.edu>
+Date:   Tue Oct 17 14:20:01 2017 -0400
+
+    Singleton implementation
+    
+    Singleton implementation on the Route Network so that all classes have access to the same Route Network Object
+
+commit e91883ff464043a27a42be642060d9cdd4a32e84
+Merge: dec37ba 527e096
+Author: Liam Miller <lgm5590@g.rit.edu>
+Date:   Tue Oct 17 14:17:07 2017 -0400
+
+    Merged AirportQuery
+
+commit dec37ba0c4824977e22ddf404e77b59a06f4a7fb
+Author: Liam Miller <lgm5590@g.rit.edu>
+Date:   Tue Oct 17 14:15:48 2017 -0400
+
+    Fixed AirportQuery
+
+commit 527e096b5f04369c2ba9a919c85d7574dd62e356
+Author: tzahald <tylerjdavis.96@gmail.com>
+Date:   Tue Oct 17 14:14:00 2017 -0400
+
+    spacing
+
+commit 0780a900df60872e362b40813a0ce80a46e7a4be
+Merge: a1b0877 7eb9bdd
+Author: tzahald <tylerjdavis.96@gmail.com>
+Date:   Tue Oct 17 14:13:17 2017 -0400
+
+    Merge branch 'master' of https://github.com/Liam-Miller-SE/ARFS
+
+commit a1b08770df7c6cc9ce934698e7f277034ec500fa
+Author: tzahald <tylerjdavis.96@gmail.com>
+Date:   Tue Oct 17 14:13:01 2017 -0400
+
+    all queues to only process data
+
+commit 7eb9bdd302d7b5b30e6699fe87a10d2d05036795
+Merge: d5d49a7 e4475a9
+Author: Liam Miller <lgm5590@g.rit.edu>
+Date:   Tue Oct 17 14:09:32 2017 -0400
+
+    Fixed merge issue
+
+commit d5d49a7bdd8f553f27038b60c236b6f9041e18aa
+Author: Liam Miller <lgm5590@g.rit.edu>
+Date:   Tue Oct 17 14:06:00 2017 -0400
+
+    Added changes to Client.java
+
+commit e4475a952c9bfb6f888929ef43222cf783e50844
+Merge: 3afc64b b768a88
+Author: Joshua Eng <jpe4602@rit.edu>
+Date:   Tue Oct 17 13:59:48 2017 -0400
+
+    Merge branch 'master' of https://github.com/Liam-Miller-SE/ARFS
+
+commit 3afc64b059360b17f701c884876d13904344c52e
+Author: Joshua Eng <jpe4602@rit.edu>
+Date:   Tue Oct 17 13:59:40 2017 -0400
+
+    Finished Help Commands
+    
+    Can now find out the expected input request params through the help command.
+
+commit b768a8896031e4dbc1f5f27f88704cd9bb3d6d8e
+Merge: d2e57e8 1addec2
+Author: tzahald <tylerjdavis.96@gmail.com>
+Date:   Tue Oct 17 13:59:19 2017 -0400
+
+    Merge branch 'master' of https://github.com/Liam-Miller-SE/ARFS
+
+commit 1addec2baf216d4ca02123d2e71b4c82c7f3a04f
+Merge: 9dd1870 088c2c9
+Author: Liam Miller <lgm5590@g.rit.edu>
+Date:   Tue Oct 17 09:17:36 2017 -0400
+
+    Merge branch 'master' of https://github.com/Liam-Miller-SE/ARFS
+
+commit 9dd1870d57cc2805b5cbe01f275972334b6f5090
+Author: Liam Miller <lgm5590@g.rit.edu>
+Date:   Tue Oct 17 09:17:27 2017 -0400
+
+    Removed HQuery, functionality moved to Client
+
+commit 088c2c94adbe4ec1e1739d59a89d7ac1eb525eb9
+Author: Melissa Gould <mag8224@g.rit.edu>
+Date:   Tue Oct 17 09:09:30 2017 -0400
+
+    Adding Flights to Airports
+    
+    Adding Flights to the list of flights in airports.
+
+commit 2fd19454a7ab3ba592acd4069756cb3b8be04049
+Author: Melissa Gould <mag8224@g.rit.edu>
+Date:   Tue Oct 17 09:03:01 2017 -0400
+
+    Connection and Delay Time
+    
+    Added where we are storing the connection and delay times
+
+commit d2e57e85eefaeab9c47250e46f34beba3c36e6e2
+Merge: 78e9133 efa41d0
+Author: tzahald <tylerjdavis.96@gmail.com>
+Date:   Tue Oct 17 08:56:22 2017 -0400
+
+    Merge branch 'master' of https://github.com/Liam-Miller-SE/ARFS
+
+commit 78e9133b3b00d77b0bd7c434a9c755279ecaa288
+Merge: 694ff43 c4696e9
+Author: tzahald <tylerjdavis.96@gmail.com>
+Date:   Tue Oct 17 08:56:14 2017 -0400
+
+    Merge branch 'master' of https://github.com/Liam-Miller-SE/ARFS
+
+commit efa41d0ab61c74efb0f1f8fdde895ceee521edf2
+Author: Liam Miller <lgm5590@g.rit.edu>
+Date:   Sun Oct 15 14:43:25 2017 -0400
+
+    Added createItineraries() to RouteNetwork and added relevant methods to other classes
+
+commit c4696e9a46fd6f190ffcae595b94527cd5b9a05f
+Author: Liam Miller <lgm5590@g.rit.edu>
+Date:   Sun Oct 15 13:44:04 2017 -0400
+
+    Fixed HQuery.java
+
+commit 456dc381cd997f9865633dffd207f99743551d2a
+Author: Melissa Gould <mag8224@g.rit.edu>
+Date:   Sun Oct 15 10:06:53 2017 -0400
+
+    File Reading
+    
+    Added capability to read in the airport and flight file
+
+commit 694ff43b82df33aa46b6fe1a43a4df4a45d42a2f
+Author: tzahald <tylerjdavis.96@gmail.com>
+Date:   Thu Oct 12 15:14:30 2017 -0400
+
+    started AirportQuery
+
+commit 25feb627efdb9b7481f51f4717dec19bc8587290
+Author: tzahald <tylerjdavis.96@gmail.com>
+Date:   Thu Oct 12 15:07:15 2017 -0400
+
+    HQuery asks for right queries
+
+commit 65e9fca0b0625a6dfe8b9dcf8fc637e58067a3c8
+Author: tzahald <tylerjdavis.96@gmail.com>
+Date:   Thu Oct 12 14:59:28 2017 -0400
+
+    return statements
+
+commit 01898f8d425699c58db5ac0cfb782673003bf7d9
+Author: tzahald <tylerjdavis.96@gmail.com>
+Date:   Thu Oct 12 14:48:26 2017 -0400
+
+    created HQuery
+
+commit 582b3e05a5b48a9073effe49d6468f033512a570
+Author: Melissa Gould <mag8224@g.rit.edu>
+Date:   Thu Oct 12 14:21:03 2017 -0400
+
+    Fixed return specifications for Airport
+    
+    Needed to be int[] instead of int
+
+commit 6fda7d3d6c3f187c9a54ffbe2f0fa2f3342c1069
+Merge: e10ab9c 54dc695
+Author: tzahald <tylerjdavis.96@gmail.com>
+Date:   Thu Oct 12 14:19:21 2017 -0400
+
+    Merge branch 'master' of https://github.com/Liam-Miller-SE/ARFS
+
+commit e10ab9c801c195a0d7dd07ce6bcdd1e73bc9cd50
+Author: tzahald <tylerjdavis.96@gmail.com>
+Date:   Thu Oct 12 14:19:05 2017 -0400
+
+    all methods in queries
+
+commit 54dc6953bca3c7300c2d6314097b59dd13454e61
+Merge: aecafbd 1157ffe
+Author: Joshua Eng <jpe4602@rit.edu>
+Date:   Thu Oct 12 14:16:12 2017 -0400
+
+    Merge branch 'master' of https://github.com/Liam-Miller-SE/ARFS
+
+commit aecafbdb8b207923395d335b281c2ca0e82fb165
+Author: Joshua Eng <jpe4602@rit.edu>
+Date:   Thu Oct 12 14:16:01 2017 -0400
+
+    More implementation
+    
+    Parses input, checks for input length after completing request to determine type of request
+
+commit 6bc1142c5b1dfe9c88ed77acced5c4685888a7a2
+Author: tzahald <tylerjdavis.96@gmail.com>
+Date:   Thu Oct 12 14:14:52 2017 -0400
+
+    fixed returns Airport. started queries
+
+commit 1157ffe96f06764358b4c860fd3159b676993452
+Merge: 13bae0b 3353753
+Author: tzahald <tylerjdavis.96@gmail.com>
+Date:   Thu Oct 12 14:03:50 2017 -0400
+
+    Merge branch 'master' of https://github.com/Liam-Miller-SE/ARFS
+
+commit 3353753d5005286ee87249e5019a5034e86c582e
+Author: Joshua Eng <jpe4602@rit.edu>
+Date:   Thu Oct 12 11:08:46 2017 -0400
+
+    Setup for grabbing everyone else's classes
+    
+    Added empty methods to implement each different request option
+
+commit ba9663d285063a6ff0f96c114b018c481429bebd
+Author: Joshua Eng <jpe4602@rit.edu>
+Date:   Thu Oct 12 10:54:03 2017 -0400
+
+    Now Implements Observer Pattern for TextUI
+    
+    implemented update() method, everything can run correctly through the TextUI main() method
+
+commit 88b9c93832a9a8f24d44a109dbcd225e6212133b
+Author: Joshua Eng <jpe4602@rit.edu>
+Date:   Thu Oct 12 10:34:58 2017 -0400
+
+    Conforming to Coding Standards
+    
+    No Functional Changes,
+    Just moving of brackets
+
+commit 798294949b977c99843b9038c1d008bd984e1618
+Author: Joshua Eng <jpe4602@rit.edu>
+Date:   Thu Oct 12 10:23:17 2017 -0400
+
+    Client has more options, fixed format for TextUI
+    
+    Added exit and help options,
+    Now properly takes in partial requests and waits for the ';'
+
+commit 13bae0b2c91ae2d3b81a85252828dbb1f33e1bf5
+Author: tzahald <tylerjdavis.96@gmail.com>
+Date:   Thu Oct 12 09:15:26 2017 -0400
+
+    get methods
+
+commit 6d8d529eec6d5953f51073c1fbf6325095e66d95
+Author: tzahald <tylerjdavis.96@gmail.com>
+Date:   Thu Oct 12 09:07:18 2017 -0400
+
+    basic constructor
+
+commit 13e3922f2c7e719228a92fbd4dbdf423732b20a3
+Author: Melissa Gould <mag8224@g.rit.edu>
+Date:   Wed Oct 11 18:39:24 2017 -0400
+
+    Stubbed out Route Network
+    
+    added temporary output for the reading in of files, can't be completed until all the airport and flight classes are fully setup
+
+commit bc840edb995b458b55e13df5a20770ae3d046051
+Author: Melissa Gould <mag8224@g.rit.edu>
+Date:   Tue Oct 10 21:48:51 2017 -0400
+
+    Commenting out main method
+    
+    removing because this was what I was using for testing temporarily
+
+commit 530f76fb905551e2757133bcae8badf6454a7bb5
+Merge: 1f57cdd 2922ef1
+Author: Melissa Gould <mag8224@g.rit.edu>
+Date:   Tue Oct 10 21:45:45 2017 -0400
+
+    Merge branch 'master' of https://github.com/Liam-Miller-SE/ARFS
+
+commit 1f57cdd5352d34ce0a6dcf6666e9d0a2f2daa383
+Author: Melissa Gould <mag8224@g.rit.edu>
+Date:   Tue Oct 10 21:45:29 2017 -0400
+
+    Start of Route Network
+    
+    Started the intialization of RouteNetwork, still need to finish the reading in of files
+
+commit 1e8aaff49f376e2574d42239c9c1964804acae05
+Author: Melissa Gould <mag8224@g.rit.edu>
+Date:   Tue Oct 10 21:44:42 2017 -0400
+
+    Input Files
+    
+    Added the input files that will have to be read on start up of the system
+
+commit 2922ef1754ea2458d5b7220ba58fb1eabbf4584b
+Author: Joshua Eng <jpe4602@rit.edu>
+Date:   Tue Oct 10 19:46:47 2017 -0400
+
+    Client Takes in Input
+    
+    Initial Setup for taking in input strings, looking for proper commands, looks for terminating ';' char.
+
+commit 034298706e2767c67370862408d07d83dfb5ed96
+Author: Joshua Eng <jpe4602@rit.edu>
+Date:   Tue Oct 10 18:51:50 2017 -0400
+
+    Added textfiles with the "CSV" data, initials for Client/TextUI
+    
+    Copied over the starting text files, started the Observer pattern for Client, initialization stuff.
+
+commit 119928b44b4802885ba4ce5b763cd3cdb816494e
+Author: Liam Miller <lgm5590@g.rit.edu>
+Date:   Mon Oct 9 14:22:43 2017 -0400
+
+    Added testing base class
+
+commit 715ed8f36c964a07cf965dbc276f8077e69069ba
+Author: Liam Miller <imasilverfalcon@gmail.com>
+Date:   Mon Oct 9 13:29:30 2017 -0400
+
+    Made skeleton classes for Itinerary, Flight, Airport, and Reservation
+    Updated gitignore to leave some of my dev files alone
+
+commit 995a7a60b3b309d7f21853a0fe2c722c78892bf6
+Author: Liam Miller <imasilverfalcon@gmail.com>
+Date:   Thu Oct 5 09:08:52 2017 -0400
+
+    Added .gitignore file
+
+commit 8ebc7484d7b9270f25a5d3d1bc0cb136eca16d1b
+Author: Liam Miller <imasilverfalcon@gmail.com>
+Date:   Thu Oct 5 09:03:50 2017 -0400
+
+    Fixed Curley bracket in IQuery
+
+commit cef46f8b036b2608672b12333b196d56f64c6e92
+Author: Melissa Gould <mag8224@g.rit.edu>
+Date:   Thu Oct 5 09:00:16 2017 -0400
+
+    remove gitignore
+
+commit 8f1ca8c1c292150f81c973172b4ac4d041ea9343
+Author: Melissa Gould <mag8224@g.rit.edu>
+Date:   Thu Oct 5 08:57:36 2017 -0400
+
+    Git ignore file
+    
+    added a gitignore file so we can ignore .xml and .idea files
+
+commit 09ae410db53bcf924ea613512f59049de2449d6d
+Author: Melissa Gould <mag8224@g.rit.edu>
+Date:   Thu Oct 5 08:54:54 2017 -0400
+
+    Intial creation
+    
+    Added main classes to be implemented for the project
+
+commit a49519b2a9e8380a2a1314e9cca892df5a89a605
+Author: Joshua Eng <jpe4602@rit.edu>
+Date:   Thu Oct 5 08:54:02 2017 -0400
+
+    Added Some Main Classes
+    
+    Flight, Airport, Reservation, Itinerary, Route Network
+
+commit ad1b7ddb455976e2c822f7e4328ac6090389a2be
+Author: Melissa Gould <mag8224@g.rit.edu>
+Date:   Thu Oct 5 08:49:38 2017 -0400
+
+    Created Client class
+    
+    Start off the project
+
+commit ab1184a699160a1334f3750fe87450a0b8d3b763
+Merge: 67c980e 5d43b4e
+Author: Melissa Gould <mag8224@g.rit.edu>
+Date:   Tue Sep 26 14:11:24 2017 -0400
+
+    Merge branch 'master' of https://github.com/Liam-Miller-SE/ARFS
+
+commit 67c980e47c6f074de411dab441c0b2c270fb4998
+Author: Melissa Gould <mag8224@g.rit.edu>
+Date:   Tue Sep 26 14:10:14 2017 -0400
+
+    Edited Readme
+    
+    Added a change to readme
+
+commit 5d43b4ecf1171d22993cf087a7884e17389ffe52
+Author: tjd2660 <tylerjdavis.96@gmail.com>
+Date:   Tue Sep 26 14:10:09 2017 -0400
+
+    Update README.txt
+
+commit d5b337f8b0752f85c4a0b2d6df86d8592c509c5f
+Author: Joshua Eng <jpe4602@rit.edu>
+Date:   Tue Sep 26 14:07:29 2017 -0400
+
+    Edit Readme
+    
+    Making sure I am a collab
+
+commit 8f6ec9a06fafa11a6bc0989b56a091da384ca5fa
+Author: Liam Miller <imasilverfalcon@gmail.com>
+Date:   Thu Sep 21 15:22:14 2017 -0400
+
+    added readme
