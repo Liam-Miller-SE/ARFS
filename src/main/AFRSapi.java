@@ -4,7 +4,7 @@ import java.util.*;
 
 /**
  * Created by melis on 10/5/2017.
- * Implementation done by Josh
+ * Implementation done by Josh and Melissa
  */
 public class AFRSapi extends Observable implements Observer {
     private String S;
@@ -69,8 +69,6 @@ public class AFRSapi extends Observable implements Observer {
     public void update(Observable o, Object arg) {
         String fullString = p.getString();
         setInput(fullString, null);
-        //TODO setInput takes in the complete response string that is needed by the GUI and TUI
-        //TODO add the client id to all the response strings
 
         String[] query = p.getQuery();
         ID = Integer.parseInt(query[0]);
@@ -128,9 +126,6 @@ public class AFRSapi extends Observable implements Observer {
             setInput(ID + ",error,unknown request", null);
         }
 
-
-        //setInput(query(query).toString(), null);
-        //everything in here needs to be changed to accept the models
 
     }
 
@@ -222,7 +217,7 @@ public class AFRSapi extends Observable implements Observer {
                 Reservation ele = scheduler.getElement();
                 if (!opo.equals(""))
                 {
-                    //TODO add in the right response string for undo
+
                     return "undo," + opo + "," + ele.getPassenger() + "," + ele.getItinerary().toString();
                 }
                 else
@@ -234,7 +229,7 @@ public class AFRSapi extends Observable implements Observer {
             case ("redo"):
                 String operation = scheduler.redo(cid);
                 Reservation elem = scheduler.getElement();
-                //TODO add in the right response string for redo
+
              if(!operation.equals(""))
              {
                  return "redo," + operation + "," + elem.getPassenger() + "," + elem.getItinerary();
