@@ -64,12 +64,24 @@ public class AfrsGui extends Application implements Observer {
             }
         }
 
+        System.out.println(ids);
+
+    }
+
+    private Stage whichClient(Stage s)
+    {
+        //System.out.println(s.getTitle());
+        if (ids.size() > 1) {
+            //System.out.println(ids.get(0).equals(ids.get(1)));
+        }
+        return s;
     }
 
     @Override
     public void start(Stage stage) {
 
         this.stage = stage;
+        this.sendServ();
         //new AfrsGui();
 
         BorderPane bp = welcomeScene();
@@ -225,6 +237,8 @@ public class AfrsGui extends Application implements Observer {
                 Scene sc = new Scene(terminal_Scene());
                 stage.setScene(sc);
                 stage.show();
+
+                //whichClient(stage);
             }
         });
         hold.getChildren().add(ezWay);
@@ -281,10 +295,25 @@ public class AfrsGui extends Application implements Observer {
             @Override
             public void handle(ActionEvent event) {
                 String inp = input.getCharacters().toString();
-                //outputM.setText(inp);
-                sendString(inp);
+                whichClient(stage);
+                if (inp.equals("connect;"))
+                {
+                    Stage newClient = new Stage();
+                    AfrsGui g = new AfrsGui();
+                    g.stage = newClient;
+                    g.start(newClient);
+                }
+                else if(inp.equals("disconnect;"))
+                {
+                    Scene sc = new Scene(discon_Scene());
+                    stage.setScene(sc);
+                    stage.show();
+                }
+                else {
+                    //outputM.setText(inp);
+                    sendString(inp);
+                }
                 input.setText("");
-
 
 
 
@@ -302,7 +331,21 @@ public class AfrsGui extends Application implements Observer {
         return b;
     }
 
+    private BorderPane discon_Scene()
+    {
+        BorderPane b = new BorderPane();
+        b.setPrefWidth(wind_width);
+        b.setPrefHeight(wind_height);
 
+        stop();
+
+        Text disc = new Text( this.id +",disconnect");
+        disc.setFont(Font.font(24));
+
+        b.setCenter(disc);
+
+        return b;
+    }
 
 
 
@@ -810,10 +853,21 @@ public class AfrsGui extends Application implements Observer {
     @Override
     public void stop() //Methods for after system shutdown should go here
     {
-        //Only after the very last window to closes
+        for(Integer s : ids)
+        {
+            if (Integer.parseInt(id) == s   )
+            {
+                ids.remove(s);
+                break;
+            }
+        }
+
+        //ids.remove(Integer.parseInt(this.id));
+        //System.out.println(ids);
+
         c.quit();
 
-        System.out.println("I made it to closing");
+        //System.out.println("I made it to closing");
     }
 
     public static void main(String[] args)
@@ -824,8 +878,8 @@ public class AfrsGui extends Application implements Observer {
         //Observer o = new AfrsGui(c);
         c.getFiles();
         c.loadFiles();
-        AfrsGui G = new AfrsGui();
-        G.sendServ();
+        //AfrsGui G = new AfrsGui();
+
 
 
         Application.launch(args);
