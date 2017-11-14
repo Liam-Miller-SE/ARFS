@@ -68,9 +68,16 @@ public class Scheduler {
 	}
 
 	public void addElementUndo(Integer id, Reservation r) {
-		Pair<Integer, Reservation> ele = new Pair<>(id, r);
-		undo.push(ele);
+		Pair<Integer, Reservation> ele = new Pair<Integer, Reservation>(id, r);
+		if(ele != null) {
+			undo.push(ele);
+		}
+		else
+		{
+			System.out.println("Unknown Reservation");
+		}
 		removeIdElements(id);
+
 	}
 
 	public void removeIdElements(Integer id) {
