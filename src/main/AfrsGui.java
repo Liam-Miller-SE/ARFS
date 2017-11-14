@@ -38,7 +38,7 @@ public class AfrsGui extends Application implements Observer {
 
     private boolean isLocalService;
     private Stage stage;
-    private AFRSapi c;
+    private static AFRSapi c;
     private String response;
     private String id;
     private String terminate = ";";
@@ -48,7 +48,7 @@ public class AfrsGui extends Application implements Observer {
     public AfrsGui()
     {
 
-        this.c = c;
+
         c.addObserver(this);
         isLocalService = true;
 
@@ -211,6 +211,25 @@ public class AfrsGui extends Application implements Observer {
             }
         });
 
+        HBox hold = new HBox();
+        Button ezWay = new Button("Terminal Client");
+        ezWay.setPrefWidth(200);
+        ezWay.setPrefHeight(100);
+        ezWay.setFont(Font.font(20));
+        ezWay.underlineProperty().set(true);
+        ezWay.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Scene sc = new Scene(terminal_Scene());
+                stage.setScene(sc);
+                stage.show();
+            }
+        });
+        hold.getChildren().add(ezWay);
+        hold.setPadding(new Insets(30,30,30,30));
+        hold.setAlignment(Pos.CENTER);
+        options.getChildren().add(hold);
+
         changeServ.getChildren().add(toggleService);
         Settings.getChildren().addAll(newClient,changeServ);
 
@@ -222,6 +241,70 @@ public class AfrsGui extends Application implements Observer {
 
         return b;
     }
+
+
+
+    
+    private BorderPane terminal_Scene()
+    {
+        BorderPane b = new BorderPane();
+        b.setPrefWidth(wind_width);
+        b.setPrefHeight(wind_height);
+
+        TextField input = new TextField();
+        input.setPadding(new Insets(20,20,20,20));
+        input.setFont(Font.font(20));
+
+        HBox screen = new HBox();
+        screen.setPadding(new Insets(10,10,10,10));
+        Text output = new Text();
+
+        output.setTextAlignment(TextAlignment.JUSTIFY);
+        output.setFont(Font.font(24));
+        output.setWrappingWidth(700);
+        screen.getChildren().add(output);
+
+        VBox window = new VBox();
+
+        HBox inpField = new HBox();
+        input.setPrefWidth(600);
+        inpField.setPadding(new Insets(10,10,10,10));
+        inpField.setAlignment(Pos.CENTER);
+        Button submit = new Button("Submit");
+        submit.setPrefHeight(80);
+        submit.setPrefWidth(120);
+        submit.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                String inp = input.getCharacters().toString();
+                output.setText(inp);
+
+
+
+
+
+
+            }
+        });
+        inpField.getChildren().addAll(input,submit);
+
+
+        window.getChildren().addAll(screen);
+
+        b.setCenter(window);
+        b.setBottom(inpField);
+        return b;
+    }
+
+
+
+
+
+
+
+
+
+
 
     private BorderPane genFlights_Scene()
     {
@@ -609,7 +692,7 @@ public class AfrsGui extends Application implements Observer {
     {
 
         Parser p = new Parser();
-        AFRSapi c = new AFRSapi(p);
+        c = new AFRSapi(p);
         //Observer o = new AfrsGui(c);
         c.getFiles();
         c.loadFiles();
