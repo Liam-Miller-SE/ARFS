@@ -38,7 +38,6 @@ public class TextUI implements Observer
             System.out.println("Please note that all responses should end with a ';'");
             System.out.println("For more info about a specific option, Type 'help,[option];' ");
         }
-
         else
         {
             System.out.println(output);
@@ -51,6 +50,11 @@ public class TextUI implements Observer
     {
         ArrayList<Itinerary> it = this.itins;
         //s = "id,reserve,name"
+    }
+
+    public void sendItins()
+    {
+        c.updateItin(this.itins);
     }
 
     public void sendString()
@@ -94,7 +98,8 @@ public class TextUI implements Observer
             }
             else if (isReserve.equals("reserve"))
             {
-                return;
+                sendItins();
+                c.updateString(id + "," + myInput);
             }
             else
             {

@@ -18,6 +18,7 @@ public class AFRSapi extends Observable implements Observer {
     public int ID;
     private Scheduler scheduler = new Scheduler();
     private ArrayList<Itinerary> tempItin = new ArrayList<Itinerary>();
+    private ArrayList<Itinerary> resItin = new ArrayList<>();
 
 
 
@@ -85,7 +86,7 @@ public class AFRSapi extends Observable implements Observer {
 
         if(query[0].equals("delete") || query[0].equals("reserve") || query[0].equals("undo") || query[0].equals("redo"))
         {
-            String success = reservations(ID, query, tempItin);
+            String success = reservations(ID, query, resItin);
             String finalOut = ID +"," + success;
 
             setInput(finalOut, null);
@@ -251,6 +252,10 @@ public class AFRSapi extends Observable implements Observer {
 
 
 
+    }
+    public void updateItin(ArrayList<Itinerary> itin)
+    {
+        this.resItin = itin;
     }
 
 
