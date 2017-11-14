@@ -1,10 +1,8 @@
 package main;
+import javax.xml.soap.Text;
 import java.io.File;
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
-import java.util.Scanner;
+import java.util.*;
 
 public class TextUI implements Observer
 {
@@ -13,12 +11,23 @@ public class TextUI implements Observer
     private String s;
     private String id;
     private ArrayList<Itinerary> itins = new ArrayList<>();
+    private static ArrayList<Integer> ids = new ArrayList<>();
 
     public TextUI(AFRSapi c)
     {
         this.c = c;
         c.addObserver(this);
-        this.id = "0";
+
+
+        Random r = new Random();
+        while (true) {
+            int tempID = r.nextInt(100);
+            if (!ids.contains(tempID)) {
+                ids.add(tempID);
+                this.id = Integer.toString(tempID);
+                break;
+            }
+        }
     }
 
     @Override
@@ -44,12 +53,6 @@ public class TextUI implements Observer
         }
 
 
-    }
-
-    private void makeRes(String s)
-    {
-        ArrayList<Itinerary> it = this.itins;
-        //s = "id,reserve,name"
     }
 
     public void sendItins()
@@ -99,15 +102,16 @@ public class TextUI implements Observer
                 c.quit();
                 return;
             }
+
             else if (isReserve.equals("reserve"))
             {
                 sendItins();
                 c.updateString(id + "," + myInput);
             }
+
             else
             {
                 c.updateString(id + "," + myInput);
-
 
             }
             sendString();
@@ -160,25 +164,18 @@ public class TextUI implements Observer
 
     public static void main(String[] args)
     {
-        System.out.println("Welcome to AFRS!");
-        System.out.println("We are now in the first release of development...");
-        System.out.println("What are you looking to do?");
-        System.out.println("If unsure about inputs... Type 'help;'");
         Parser p = new Parser();
         AFRSapi c = new AFRSapi(p);
         c.getFiles();
         c.loadFiles();
-        //Observer o = new TextUI(c);
-        //Observer oapi = new AFRSapi(p);
         TextUI t = new TextUI(c);
+
+        System.out.println("Welcome to AFRS!");
+        System.out.println("We are now in the first release of development...");
+        System.out.println("What are you looking to do?");
+        System.out.println("If unsure about inputs... Type 'help;'");
+
         t.sendString();
-
-
-
-         //sc = new Scanner(System.in);
-         //c.parseInput(sc);
-
-        //c.takeInput();
 
     }
 }

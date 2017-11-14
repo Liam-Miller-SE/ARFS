@@ -28,15 +28,7 @@ public class AFRSapi extends Observable implements Observer {
         this.ready = false;
         this.UpdateStr = "";
 
-        Random r = new Random();
-        while (true) {
-            int tempID = r.nextInt(100);
-            if (!IDs.contains(tempID)) {
-                IDs.add(this.ID);
-                this.ID = tempID;
-                break;
-            }
-        }
+
 
 
         //System.out.println(this.ID);
@@ -79,7 +71,8 @@ public class AFRSapi extends Observable implements Observer {
         setInput(fullString, null);
 
         String[] query = p.getQuery();
-        if (query != null) {
+        if (query != null)
+        {
             ID = Integer.parseInt(query[0]);
             query = Arrays.copyOfRange(query, 1, query.length);
 
@@ -121,7 +114,7 @@ public class AFRSapi extends Observable implements Observer {
                     setInput(ID + ",error, unknown request", null);
                 }
             } else {
-                setInput(ID + ",error,unknown request", null);
+                //setInput(ID + ",error,unknown request", null);
             }
         }
 
@@ -253,10 +246,13 @@ public class AFRSapi extends Observable implements Observer {
 
     public void updateString(String s )
     {
+
+
         this.UpdateStr = UpdateStr + s;
         if (UpdateStr.substring(UpdateStr.length()-1).equals(";"))
         {
             this.ready = true;
+            //parseInput(this.UpdateStr);
         }
         else
         {

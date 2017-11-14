@@ -22,6 +22,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Observer;
 import java.util.Observable;
+import java.util.Random;
 
 import javafx.scene.text.Text;
 import javafx.stage.WindowEvent;
@@ -38,12 +39,11 @@ public class AfrsGui extends Application implements Observer {
     private boolean isLocalService;
     private Stage stage;
     private AFRSapi c;
-    private static ArrayList<String> Files;
-    private File f;
     private String response;
-    private int ID;
+    private String id;
     private String terminate = ";";
     private ArrayList<Itinerary> itins;
+    private static ArrayList<Integer> ids = new ArrayList<>();
 
     public AfrsGui()
     {
@@ -52,6 +52,16 @@ public class AfrsGui extends Application implements Observer {
         this.c = c;
         c.addObserver(this);
         isLocalService = true;
+
+        Random r = new Random();
+        while (true) {
+            int tempID = r.nextInt(100);
+            if (!ids.contains(tempID)) {
+                ids.add(tempID);
+                this.id = Integer.toString(tempID);
+                break;
+            }
+        }
 
     }
 
@@ -70,7 +80,7 @@ public class AfrsGui extends Application implements Observer {
             }
         });
 
-        stage.setTitle("AFRS : " + c.ID);
+        stage.setTitle("AFRS : " + this.id);
         stage.setScene(new Scene(bp));
         //stage.setScene(new Scene(border));
         stage.show();
@@ -173,8 +183,9 @@ public class AfrsGui extends Application implements Observer {
             public void handle(ActionEvent event) {
 
                 Stage newClient = new Stage();
-                c = new AfrsGui().c;
-                start(newClient);
+                AfrsGui g = new AfrsGui();
+                g.stage = newClient;
+                g.start(newClient);
             }
         });
 
@@ -506,7 +517,7 @@ public class AfrsGui extends Application implements Observer {
                 String input = airports.getCharacters().toString();
                 //System.out.println("Input is: " + input);
 
-                c.updateString(input + terminate); //Send the airport request
+                c.updateString(  input + terminate); //Send the airport request
 
                 Scene sc = new Scene(displayAirport_Scene());
                 stage.setScene(sc);

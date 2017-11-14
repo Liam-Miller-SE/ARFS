@@ -211,13 +211,14 @@ public class Parser extends Observable {
             {
                 setInput("Unknown destination airport");
             }
-            setInput("Retrieving Reservation data ");
+            //setInput("Retrieving Reservation data ");
             //response = query(params);
             //setInput(response);
             //Insert method to retrieve data here
         }
         return params;
     }
+
     private String[] getAirportInfo(String str)
     {
         String[] params = parseInput(str);
