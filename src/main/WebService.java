@@ -25,7 +25,7 @@ public class WebService implements IState
     public Airport getAirport(String code) throws IOException
 	{
 		ArrayList<Airport> Airports = new ArrayList<Airport>();
-        String url = "http://services.faa.gov/airport/status/BOS/?format=application/xml";
+        String url = "http://services.faa.gov/airport/status/"+ code +"/?format=application/xml";
         // Create a URL and open a connection
         URL airportURL = new URL(url);
         HttpURLConnection con = (HttpURLConnection) airportURL.openConnection();

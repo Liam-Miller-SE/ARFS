@@ -677,7 +677,7 @@ public class AfrsGui extends Application implements Observer {
     public void update(Observable t, Object o)
     {
         String output = c.getInput();
-        System.out.println(output);
+        //System.out.println(output);
         this.response = output;
 
 
@@ -824,7 +824,9 @@ public class AfrsGui extends Application implements Observer {
         //Observer o = new AfrsGui(c);
         c.getFiles();
         c.loadFiles();
-        new AfrsGui();
+        AfrsGui G = new AfrsGui();
+        G.sendServ();
+
 
         Application.launch(args);
     }
