@@ -264,6 +264,7 @@ public class RouteNetwork
                     && db.getItinerary().getDestination().getCode().equals(r.getItinerary().getDestination().getCode()))
             {
                 reservations.remove(db);
+                break;
             }
         }
     }

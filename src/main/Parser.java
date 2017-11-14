@@ -197,7 +197,7 @@ public class Parser extends Observable {
     {
         String[] params = parseInput(str);
         //System.out.println(params.length);
-        if (params.length != 4)
+        if (params.length != 5)
         {
             setInput("error, Incorrect number of parameters, expected 4, got " + params.length);
         }

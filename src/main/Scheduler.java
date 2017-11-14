@@ -19,6 +19,8 @@ public class Scheduler {
 
 	public Scheduler() {
 		rn = RouteNetwork.getInstance();
+		this.undo = new Stack<>();
+		this.redo = new Stack<>();
 	}
 
 
@@ -60,6 +62,7 @@ public class Scheduler {
 				deleting = r;
 				//addElementUndo(cid, r);
 				rn.deleteReservation(r);
+				break;
 
 			}
 		}
