@@ -34,7 +34,7 @@ public class Scheduler {
 		//go through current passenger reservations
 		ReservationQuery rQuery = new ReservationQuery();
 		String[] queryInfo = {name, i.getOrigin().getCode(), i.getDestination().getCode()};
-		if (rQuery.processData(queryInfo).equals("")) {
+		if (rQuery.processData(queryInfo).isEmpty()) {
 			rn.storeReservation(r);
 			return 0;
 		} else {
