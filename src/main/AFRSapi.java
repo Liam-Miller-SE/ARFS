@@ -79,59 +79,50 @@ public class AFRSapi extends Observable implements Observer {
         setInput(fullString, null);
 
         String[] query = p.getQuery();
-        ID = Integer.parseInt(query[0]);
-        query = Arrays.copyOfRange(query, 1, query.length);
-        //String send = "";
+        if (query != null) {
+            ID = Integer.parseInt(query[0]);
+            query = Arrays.copyOfRange(query, 1, query.length);
 
 
-        if(query[0].equals("delete") || query[0].equals("reserve") || query[0].equals("undo") || query[0].equals("redo"))
-        {
-            String success = reservations(ID, query, resItin);
-            String finalOut = ID +"," + success;
+            //String send = "";
 
-            setInput(finalOut, null);
-        }
 
-        Object output = query(query);
-        if(output instanceof ArrayList<?>)
-        {
-            ArrayList<?> out = (ArrayList<?>) output;
-            if(out.get(0) instanceof Airport)
-            {
-                String outString = ID + ",";
-                Airport a = (Airport)out.get(0);
-                outString += a.toString();
-                setInput(outString, null);
+            if (query[0].equals("delete") || query[0].equals("reserve") || query[0].equals("undo") || query[0].equals("redo")) {
+                String success = reservations(ID, query, resItin);
+                String finalOut = ID + "," + success;
+
+                setInput(finalOut, null);
             }
-            else if(out.get(0) instanceof Itinerary )
-            {
 
-                tempItin = (ArrayList<Itinerary>) out;
-                String ot = ID + ",info,";
-                int num = 0;
-                for(Itinerary j : tempItin)
-                {
-                    ot +=num++ + "," +j.toOutputString() + "\n";
+            Object output = query(query);
+            if (output instanceof ArrayList<?>) {
+                ArrayList<?> out = (ArrayList<?>) output;
+                if (out.get(0) instanceof Airport) {
+                    String outString = ID + ",";
+                    Airport a = (Airport) out.get(0);
+                    outString += a.toString();
+                    setInput(outString, null);
+                } else if (out.get(0) instanceof Itinerary) {
+
+                    tempItin = (ArrayList<Itinerary>) out;
+                    String ot = ID + ",info,";
+                    int num = 0;
+                    for (Itinerary j : tempItin) {
+                        ot += num++ + "," + j.toOutputString() + "\n";
+                    }
+                    setInput(ot, tempItin);
+                } else if (out.get(0) instanceof Reservation) {
+                    String ret = ID + ",retrieve,";
+                    for (int j = 0; j < out.size(); j++) {
+                        ret += out.get(j).toString();
+                    }
+                    setInput(ret, null);
+                } else {
+                    setInput(ID + ",error, unknown request", null);
                 }
-                setInput(ot, tempItin);
+            } else {
+                setInput(ID + ",error,unknown request", null);
             }
-            else if(out.get(0) instanceof Reservation)
-            {
-                String ret =ID +",retrieve,";
-                for(int j = 0; j < out.size(); j++)
-                {
-                    ret += out.get(j).toString();
-                }
-                setInput(ret, null);
-            }
-            else
-            {
-                setInput(ID + ",error, unknown request", null);
-            }
-        }
-        else
-        {
-            setInput(ID + ",error,unknown request", null);
         }
 
 

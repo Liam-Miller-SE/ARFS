@@ -68,7 +68,10 @@ public class TextUI implements Observer
             String lastChar = myInput.substring(myInput.length() -1);
             String command = myInput.substring(0,myInput.length()-1);
             String isHelp = "";
-            String isReserve = myInput.substring(0,7);
+            String isReserve = "";
+            if (myInput.length() >= 7) {
+                isReserve = myInput.substring(0, 7);
+            }
             //System.out.println(isReserve);
             if(myInput.length() >= 5) {
                 isHelp = myInput.substring(0, 4);

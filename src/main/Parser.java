@@ -57,9 +57,6 @@ public class Parser extends Observable {
             String lastChar = inp.substring(inp.length() -1);
             newin = "";
 
-
-
-
             if (!(lastChar.equals(";"))) //Shouldn't need this check anymore -> moved to textui
             {
                 setInput("partial-request");
@@ -124,6 +121,12 @@ public class Parser extends Observable {
                         //System.out.println("info for an airport");
                         setQuery(getAirportInfo(inp));
                         break;
+                    case "connect":
+                    case "disconnect":
+                    case "server":
+                    case "undo":
+                    case "redo":
+
                     default:
                         setInput("error,unknown request: " + newin);
                 }
