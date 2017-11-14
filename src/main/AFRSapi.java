@@ -64,6 +64,13 @@ public class AFRSapi extends Observable implements Observer {
         return this.UpdateStr;
     }
 
+    public ArrayList<Itinerary> getItineraries()
+    {
+        return this.tempItin;
+    }
+
+
+
 
     @Override
     public void update(Observable o, Object arg) {

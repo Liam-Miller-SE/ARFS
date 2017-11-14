@@ -79,7 +79,7 @@ public class Parser extends Observable {
                     {
                         id += myInput.charAt(i);
                     }
-                    System.out.println(id);
+                    //System.out.println(id);
 
                 }
                 parsedInp = myInput.substring(id.length()+1);
@@ -100,7 +100,7 @@ public class Parser extends Observable {
 
                     }
                 }
-                System.out.println(newin);
+                //System.out.println(newin);
 
                 switch (newin)
                 {
@@ -175,15 +175,15 @@ public class Parser extends Observable {
     private String[] makeReservation(String str)
     {
         String[] params = parseInput(str);
-        if (params.length != 3)
+        if (params.length != 4)
         {
-            setInput("error, unknown Something");
+            setInput("error, Incorrect Parameters");
         }
         else
         {
 
-            setInput("Retrieving Some data ");
-            Scheduler sc = new Scheduler();
+            //setInput("Retrieving Some data ");
+            return params;
 
             //sc.storeItinerary();
             //Insert method from Scheduler to retrieve data here
@@ -193,7 +193,7 @@ public class Parser extends Observable {
     private String[] deleteReservation(String str)
     {
         String[] params = parseInput(str);
-        System.out.println(params.length);
+        //System.out.println(params.length);
         if (params.length != 4)
         {
             setInput("error, Incorrect number of parameters, expected 4, got " + params.length);

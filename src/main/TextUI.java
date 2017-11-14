@@ -1,5 +1,6 @@
 package main;
 import java.io.File;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
@@ -11,6 +12,7 @@ public class TextUI implements Observer
     private static Scanner sc;
     private String s;
     private String id;
+    private ArrayList<Itinerary> itins = new ArrayList<>();
 
     public TextUI(AFRSapi c)
     {
@@ -23,6 +25,7 @@ public class TextUI implements Observer
     public void update(Observable o, Object arg)
     {
         String output = c.getInput();
+        itins = c.getItineraries();
         if(output.equals("exit"))
         {
             c.quit();
@@ -35,12 +38,19 @@ public class TextUI implements Observer
             System.out.println("Please note that all responses should end with a ';'");
             System.out.println("For more info about a specific option, Type 'help,[option];' ");
         }
+
         else
         {
             System.out.println(output);
-
         }
 
+
+    }
+
+    private void makeRes(String s)
+    {
+        ArrayList<Itinerary> it = this.itins;
+        //s = "id,reserve,name"
     }
 
     public void sendString()
@@ -54,6 +64,8 @@ public class TextUI implements Observer
             String lastChar = myInput.substring(myInput.length() -1);
             String command = myInput.substring(0,myInput.length()-1);
             String isHelp = "";
+            String isReserve = myInput.substring(0,7);
+            //System.out.println(isReserve);
             if(myInput.length() >= 5) {
                 isHelp = myInput.substring(0, 4);
             }
@@ -80,6 +92,10 @@ public class TextUI implements Observer
                 c.quit();
                 return;
             }
+            else if (isReserve.equals("reserve"))
+            {
+                return;
+            }
             else
             {
                 c.updateString(id + "," + myInput);
@@ -88,9 +104,6 @@ public class TextUI implements Observer
             }
             sendString();
 
-            //s = sc.nextLine();
-            //c.parseInput(myInput);
-            //setString(s);
         }
 
     }
@@ -136,17 +149,6 @@ public class TextUI implements Observer
             }
 
     }
-
-    private void setString(String str)
-    {
-        this.s = str;
-    }
-    /**
-    public String getString()
-    {
-        return this.s;
-    }
-     **/
 
     public static void main(String[] args)
     {
