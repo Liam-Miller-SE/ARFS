@@ -124,6 +124,7 @@ public class Scheduler {
 						operation = "reserve";
 						undoElement = ele.getValue();
 						inRN = true;
+						break;
 					}
 				}
 				if (!inRN) {
@@ -168,6 +169,7 @@ public class Scheduler {
 						rn.deleteReservation(r);
 
 						inRN = true;
+						break;
 					}
 
 			}

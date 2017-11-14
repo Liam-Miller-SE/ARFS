@@ -47,8 +47,7 @@ public class AfrsGui extends Application implements Observer {
 
     public AfrsGui()
     {
-        Parser p = new Parser();
-        AFRSapi c = new AFRSapi(p);
+
         this.c = c;
         c.addObserver(this);
         isLocalService = true;

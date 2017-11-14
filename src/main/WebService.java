@@ -57,27 +57,27 @@ public class WebService implements IState
             doc.getDocumentElement().normalize();
             NodeList nList = doc.getElementsByTagName("AirportStatus");
 
-            System.out.println("Root element: " + doc.getDocumentElement().getNodeName());
+            //System.out.println("Root element: " + doc.getDocumentElement().getNodeName());
 
-            System.out.println("----------------------------");
+            //System.out.println("----------------------------");
 
 
                 Node nNode = nList.item(0);
 
-                System.out.println("\nCurrent Element :" + nNode.getNodeName());
+                //System.out.println("\nCurrent Element :" + nNode.getNodeName());
 
                 if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 
                     Element eElement = (Element) nNode;
 
-                    System.out.println("Delay : " + eElement.getElementsByTagName("Delay").item(0).getTextContent());
-                    System.out.println("IATA : " + eElement.getElementsByTagName("IATA").item(0).getTextContent());
-                    System.out.println("State : " + eElement.getElementsByTagName("State").item(0).getTextContent());
-                    System.out.println("Name : " + eElement.getElementsByTagName("Name").item(0).getTextContent());
-                    System.out.println("Weather : " + eElement.getElementsByTagName("Weather").item(0).getTextContent());
-                    System.out.println("ICAO : " + eElement.getElementsByTagName("ICAO").item(0).getTextContent());
-                    System.out.println("City : " + eElement.getElementsByTagName("City").item(0).getTextContent());
-                    System.out.println("Status : " + eElement.getElementsByTagName("Status").item(0).getTextContent());
+                    //System.out.println("Delay : " + eElement.getElementsByTagName("Delay").item(0).getTextContent());
+                    //System.out.println("IATA : " + eElement.getElementsByTagName("IATA").item(0).getTextContent());
+                    //System.out.println("State : " + eElement.getElementsByTagName("State").item(0).getTextContent());
+                    //System.out.println("Name : " + eElement.getElementsByTagName("Name").item(0).getTextContent());
+                    //System.out.println("Weather : " + eElement.getElementsByTagName("Weather").item(0).getTextContent());
+                    //System.out.println("ICAO : " + eElement.getElementsByTagName("ICAO").item(0).getTextContent());
+                    //System.out.println("City : " + eElement.getElementsByTagName("City").item(0).getTextContent());
+                    //System.out.println("Status : " + eElement.getElementsByTagName("Status").item(0).getTextContent());
 					NodeList w = doc.getElementsByTagName("Weather");
 					Node weath = w.item(0);
 					Element e = (Element) w;

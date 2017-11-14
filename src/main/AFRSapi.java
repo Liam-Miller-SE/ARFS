@@ -15,6 +15,7 @@ public class AFRSapi extends Observable implements Observer {
     private static ArrayList<Integer> IDs = new ArrayList<Integer>();
     private Parser p;
     private boolean ready;
+    private boolean localServ;
     public int ID;
     private Scheduler scheduler = new Scheduler();
     private ArrayList<Itinerary> tempItin = new ArrayList<Itinerary>();
@@ -86,35 +87,57 @@ public class AFRSapi extends Observable implements Observer {
 
                 setInput(finalOut, null);
             }
-
-            Object output = query(query);
-            if (output instanceof ArrayList<?>) {
-                ArrayList<?> out = (ArrayList<?>) output;
-                if (out.get(0) instanceof Airport) {
-                    String outString = ID + ",";
-                    Airport a = (Airport) out.get(0);
-                    outString += a.toString();
-                    setInput(outString, null);
-                } else if (out.get(0) instanceof Itinerary) {
-
-                    tempItin = (ArrayList<Itinerary>) out;
-                    String ot = ID + ",info,";
-                    int num = 0;
-                    for (Itinerary j : tempItin) {
-                        ot += num++ + "," + j.toOutputString() + "\n";
-                    }
-                    setInput(ot, tempItin);
-                } else if (out.get(0) instanceof Reservation) {
-                    String ret = ID + ",retrieve,";
-                    for (int j = 0; j < out.size(); j++) {
-                        ret += out.get(j).toString();
-                    }
-                    setInput(ret, null);
-                } else {
-                    setInput(ID + ",error, unknown request", null);
+            else if(query[0].equals("server"))
+            {
+                //System.out.println("I made it to change servers");
+                if(query[1].equals("faa"))
+                {
+                    this.localServ = false;
+                    setInput(ID + ",server,successful",null);
                 }
-            } else {
-                //setInput(ID + ",error,unknown request", null);
+                else if (query[1].equals("local"))
+                {
+                    this.localServ = true;
+                    setInput(ID + ",server,successful",null);
+                }
+                else
+                {
+                    setInput(ID + ",error,unknown information server",null);
+                }
+
+            }
+            else
+            {
+
+                Object output = query(query);
+                if (output instanceof ArrayList<?>) {
+                    ArrayList<?> out = (ArrayList<?>) output;
+                    if (out.get(0) instanceof Airport) {
+                        String outString = ID + ",";
+                        Airport a = (Airport) out.get(0);
+                        outString += a.toString();
+                        setInput(outString, null);
+                    } else if (out.get(0) instanceof Itinerary) {
+
+                        tempItin = (ArrayList<Itinerary>) out;
+                        String ot = ID + ",info,";
+                        int num = 0;
+                        for (Itinerary j : tempItin) {
+                            ot += num++ + "," + j.toOutputString() + "\n";
+                        }
+                        setInput(ot, tempItin);
+                    } else if (out.get(0) instanceof Reservation) {
+                        String ret = ID + ",retrieve,";
+                        for (int j = 0; j < out.size(); j++) {
+                            ret += out.get(j).toString();
+                        }
+                        setInput(ret, null);
+                    } else {
+                        setInput(ID + ",error, unknown request", null);
+                    }
+                } else {
+                    //setInput(ID + ",error,unknown request", null);
+                }
             }
         }
 
@@ -151,7 +174,17 @@ public class AFRSapi extends Observable implements Observer {
             //returns a list of reservations of a specified client name
         } else if (query[0].equals("airport")) {
             AirportQuery aq = new AirportQuery();
-            return aq.processData(Arrays.copyOfRange(query, 1, query.length));
+
+            String[] airServ;
+            if(localServ)
+            {
+                airServ = new String[]{query[0],query[1],"local"};
+            }
+            else
+            {
+                airServ = new String[]{query[0],query[1],"faa"};
+            }
+            return aq.processData(Arrays.copyOfRange(airServ, 1, airServ.length));
             //returns a single airport in an array list of airports
         } else {
             return null;
@@ -222,14 +255,17 @@ public class AFRSapi extends Observable implements Observer {
                 String operation = scheduler.redo(cid);
                 Reservation elem = scheduler.getElement();
 
-             if(!operation.equals(""))
-             {
-                 return "redo," + operation + "," + elem.getPassenger() + "," + elem.getItinerary();
-             }
-             else
-             {
-                return "error,no request available";
-             }
+                if(!operation.equals(""))
+                {
+                    return "redo," + operation + "," + elem.getPassenger() + "," + elem.getItinerary();
+                }
+                else
+                {
+                    return "error,no request available";
+                }
+
+            case ("server"):
+
             default:
                 return "error,unknown request";
         }
@@ -240,6 +276,11 @@ public class AFRSapi extends Observable implements Observer {
     public void updateItin(ArrayList<Itinerary> itin)
     {
         this.resItin = itin;
+    }
+
+    public void updateServer(boolean b)
+    {
+        this.localServ = b;
     }
 
 

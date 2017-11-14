@@ -24,7 +24,7 @@ public class AirportQuery implements IQuery
 			RouteNetwork rn = RouteNetwork.getInstance();
 			output.add(rn.getAirport(airport));
 		}
-		else if(localWeb.equals("web"))
+		else if(localWeb.equals("faa"))
 		{
 			//calling the webService getAirport method
 			WebService ws = new WebService();

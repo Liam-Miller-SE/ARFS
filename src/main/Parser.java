@@ -121,12 +121,17 @@ public class Parser extends Observable {
                         //System.out.println("info for an airport");
                         setQuery(getAirportInfo(inp));
                         break;
-                    case "connect":
-                    case "disconnect":
+                    //case "connect":
+                    //case "disconnect":
                     case "server":
-                    case "undo":
-                    case "redo":
-
+                        setQuery(changeServer(inp));
+                        break;
+                    case "undo;":
+                        setQuery(getUndo(inp));
+                        break;
+                    case "redo;":
+                        setQuery(getUndo(inp));
+                        break;
                     default:
                         setInput("error,unknown request: " + newin);
                 }
@@ -136,6 +141,36 @@ public class Parser extends Observable {
             //S = inp;
             //takeInput(S);
         }
+    }
+
+    private String[] getUndo(String str)
+    {
+        String[] params = parseInput(str);
+        if(params.length != 2)
+        {
+            setInput("cid,error,no request available");
+        }
+        else
+        {
+            return params;
+        }
+        return null;
+    }
+
+    private String[] changeServer(String str)
+    {
+        String[] params = parseInput(str);
+        if (params.length != 3)
+        {
+            setInput("cid,error,unknown information server");
+        }
+        else
+        {
+
+            return params;
+        }
+
+        return null;
     }
 
     private String[] getFlightInfo(String str)
@@ -151,11 +186,12 @@ public class Parser extends Observable {
         }
         else
         {
+            return params;
 
             //response = query(params);
             //setInput(response);
         }
-        return params;
+        return null;
     }
     private String[] getReservationInfo(String str)
     {
@@ -170,10 +206,11 @@ public class Parser extends Observable {
         }
         else
         {
+            return params;
             //response = query(params);
             //setInput(response);
         }
-        return params;
+        return null;
     }
     private String[] makeReservation(String str)
     {
@@ -191,7 +228,7 @@ public class Parser extends Observable {
             //sc.storeItinerary();
             //Insert method from Scheduler to retrieve data here
         }
-        return params;
+        return null;
     }
     private String[] deleteReservation(String str)
     {
@@ -203,7 +240,7 @@ public class Parser extends Observable {
         }
         else
         {
-            if (params[2].length() != 3)
+            if (params[3].length() != 3)
             {
                 setInput("Unknown origin airport ");
             }
@@ -211,12 +248,16 @@ public class Parser extends Observable {
             {
                 setInput("Unknown destination airport");
             }
+            else
+            {
+                return params;
+            }
             //setInput("Retrieving Reservation data ");
             //response = query(params);
             //setInput(response);
             //Insert method to retrieve data here
         }
-        return params;
+        return null;
     }
 
     private String[] getAirportInfo(String str)

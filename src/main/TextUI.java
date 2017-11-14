@@ -10,6 +10,7 @@ public class TextUI implements Observer
     private static Scanner sc;
     private String s;
     private String id;
+    private boolean isLocalService;
     private ArrayList<Itinerary> itins = new ArrayList<>();
     private static ArrayList<Integer> ids = new ArrayList<>();
 
@@ -17,6 +18,8 @@ public class TextUI implements Observer
     {
         this.c = c;
         c.addObserver(this);
+
+        isLocalService = true;
 
 
         Random r = new Random();
@@ -55,12 +58,16 @@ public class TextUI implements Observer
 
     }
 
-    public void sendItins()
+    private void sendItins()
     {
         c.updateItin(this.itins);
     }
+    private void sendServ()
+    {
+        c.updateServer(this.isLocalService);
+    }
 
-    public void sendString()
+    private void sendString()
     {
         if (sc == null)
         {
@@ -72,12 +79,16 @@ public class TextUI implements Observer
             String command = myInput.substring(0,myInput.length()-1);
             String isHelp = "";
             String isReserve = "";
+            String isServ = "";
             if (myInput.length() >= 7) {
                 isReserve = myInput.substring(0, 7);
             }
             //System.out.println(isReserve);
             if(myInput.length() >= 5) {
                 isHelp = myInput.substring(0, 4);
+            }
+            if(myInput.length() >= 6) {
+                isServ = myInput.substring(0, 7);
             }
 
             //System.out.println(isHelp);
@@ -95,6 +106,11 @@ public class TextUI implements Observer
                     System.out.println("Please note that all responses should end with a ';'");
                     System.out.println("For more info about a specific option, Type 'help,[option];' ");
                 }
+            }
+            else if (isServ.equals("server"))
+            {
+                sendServ();
+                c.updateString(id + "," + myInput);
             }
             else if (command.equals("exit"))
             {
@@ -174,7 +190,7 @@ public class TextUI implements Observer
         System.out.println("We are now in the first release of development...");
         System.out.println("What are you looking to do?");
         System.out.println("If unsure about inputs... Type 'help;'");
-
+        t.sendServ();
         t.sendString();
 
     }
