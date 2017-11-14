@@ -5,7 +5,7 @@ public class Airport
 {
 	//holds info for airports identified by "code"
 	//get and set all attributes
-	
+	private String name;
 	private String code;
 	//private int[] temperature;
 	private ArrayList<Integer> temperature = new ArrayList<Integer>();
@@ -18,7 +18,7 @@ public class Airport
     private ArrayList<Flight> flights = new ArrayList<Flight>();
 	private int connectionTime;
 	private int delayTime;
-	private ArrayList<String> Stemperature = new ArrayList<String>(); 
+	private ArrayList<String> Stemperature = new ArrayList<String>();
 
 	
 	public Airport(String co, ArrayList<Integer> temp, ArrayList<String> weath, String cit)
@@ -46,10 +46,29 @@ public class Airport
 		tempI = 0;
 		weathI = 0;
 	}
+	public Airport(String nam, String weath, String tem, String avgDel)
+	{
+		name = nam;
+		weather.add(weath);
+		Stemperature.add(tem);
+		if (avgDel.equals(""))
+		{
+			delayTime = 0;
+		}
+		else
+		{
+			delayTime = Integer.parseInt(avgDel);
+		}
+
+		weathI = 0;
+
+
+	}
 	public String getCode()
 	{
 		return this.code; 
 	}
+
 	public ArrayList<Integer> getTemp()
 	{
 		return this.temperature ;
@@ -168,6 +187,13 @@ public class Airport
 	public String toString() 
 	{
 		//return "an airport";
+		if (this.name != null)
+		{
+			return ("Airport Name: " + this.name
+					+	"\nCurrent Weather: "
+					+ this.getWeath() + "\nCurrent Temperature: "
+					+ this.getSTemperature() + "\nDelays: " + this.getDelays() + "\n");
+		}
 		if (this.getTemperature() == null)
 		{
 			return ("Airport Name: " + this.getCity() + " "

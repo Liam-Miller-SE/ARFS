@@ -31,6 +31,7 @@ public class AirportQuery implements IQuery
 			try
 			{
 				output.add(ws.getAirport(airport));
+				//System.out.println(output.get(0) instanceof Airport);
 
 			}
 			catch (IOException e)

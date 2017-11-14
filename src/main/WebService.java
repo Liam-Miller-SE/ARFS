@@ -51,11 +51,17 @@ public class WebService implements IState
         //URI myURI = new URI(out);
 
         try {
+
             DocumentBuilderFactory db = DocumentBuilderFactory.newInstance();
             DocumentBuilder bd = db.newDocumentBuilder();
             Document doc = bd.parse(new InputSource(new StringReader(response.toString())));
             doc.getDocumentElement().normalize();
             NodeList nList = doc.getElementsByTagName("AirportStatus");
+
+            String del = "";
+            String name = "";
+            String weaths = "";
+            String temperature = "";
 
             //System.out.println("Root element: " + doc.getDocumentElement().getNodeName());
 
@@ -78,19 +84,30 @@ public class WebService implements IState
                     //System.out.println("ICAO : " + eElement.getElementsByTagName("ICAO").item(0).getTextContent());
                     //System.out.println("City : " + eElement.getElementsByTagName("City").item(0).getTextContent());
                     //System.out.println("Status : " + eElement.getElementsByTagName("Status").item(0).getTextContent());
+
+                     name = eElement.getElementsByTagName("Name").item(0).getTextContent();
+                }
 					NodeList w = doc.getElementsByTagName("Weather");
 					Node weath = w.item(0);
-					Element e = (Element) w;
-					String temperature = e.getElementsByTagName("Weather").item(0).getTextContent();
-					String weaths = e.getElementsByTagName("Temp").item(0).getTextContent();
-					ArrayList<String> temp = new ArrayList<String>(); 
-					temp.add(temperature);
-					String city = eElement.getElementsByTagName("City").item(0).getTextContent();
-					Airport newport = new Airport(code, temp, weaths, city);
+                    if (weath.getNodeType() == Node.ELEMENT_NODE) {
+                        Element e = (Element) weath;
+                         weaths = e.getElementsByTagName("Weather").item(0).getTextContent();
+                         temperature = e.getElementsByTagName("Temp").item(0).getTextContent();
+                    }
+
+                    NodeList s = doc.getElementsByTagName("Status");
+                    Node stat = s.item(0);
+                    if (stat.getNodeType() == Node.ELEMENT_NODE) {
+                        Element e = (Element) stat;
+                         del = e.getElementsByTagName("AvgDelay").item(0).getTextContent();
+                    }
+					//String city = eElement.getElementsByTagName("City").item(0).getTextContent();
+					Airport newport = new Airport(name,weaths,temperature,del);
 					Airports.add(newport);
 
-					return newport;
-                }
+                    //System.out.println(newport instanceof Airport);
+                    return newport;
+
 
 
         }
